@@ -1,17 +1,19 @@
 #pragma once
 #include <memory>
-#include "SinglyLinkedNode.h"
+#include "SinglyLinkedNode.cpp"
 
+template <typename T>
 class SinglyLinkedList
 {
 public:
 	int Size;
-	std::unique_ptr<SinglyLinkedNode> First;
-	std::unique_ptr<SinglyLinkedNode> Last;
-	void Add(int);
-	void Delete(int);
+	std::unique_ptr<SinglyLinkedNode<T>> First;
+	std::unique_ptr<SinglyLinkedNode<T>> Last;
+	void Add(T);
 	void Clear();
-	bool Found(int);
+	void Delete(T);
+	bool Found(T);
+	void GetAll();
 	SinglyLinkedList();
 	~SinglyLinkedList();
 };

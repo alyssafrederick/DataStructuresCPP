@@ -1,15 +1,25 @@
 #include <memory>
 #include <iostream>
 
-#include "SinglyLinkedList.h"
+#include "SinglyLinkedList.cpp"
 
 int main()
 {
-	SinglyLinkedList linkedList;
-	linkedList.Add(8);
-
-	std::cout << linkedList.First->Value << std::endl;
-
+	
+	SinglyLinkedList<int> linkedList;
+	
+	linkedList.Add(1);
+	linkedList.Add(2);
+	linkedList.Add(3);
+	linkedList.Add(4);
+	linkedList.Add(5);
+	linkedList.Add(6);
+	linkedList.GetAll();
+	linkedList.Found(6); //true
+	linkedList.Found(66); //false
+	linkedList.Delete(6);
+	linkedList.GetAll();
+	
 	system("pause");
 	return 0;
 }

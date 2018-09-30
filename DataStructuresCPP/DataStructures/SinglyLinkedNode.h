@@ -2,12 +2,12 @@
 #include <memory>
 
 
-
+template <typename T>
 class SinglyLinkedNode
 {
 public:
-	int Value;
+	T Value;
 	std::unique_ptr<SinglyLinkedNode> nextNode;
-	SinglyLinkedNode(int value);
+	SinglyLinkedNode(T value);
 };
 
