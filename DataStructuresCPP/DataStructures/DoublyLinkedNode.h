@@ -7,8 +7,8 @@ class DoublyLinkedNode
 {
 public:
 	T Value;
-	std::unique_ptr<SinglyLinkedNode> nextNode;
-	std::unique_ptr<SinglyLinkedNode> lastNode;
+	std::unique_ptr<DoublyLinkedNode> nextNode;
+	DoublyLinkedNode* lastNode;
 	DoublyLinkedNode(T value);
 };
 

@@ -115,11 +115,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DoublyLinkedList.cpp" />
+    <ClCompile Include="DoublyLinkedNode.cpp" />
     <ClCompile Include="SinglyLinkedList.cpp" />
     <ClCompile Include="SinglyLinkedNode.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DoublyLinkedList.h" />
+    <ClInclude Include="DoublyLinkedNode.h" />
     <ClInclude Include="SinglyLinkedList.h" />
     <ClInclude Include="SinglyLinkedNode.h" />
   </ItemGroup>

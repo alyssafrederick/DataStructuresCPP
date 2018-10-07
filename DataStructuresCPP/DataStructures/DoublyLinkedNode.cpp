@@ -9,4 +9,3 @@ DoublyLinkedNode<T>::DoublyLinkedNode(T value)
 	lastNode = nullptr;
 }
 
-

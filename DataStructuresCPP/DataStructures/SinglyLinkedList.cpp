@@ -30,6 +30,7 @@ void SinglyLinkedList<T>::Add(T value)
 		}
 
 		temp->nextNode = std::make_unique<SinglyLinkedNode<T>>(value);
+		
 	}
 
 	Size++;
