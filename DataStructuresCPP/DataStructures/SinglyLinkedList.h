@@ -10,7 +10,6 @@ public:
 	std::unique_ptr<SinglyLinkedNode<T>> First;
 	std::unique_ptr<SinglyLinkedNode<T>> Last;
 	void Add(T);
-	void Clear();
 	void Delete(T);
 	bool Found(T);
 	void GetAll();

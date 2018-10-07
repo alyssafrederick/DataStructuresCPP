@@ -7,11 +7,17 @@ class DoublyLinkedList
 public:
 	int Size;
 	std::unique_ptr<DoublyLinkedNode<T>> First;
-	void Add(T);
+	void AddAtEnd(T);
+	void AddAtStart(T);
+	void AddAt(T, int);
 	void Clear();
-	void Delete(T);
+	void DeleteAtEnd();
+	void DeleteAtStart();
+	void DeleteValue(T);
+	void DeleteAt(T, int);
 	bool Found(T);
 	void GetAllForward();
+	bool IsEmpty();
 	DoublyLinkedList();
 	~DoublyLinkedList();
 };

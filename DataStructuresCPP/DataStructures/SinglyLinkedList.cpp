@@ -30,17 +30,12 @@ void SinglyLinkedList<T>::Add(T value)
 		}
 
 		temp->nextNode = std::make_unique<SinglyLinkedNode<T>>(value);
-		
+
 	}
 
 	Size++;
 }
 
-template <typename T>
-void SinglyLinkedList<T>::Clear()
-{
-	First = nullptr;
-}
 
 template <typename T>
 void SinglyLinkedList<T>::Delete(T value)
@@ -118,4 +113,20 @@ void SinglyLinkedList<T>::GetAll()
 template <typename T>
 SinglyLinkedList<T>::~SinglyLinkedList()
 {
+	auto temp = std::move(First->nextNode);
+	while (temp != nullptr)
+	{
+		auto deleteMe = std::move(temp->nextNode);
+
+		if (deleteMe != nullptr)
+		{
+			temp = std::move(deleteMe->nextNode);
+		}
+		else
+		{
+			temp = nullptr;
+		}
+	}
+
+	auto deleteFirst = std::move(First);	
 }

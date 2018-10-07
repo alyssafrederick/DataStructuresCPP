@@ -10,7 +10,7 @@ DoublyLinkedList<T>::DoublyLinkedList()
 }
 
 template <typename T>
-void DoublyLinkedList<T>::Add(T value)
+void DoublyLinkedList<T>::AddAtEnd(T value)
 {
 	//when linkedList is empty (first is null)
 	if (First == nullptr)
@@ -37,13 +37,43 @@ void DoublyLinkedList<T>::Add(T value)
 }
 
 template <typename T>
+void DoublyLinkedList<T>::AddAtStart(T value)
+{
+	//////////////////////////////////////////////////////////////////to do 
+	DoublyLinkedNode<T>* temp = First.get();
+
+	First = std::make_unique<DoublyLinkedList<T>>(value);
+	First->nextnode = temp;
+
+	
+}
+
+template <typename T>
+void DoublyLinkedList<T>::AddAt(T value, int index)
+{
+
+}
+
+template <typename T>
 void DoublyLinkedList<T>::Clear()
 {
 	First = nullptr;
 }
 
 template <typename T>
-void DoublyLinkedList<T>::Delete(T value)
+void DoublyLinkedList<T>::DeleteAtEnd()
+{
+
+}
+
+template <typename T>
+void DoublyLinkedList<T>::DeleteAtStart()
+{
+
+}
+
+template <typename T>
+void DoublyLinkedList<T>::DeleteValue(T value)
 {
 	if (First->Value == value)
 	{
@@ -52,7 +82,7 @@ void DoublyLinkedList<T>::Delete(T value)
 		return;
 	}
 
-	DoublyLinkedNode<T>* temp = First.get(0);
+	DoublyLinkedNode<T>* temp = First.get();
 	if (Found(value))
 	{
 		while (temp->nextNode != nullptr && temp->nextNode->Value != value)
@@ -61,11 +91,12 @@ void DoublyLinkedList<T>::Delete(T value)
 			temp = temp->nextNode.get();
 		}
 
+		//we want to get rid of temp.nextnode
 		//if the value is in the middle of the list
 		if (temp->nextNode->nextNode != nullptr)
 		{
 			temp->nextNode = std::move(temp->nextNode->nextNode);
-
+			temp->nextNode->lastNode = temp;
 		}
 
 		//if the value is at the end
@@ -77,7 +108,13 @@ void DoublyLinkedList<T>::Delete(T value)
 		Size--;
 	}
 
-	else { return false; }
+	else { return; }
+}
+
+template <typename T>
+void DoublyLinkedList<T>::DeleteAt(T value, int index)
+{
+
 }
 
 template <typename T>
@@ -111,6 +148,16 @@ void DoublyLinkedList<T>::GetAllForward()
 		std::cout << temp->Value << std::endl;
 		temp = temp->nextNode.get();
 	}
+}
+
+template <typename T>
+bool DoublyLinkedList<T>::IsEmpty()
+{
+	if (First == nullptr)
+	{
+		return true;
+	}
+	else { return false; }
 }
 
 template <typename T>
