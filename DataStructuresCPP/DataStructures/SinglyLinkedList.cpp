@@ -113,6 +113,10 @@ void SinglyLinkedList<T>::GetAll()
 template <typename T>
 SinglyLinkedList<T>::~SinglyLinkedList()
 {
+	if (!First) {
+		return;
+	}
+
 	auto temp = std::move(First->nextNode);
 	while (temp != nullptr)
 	{

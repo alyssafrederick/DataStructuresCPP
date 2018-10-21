@@ -14,7 +14,7 @@ public:
 	void DeleteAtEnd();
 	void DeleteAtStart();
 	void DeleteValue(T);
-	void DeleteAt(T, int);
+	void DeleteAt(int);
 	bool Found(T);
 	void GetAllForward();
 	bool IsEmpty();

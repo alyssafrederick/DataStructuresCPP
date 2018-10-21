@@ -18,6 +18,15 @@ int main()
 	dll.AddAtStart(0);
 	dll.GetAllForward();
 	dll.DeleteValue(2);
+	dll.GetAllForward();
+	dll.AddAt(7, 2);  //check all the lastNode connections for addat and below
+	dll.GetAllForward();
+	dll.DeleteAtEnd();
+	dll.GetAllForward();
+	dll.DeleteAtStart();
+	dll.GetAllForward();
+	dll.DeleteAt(1);
+	dll.GetAllForward();
 
 	
 	//Thingy();
@@ -48,6 +57,7 @@ void Thingy()
 	{
 		linkedList.Add(i);
 	}
+	
 
 	
 }

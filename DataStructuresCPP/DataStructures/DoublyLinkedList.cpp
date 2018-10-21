@@ -13,7 +13,7 @@ template <typename T>
 void DoublyLinkedList<T>::AddAtEnd(T value)
 {
 	//when linkedList is empty (first is null)
-	if (First == nullptr)
+	if (IsEmpty())
 	{
 		First = std::make_unique<DoublyLinkedNode<T>>(value);
 	}
@@ -39,19 +39,57 @@ void DoublyLinkedList<T>::AddAtEnd(T value)
 template <typename T>
 void DoublyLinkedList<T>::AddAtStart(T value)
 {
-	//////////////////////////////////////////////////////////////////to do 
-	DoublyLinkedNode<T>* temp = First.get();
+	//if the list is empty
+	if (IsEmpty())
+	{
+		AddAtEnd(value);
+	}
 
-	First = std::make_unique<DoublyLinkedList<T>>(value);
-	First->nextnode = temp;
+	else
+	{
+		std::unique_ptr <DoublyLinkedNode<T>> tempHead = std::move(First);
+		First = std::make_unique<DoublyLinkedNode<T>>(value);
+		tempHead->lastNode = First.get();
+		First->nextNode = std::move(tempHead);
+	}
 
-	
+	Size++;
 }
 
 template <typename T>
 void DoublyLinkedList<T>::AddAt(T value, int index)
 {
+	//if the list is empty
+	if (IsEmpty())
+	{
+		AddAtEnd(value);
+	}
 
+	//if the index is out of range
+	else if (index > Size || index < 0)
+	{
+		std::cout << "index is out of range" << std::endl;
+	}
+
+	//if the index is in range
+	else
+	{
+		DoublyLinkedNode<T>* temp;
+		temp = First.get();
+
+		//index starts at 0
+		for (int i = 0; i < index - 1; i++)
+		{
+			temp = temp->nextNode.get();
+		}
+
+		std::unique_ptr <DoublyLinkedNode<T>> tempRest = std::move(temp->nextNode);
+		temp->nextNode = std::make_unique<DoublyLinkedNode<T>>(value);
+		tempRest->lastNode = temp->nextNode.get();
+		temp->nextNode->nextNode = std::move(tempRest);
+	}
+
+	Size++;
 }
 
 template <typename T>
@@ -63,18 +101,68 @@ void DoublyLinkedList<T>::Clear()
 template <typename T>
 void DoublyLinkedList<T>::DeleteAtEnd()
 {
+	//if there is nothing in the list
+	if (IsEmpty())
+	{
+		return;
+	}
 
+	//if there is only one item in the list
+	else if (First->nextNode == nullptr)
+	{
+		Clear();
+	}
+
+	// if there is more than 1 item in the list
+	else
+	{
+		DoublyLinkedNode<T>* temp = First.get();
+		while (temp->nextNode != nullptr)
+		{
+			temp = temp->nextNode.get();
+		}
+
+		temp->lastNode->nextNode = nullptr;
+		temp->lastNode = nullptr;
+	}
+
+	Size--;
 }
 
 template <typename T>
 void DoublyLinkedList<T>::DeleteAtStart()
 {
+	//if there is nothing in the list
+	if (IsEmpty())
+	{
+		return;
+	}
 
+	//if there is only one item in the list
+	else if (First->nextNode == nullptr)
+	{
+		Clear();
+	}
+
+	//if there is more than one item in the list
+	else
+	{
+		std::unique_ptr<DoublyLinkedNode<T>> tempRest = std::move(First->nextNode);
+		tempRest->lastNode = nullptr;
+		First = std::move(tempRest);
+	}
 }
 
 template <typename T>
 void DoublyLinkedList<T>::DeleteValue(T value)
 {
+	//if the list is empty
+	if (IsEmpty())
+	{
+		return;
+	}
+
+	//if the value to delete is the first in the list
 	if (First->Value == value)
 	{
 		First = std::move(First->nextNode);
@@ -112,9 +200,36 @@ void DoublyLinkedList<T>::DeleteValue(T value)
 }
 
 template <typename T>
-void DoublyLinkedList<T>::DeleteAt(T value, int index)
+void DoublyLinkedList<T>::DeleteAt(int index)
 {
+	//if the list is empty
+	if (IsEmpty())
+	{
+		return;
+	}
 
+	//if the index is not in range of the list
+	if (index > Size || index < 0)
+	{
+		std::cout << "index is out of range" << std::endl;
+	}
+
+	//if the index is in range
+	else
+	{
+		DoublyLinkedNode<T>* temp;
+		temp = First.get();
+
+		//index starts at 0
+		for (int i = 0; i < index - 1; i++)
+		{
+			temp = temp->nextNode.get();
+		}
+
+		std::unique_ptr<DoublyLinkedNode<T>> tempRest = std::move(temp->nextNode);
+		tempRest->lastNode = nullptr;
+		temp->nextNode = std::move(tempRest);
+	}
 }
 
 template <typename T>
@@ -145,9 +260,10 @@ void DoublyLinkedList<T>::GetAllForward()
 	temp = First.get();
 	while (temp != nullptr)
 	{
-		std::cout << temp->Value << std::endl;
+		std::cout << temp->Value << " ";
 		temp = temp->nextNode.get();
 	}
+	std::cout << " " << std::endl;
 }
 
 template <typename T>
