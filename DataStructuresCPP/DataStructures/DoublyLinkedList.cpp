@@ -85,6 +85,7 @@ void DoublyLinkedList<T>::AddAt(T value, int index)
 
 		std::unique_ptr <DoublyLinkedNode<T>> tempRest = std::move(temp->nextNode);
 		temp->nextNode = std::make_unique<DoublyLinkedNode<T>>(value);
+		temp->nextNode.get()->lastNode = temp;
 		tempRest->lastNode = temp->nextNode.get();
 		temp->nextNode->nextNode = std::move(tempRest);
 	}
@@ -151,6 +152,8 @@ void DoublyLinkedList<T>::DeleteAtStart()
 		tempRest->lastNode = nullptr;
 		First = std::move(tempRest);
 	}
+
+	Size--;
 }
 
 template <typename T>
@@ -221,15 +224,17 @@ void DoublyLinkedList<T>::DeleteAt(int index)
 		temp = First.get();
 
 		//index starts at 0
-		for (int i = 0; i < index - 1; i++)
+		for (int i = 0; i < index; i++)
 		{
 			temp = temp->nextNode.get();
 		}
 
 		std::unique_ptr<DoublyLinkedNode<T>> tempRest = std::move(temp->nextNode);
-		tempRest->lastNode = nullptr;
-		temp->nextNode = std::move(tempRest);
+		tempRest->lastNode = temp->lastNode;
+		temp->lastNode->nextNode = std::move(tempRest);
 	}
+
+	Size--;
 }
 
 template <typename T>
@@ -279,4 +284,25 @@ bool DoublyLinkedList<T>::IsEmpty()
 template <typename T>
 DoublyLinkedList<T>::~DoublyLinkedList()
 {
+	if (!First) 
+	{
+		return;
+	}
+
+	auto temp = std::move(First->nextNode);
+	while (temp != nullptr)
+	{
+		auto deleteMe = std::move(temp->nextNode);
+
+		if (deleteMe != nullptr)
+		{
+			temp = std::move(deleteMe->nextNode);
+		}
+		else
+		{
+			temp = nullptr;
+		}
+	}
+
+	auto deleteFirst = std::move(First);
 }

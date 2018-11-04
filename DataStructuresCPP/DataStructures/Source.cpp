@@ -19,7 +19,7 @@ int main()
 	dll.GetAllForward();
 	dll.DeleteValue(2);
 	dll.GetAllForward();
-	dll.AddAt(7, 2);  //check all the lastNode connections for addat and below
+	dll.AddAt(7, 2);
 	dll.GetAllForward();
 	dll.DeleteAtEnd();
 	dll.GetAllForward();
@@ -29,7 +29,7 @@ int main()
 	dll.GetAllForward();
 
 	
-	//Thingy();
+	Thingy();
 
 	/*
 	linkedList.Add(1);
@@ -51,11 +51,11 @@ int main()
 }
 void Thingy()
 {
-	SinglyLinkedList<int> linkedList;
+	DoublyLinkedList<int> linkedList;
 
 	for (size_t i = 0; i < 10000; i++)
 	{
-		linkedList.Add(i);
+		linkedList.AddAtEnd(i);
 	}
 	
 

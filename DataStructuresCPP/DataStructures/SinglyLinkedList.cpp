@@ -113,7 +113,8 @@ void SinglyLinkedList<T>::GetAll()
 template <typename T>
 SinglyLinkedList<T>::~SinglyLinkedList()
 {
-	if (!First) {
+	if (!First) 
+	{
 		return;
 	}
 
