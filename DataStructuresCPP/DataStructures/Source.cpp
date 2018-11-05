@@ -3,6 +3,7 @@
 
 #include "SinglyLinkedList.cpp"
 #include "DoublyLinkedList.cpp"
+#include "CircularlyDoublyLinkedList.cpp"
 
 void Thingy();
 
@@ -10,7 +11,13 @@ int main()
 {
 	SinglyLinkedList<int> linkedList;
 	DoublyLinkedList<int> dll;
-	
+	CircularlyDoublyLinkedList<int> cdll;
+
+
+	cdll.AddAtHead(8);
+
+
+	/*
 	dll.AddAtEnd(1);
 	dll.AddAtEnd(2);
 	dll.AddAtEnd(3);
@@ -27,9 +34,9 @@ int main()
 	dll.GetAllForward();
 	dll.DeleteAt(1);
 	dll.GetAllForward();
-
+	*/
 	
-	Thingy();
+	//Thingy();
 
 	/*
 	linkedList.Add(1);
@@ -43,8 +50,7 @@ int main()
 	linkedList.Found(66); //false
 	linkedList.Delete(6);
 	linkedList.GetAll();
-	
-	//*/
+	*/
 	
 	system("pause");
 	return 0;

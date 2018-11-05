@@ -97,6 +97,7 @@ template <typename T>
 void DoublyLinkedList<T>::Clear()
 {
 	First = nullptr;
+	Size = 0;
 }
 
 template <typename T>

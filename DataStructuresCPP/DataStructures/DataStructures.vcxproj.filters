@@ -30,6 +30,12 @@
     <ClCompile Include="DoublyLinkedNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CircularlyDoublyLinkedList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CircularlyDoublyLinkedNode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SinglyLinkedNode.h">
@@ -42,6 +48,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DoublyLinkedNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CircularlyDoublyLinkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CircularlyDoublyLinkedNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

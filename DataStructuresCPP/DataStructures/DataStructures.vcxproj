@@ -115,6 +115,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CircularlyDoublyLinkedList.cpp" />
+    <ClCompile Include="CircularlyDoublyLinkedNode.cpp" />
     <ClCompile Include="DoublyLinkedList.cpp" />
     <ClCompile Include="DoublyLinkedNode.cpp" />
     <ClCompile Include="SinglyLinkedList.cpp" />
@@ -122,6 +124,8 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CircularlyDoublyLinkedList.h" />
+    <ClInclude Include="CircularlyDoublyLinkedNode.h" />
     <ClInclude Include="DoublyLinkedList.h" />
     <ClInclude Include="DoublyLinkedNode.h" />
     <ClInclude Include="SinglyLinkedList.h" />
