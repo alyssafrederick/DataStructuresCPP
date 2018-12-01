@@ -15,7 +15,28 @@ void CircularlyDoublyLinkedList<T>::AddAt(T value, int index)
 	if (IsEmpty())
 	{
 		AddAtHead(value);
+		return;
 	}
+
+	//when there already things in the list
+	else if (!IsEmpty())
+	{
+		CircularlyDoublyLinkedNode<T>* temp = Head.get();
+		int count = 0;
+		while (count < index - 1)
+		{
+			temp = temp->nextNode.get();
+			count++;
+		}
+
+		std::shared_ptr<CircularlyDoublyLinkedNode<T>> save = temp->nextNode;
+		temp->nextNode = std::make_shared<CircularlyDoublyLinkedNode<T>>(value);
+		temp->nextNode->lastNode = temp;
+		temp->nextNode.get()->nextNode = save;
+		save->lastNode = temp->nextNode.get();
+	}
+
+	Size++;
 }
 
 template <typename T>
@@ -27,7 +48,7 @@ void CircularlyDoublyLinkedList<T>::AddAtHead(T value)
 		Head.get()->nextNode = Head;
 		Head->lastNode = Head.get();
 	}
-	
+
 	//when there are already things in the linked list
 	else if (!IsEmpty())
 	{
@@ -47,7 +68,26 @@ void CircularlyDoublyLinkedList<T>::AddAtHead(T value)
 template <typename T>
 void CircularlyDoublyLinkedList<T>::AddAtTail(T value)
 {
+	if (IsEmpty())
+	{
+		AddAtHead(value);
+		return;
+	}
+	else
+	{
+		CircularlyDoublyLinkedNode<T>* temp = Head.get();
+		while (temp->nextNode != Head)
+		{
+			temp = temp->nextNode.get();
+		}
 
+		temp->nextNode = std::make_shared<CircularlyDoublyLinkedNode<T>>(value);
+		temp->nextNode->lastNode = temp;
+		temp->nextNode.get()->nextNode = Head;
+		Head->lastNode = temp->nextNode.get();
+	}
+
+	Size++;
 }
 
 template <typename T>
@@ -61,13 +101,41 @@ void CircularlyDoublyLinkedList<T>::Clear()
 template <typename T>
 void CircularlyDoublyLinkedList<T>::DeleteAt(int index)
 {
+	if (IsEmpty())
+	{
+		return;
+	}
+	else
+	{
 
+	}
 }
 
 template <typename T>
 void CircularlyDoublyLinkedList<T>::DeleteAtTail()
 {
+	//if there is nothing in the list
+	if (IsEmpty())
+	{
+		return;
+	}
 
+	//if the head is the only node in the list
+	else if (Head->nextNode == Head)
+	{
+		Clear();
+	}
+
+	//if there is more than one item in the list
+	else  /////FIX
+	{
+		Head->lastNode->lastNode->nextNode = Head;
+		Head->lastNode->nextNode->lastNode = nullptr;
+		Head->lastNode->nextNode->nextNode = nullptr;
+		Head->lastNode->nextNode = Head;
+	}
+
+	Size--;
 }
 
 template <typename T>

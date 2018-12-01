@@ -15,7 +15,12 @@ int main()
 
 
 	cdll.AddAtHead(8);
-
+	cdll.AddAtHead(4);
+	cdll.AddAtTail(10);
+	// 4 8 10
+	cdll.AddAt(6, 1);
+	// 4 6 8 10
+	cdll.DeleteAtTail();
 
 	/*
 	dll.AddAtEnd(1);
@@ -52,7 +57,7 @@ int main()
 	linkedList.GetAll();
 	*/
 	
-	system("pause");
+ 	system("pause");
 	return 0;
 }
 void Thingy()
