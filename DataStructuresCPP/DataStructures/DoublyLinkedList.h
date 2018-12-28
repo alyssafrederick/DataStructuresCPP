@@ -1,5 +1,7 @@
- #include <memory>
-#include "DoublyLinkedNode.cpp"
+#pragma once
+
+#include <memory>
+#include "DoublyLinkedNode.h"
 
 template <typename T>
 class DoublyLinkedList
@@ -21,3 +23,5 @@ public:
 	DoublyLinkedList();
 	~DoublyLinkedList();
 };
+
+#include "DoublyLinkedList.tpp"

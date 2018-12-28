@@ -115,13 +115,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CircularlyDoublyLinkedList.cpp" />
-    <ClCompile Include="CircularlyDoublyLinkedNode.cpp" />
-    <ClCompile Include="DoublyLinkedList.cpp" />
-    <ClCompile Include="DoublyLinkedNode.cpp" />
-    <ClCompile Include="SinglyLinkedList.cpp" />
-    <ClCompile Include="SinglyLinkedNode.cpp" />
+    <ClInclude Include="CircularlyDoublyLinkedList.tpp" />
+    <ClInclude Include="CircularlyDoublyLinkedNode.tpp" />
+    <ClInclude Include="DoublyLinkedList.tpp" />
+    <ClInclude Include="DoublyLinkedNode.tpp" />
+    <ClInclude Include="SinglyLinkedList.tpp" />
+    <ClInclude Include="SinglyLinkedNode.tpp" />
     <ClCompile Include="Source.cpp" />
+    <ClInclude Include="Stack.tpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularlyDoublyLinkedList.h" />
@@ -130,6 +131,7 @@
     <ClInclude Include="DoublyLinkedNode.h" />
     <ClInclude Include="SinglyLinkedList.h" />
     <ClInclude Include="SinglyLinkedNode.h" />
+    <ClInclude Include="Stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

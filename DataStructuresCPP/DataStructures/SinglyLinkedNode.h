@@ -11,3 +11,5 @@ public:
 	SinglyLinkedNode(T value);
 };
 
+#include "SinglyLinkedNode.tpp"
+

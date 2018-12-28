@@ -1,6 +1,7 @@
 #pragma once
+
 #include <memory>
-#include "SinglyLinkedNode.cpp"
+#include "SinglyLinkedNode.h"
 
 template <typename T>
 class SinglyLinkedList
@@ -17,3 +18,4 @@ public:
 	~SinglyLinkedList();
 };
 
+#include "SinglyLinkedList.tpp"

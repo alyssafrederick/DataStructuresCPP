@@ -1,9 +1,10 @@
 #include <memory>
 #include <iostream>
 
-#include "SinglyLinkedList.cpp"
-#include "DoublyLinkedList.cpp"
-#include "CircularlyDoublyLinkedList.cpp"
+#include "SinglyLinkedList.h"
+#include "DoublyLinkedList.h"
+#include "CircularlyDoublyLinkedList.h"
+#include "Stack.h"
 
 void Thingy();
 
@@ -12,8 +13,15 @@ int main()
 	SinglyLinkedList<int> linkedList;
 	DoublyLinkedList<int> dll;
 	CircularlyDoublyLinkedList<int> cdll;
+	Stack<int> stk;
 
 
+	// 4. stack
+	stk.Push(3);
+
+
+	// 3. circularly doubly linked list
+	/*
 	cdll.AddAtHead(8);    // 8
 	cdll.AddAtHead(4);    // 4 8
 	cdll.AddAtTail(10);   // 4 8 10
@@ -25,8 +33,10 @@ int main()
 	cdll.AddAtTail(8);
 	cdll.AddAtTail(9);
 	cdll.AddAtTail(10);   // 6 7 8 9 10
-	cdll.DeleteValue(8);  // 6 7 9 10 
+	cdll.DeleteValue(8);  // 6 7 9 10
+	*/
 
+	// 2. doubly linked list
 	/*
 	dll.AddAtEnd(1);
 	dll.AddAtEnd(2);
@@ -45,9 +55,10 @@ int main()
 	dll.DeleteAt(1);
 	dll.GetAllForward();
 	*/
-	
+
 	//Thingy();
 
+	// 1. singly linked list
 	/*
 	linkedList.Add(1);
 	linkedList.Add(2);
@@ -61,10 +72,12 @@ int main()
 	linkedList.Delete(6);
 	linkedList.GetAll();
 	*/
+
+	system("pause");
 	
- 	system("pause");
 	return 0;
 }
+
 void Thingy()
 {
 	DoublyLinkedList<int> linkedList;
@@ -73,7 +86,4 @@ void Thingy()
 	{
 		linkedList.AddAtEnd(i);
 	}
-	
-
-	
 }

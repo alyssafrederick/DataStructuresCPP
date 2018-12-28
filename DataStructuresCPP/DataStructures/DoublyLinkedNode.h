@@ -1,6 +1,6 @@
 #pragma once
-#include <memory>
 
+#include <memory>
 
 template <typename T>
 class DoublyLinkedNode
@@ -12,3 +12,4 @@ public:
 	DoublyLinkedNode(T value);
 };
 
+#include "DoublyLinkedNode.tpp"

@@ -1,5 +1,7 @@
+#pragma once
+
 #include <memory>
-#include "CircularlyDoublyLinkedNode.cpp"
+#include "CircularlyDoublyLinkedNode.h"
 
 template <typename T>
 class CircularlyDoublyLinkedList
@@ -21,3 +23,4 @@ public:
 	~CircularlyDoublyLinkedList();
 };
 
+#include "CircularlyDoublyLinkedList.tpp"

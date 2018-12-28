@@ -1,4 +1,5 @@
 #pragma once
+
 #include <memory>
 
 template <typename T>
@@ -10,3 +11,6 @@ public:
 	std::shared_ptr<CircularlyDoublyLinkedNode> lastNode;
 	CircularlyDoublyLinkedNode(T value);
 };
+
+
+#include "CircularlyDoublyLinkedNode.tpp"
