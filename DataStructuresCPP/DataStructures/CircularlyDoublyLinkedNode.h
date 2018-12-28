@@ -7,7 +7,6 @@ class CircularlyDoublyLinkedNode
 public:
 	T Value;
 	std::shared_ptr<CircularlyDoublyLinkedNode> nextNode;
-	CircularlyDoublyLinkedNode* lastNode;
+	std::shared_ptr<CircularlyDoublyLinkedNode> lastNode;
 	CircularlyDoublyLinkedNode(T value);
-	~CircularlyDoublyLinkedNode();
 };

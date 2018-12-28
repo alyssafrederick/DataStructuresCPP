@@ -14,13 +14,18 @@ int main()
 	CircularlyDoublyLinkedList<int> cdll;
 
 
-	cdll.AddAtHead(8);
-	cdll.AddAtHead(4);
-	cdll.AddAtTail(10);
-	// 4 8 10
-	cdll.AddAt(6, 1);
-	// 4 6 8 10
-	cdll.DeleteAtTail();
+	cdll.AddAtHead(8);    // 8
+	cdll.AddAtHead(4);    // 4 8
+	cdll.AddAtTail(10);   // 4 8 10
+	cdll.AddAt(6, 1);     // 4 6 8 10
+	cdll.DeleteAtTail();  // 4 6 8
+	cdll.DeleteAt(2);     // 4 6
+	cdll.DeleteAt(0);     // 6
+	cdll.AddAtTail(7);
+	cdll.AddAtTail(8);
+	cdll.AddAtTail(9);
+	cdll.AddAtTail(10);   // 6 7 8 9 10
+	cdll.DeleteValue(8);  // 6 7 9 10 
 
 	/*
 	dll.AddAtEnd(1);
@@ -51,7 +56,7 @@ int main()
 	linkedList.Add(5);
 	linkedList.Add(6);
 	linkedList.GetAll();
-	linkedList.Found(6); //true
+	linkedList.Found(6);  //true
 	linkedList.Found(66); //false
 	linkedList.Delete(6);
 	linkedList.GetAll();

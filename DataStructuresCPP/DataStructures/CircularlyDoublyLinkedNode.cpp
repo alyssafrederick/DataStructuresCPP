@@ -9,12 +9,3 @@ CircularlyDoublyLinkedNode<T>::CircularlyDoublyLinkedNode(T value)
 	lastNode = nullptr;
 }
 
-template<typename T>
-CircularlyDoublyLinkedNode<T>::~CircularlyDoublyLinkedNode()
-{
-	std::shared_ptr<CircularlyDoublyLinkedNode<T>> temp = std::move(nextNode);
-	while (temp)
-	{
-		temp = std::move(temp->nextNode);
-	}
-}
