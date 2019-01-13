@@ -18,6 +18,22 @@ int main()
 
 	// 4. stack
 	stk.Push(3);
+	stk.Push(8);
+	stk.Push(12);
+	std::cout << stk.Peak() << std::endl;
+	std::cout << stk.Pop() << std::endl;
+	std::cout << stk.Pop() << std::endl;
+	//checking for memory leaks.. all good
+	while (true)
+	{
+		for (size_t i = 0; i < 10000; i++)
+		{
+			stk.Push(i);
+		}
+		stk.Clear();
+	}
+
+
 
 
 	// 3. circularly doubly linked list

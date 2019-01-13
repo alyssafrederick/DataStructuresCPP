@@ -8,44 +8,37 @@ Stack<T>::Stack()
 	int Size = 0;
 }
 
+//the head/start is at the top of the stack
+
 template <typename T>
 void Stack<T>::Push(T value)
 {
-	LList.AddAtEnd(value);
+	LList.AddAtStart(value);
 	Size++;
 }
 
 template <typename T>
 T Stack<T>::Pop()
 {
-	DoublyLinkedNode<T>* temp = LList.First.get();
-	while (temp->nextNode != nullptr)
-	{
-		temp = temp->nextNode.get();
-	}
+	T toReturn = LList.First.get()->Value;
 
-	LList.DeleteAtEnd();
+	LList.DeleteAtStart();
 	Size--;
 
-	return temp->Value;
+	return toReturn;
 }
 
 template <typename T>
 T Stack<T>::Peak()
 {
-	DoublyLinkedNode<T>* temp = LList.First.get();
-	while (temp->nextNode != nullptr)
-	{
-		temp = temp->nextNode.get();
-	}
-
-	return temp->Value;
+	return LList.First.get()->Value;
 }
 
 template <typename T>
-void Stack<T>::Clear()  //FIX
+void Stack<T>::Clear()
 {
-	LList.First = nullptr;
+	LList.Clear();
+	Size = 0;
 }
 
 template <typename T>
@@ -59,6 +52,7 @@ bool Stack<T>::IsEmpty()
 }
 
 template <typename T>
-Stack<T>::~Stack()  //TODO
+Stack<T>::~Stack()
 {
+	Clear();
 }

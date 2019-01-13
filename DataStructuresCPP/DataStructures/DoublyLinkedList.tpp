@@ -43,6 +43,7 @@ void DoublyLinkedList<T>::AddAtStart(T value)
 	if (IsEmpty())
 	{
 		AddAtEnd(value);
+		//already has size++
 	}
 
 	else
@@ -51,9 +52,9 @@ void DoublyLinkedList<T>::AddAtStart(T value)
 		First = std::make_unique<DoublyLinkedNode<T>>(value);
 		tempHead->lastNode = First.get();
 		First->nextNode = std::move(tempHead);
-	}
 
-	Size++;
+		Size++;
+	}
 }
 
 template <typename T>
@@ -96,8 +97,15 @@ void DoublyLinkedList<T>::AddAt(T value, int index)
 template <typename T>
 void DoublyLinkedList<T>::Clear()
 {
-	First = nullptr;
-	Size = 0;
+	if (!First)
+	{
+		return;
+	}
+
+	while (First != nullptr)
+	{
+		First = std::move(First->nextNode);
+	}
 }
 
 template <typename T>
@@ -285,25 +293,5 @@ bool DoublyLinkedList<T>::IsEmpty()
 template <typename T>
 DoublyLinkedList<T>::~DoublyLinkedList()
 {
-	if (!First) 
-	{
-		return;
-	}
-
-	auto temp = std::move(First->nextNode);
-	while (temp != nullptr)
-	{
-		auto deleteMe = std::move(temp->nextNode);
-
-		if (deleteMe != nullptr)
-		{
-			temp = std::move(deleteMe->nextNode);
-		}
-		else
-		{
-			temp = nullptr;
-		}
-	}
-
-	auto deleteFirst = std::move(First);
+	Clear();
 }
