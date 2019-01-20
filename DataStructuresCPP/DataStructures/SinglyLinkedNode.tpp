@@ -1,5 +1,3 @@
-#include "SinglyLinkedNode.h"
-
 
 template <typename T>
 SinglyLinkedNode<T>::SinglyLinkedNode(T value)

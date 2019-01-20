@@ -1,5 +1,3 @@
-#include <memory>
-#include <iostream>
 
 template <typename T>
 CircularlyDoublyLinkedList<T>::CircularlyDoublyLinkedList()

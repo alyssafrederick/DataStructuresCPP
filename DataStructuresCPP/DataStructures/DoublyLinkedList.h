@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <iostream>
 #include "DoublyLinkedNode.h"
 
 template <typename T>

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <iostream>
 #include "CircularlyDoublyLinkedNode.h"
 
 template <typename T>

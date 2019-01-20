@@ -1,6 +1,3 @@
-#include "Stack.h"
-#include <memory>
-#include <iostream>
 
 template <typename T>
 Stack<T>::Stack()

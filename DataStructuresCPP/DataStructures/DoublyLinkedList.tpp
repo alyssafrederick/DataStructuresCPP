@@ -1,6 +1,3 @@
-#include "DoublyLinkedList.h"
-#include <memory>
-#include <iostream>
 
 template <typename T>
 DoublyLinkedList<T>::DoublyLinkedList()
@@ -97,6 +94,8 @@ void DoublyLinkedList<T>::AddAt(T value, int index)
 template <typename T>
 void DoublyLinkedList<T>::Clear()
 {
+	Size = 0;
+
 	if (!First)
 	{
 		return;

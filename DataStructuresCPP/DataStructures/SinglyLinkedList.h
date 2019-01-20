@@ -1,6 +1,8 @@
 #pragma once
 
+//using namespace std;
 #include <memory>
+#include <iostream>
 #include "SinglyLinkedNode.h"
 
 template <typename T>

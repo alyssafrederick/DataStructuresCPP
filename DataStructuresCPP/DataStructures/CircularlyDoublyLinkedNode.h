@@ -1,6 +1,8 @@
 #pragma once
 
-#include <memory>
+//both a part of std
+#include <memory>    //uniqueptr, etc
+#include <iostream>  //cout, cin, etc
 
 template <typename T>
 class CircularlyDoublyLinkedNode

@@ -119,8 +119,12 @@
     <ClInclude Include="CircularlyDoublyLinkedNode.tpp" />
     <ClInclude Include="DoublyLinkedList.tpp" />
     <ClInclude Include="DoublyLinkedNode.tpp" />
+    <ClInclude Include="Queue.h" />
     <ClInclude Include="SinglyLinkedList.tpp" />
     <ClInclude Include="SinglyLinkedNode.tpp" />
+    <None Include="Queue.tpp">
+      <FileType>Document</FileType>
+    </None>
     <ClCompile Include="Source.cpp" />
     <ClInclude Include="Stack.tpp" />
   </ItemGroup>

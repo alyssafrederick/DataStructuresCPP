@@ -5,6 +5,7 @@
 #include "DoublyLinkedList.h"
 #include "CircularlyDoublyLinkedList.h"
 #include "Stack.h"
+#include "Queue.h"
 
 void Thingy();
 
@@ -14,9 +15,20 @@ int main()
 	DoublyLinkedList<int> dll;
 	CircularlyDoublyLinkedList<int> cdll;
 	Stack<int> stk;
+	Queue<int> q;
 
+
+	// 5. queue
+	q.Enqueue(2);
+	q.Enqueue(3);
+	q.Enqueue(4);
+	q.Enqueue(5);
+	std::cout << q.Dequeue() << std::endl;  //2
+	std::cout << q.Peek() << std::endl;  //3
+	q.Clear();
 
 	// 4. stack
+	/*
 	stk.Push(3);
 	stk.Push(8);
 	stk.Push(12);
@@ -32,9 +44,7 @@ int main()
 		}
 		stk.Clear();
 	}
-
-
-
+	*/
 
 	// 3. circularly doubly linked list
 	/*

@@ -1,5 +1,3 @@
-#include "DoublyLinkedNode.h"
-
 
 template <typename T>
 DoublyLinkedNode<T>::DoublyLinkedNode(T value)
