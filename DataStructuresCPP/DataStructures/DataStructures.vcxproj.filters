@@ -65,9 +65,21 @@
     <ClInclude Include="CircularlyDoublyLinkedList.tpp">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="bstNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="binarySearchTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Queue.tpp">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="bstNode.tpp">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="binarySearchTree.tpp">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

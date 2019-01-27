@@ -6,8 +6,9 @@
 #include "CircularlyDoublyLinkedList.h"
 #include "Stack.h"
 #include "Queue.h"
+#include "binarySearchTree.h"
 
-void Thingy();
+//void Thingy();
 
 int main()
 {
@@ -16,9 +17,13 @@ int main()
 	CircularlyDoublyLinkedList<int> cdll;
 	Stack<int> stk;
 	Queue<int> q;
+	binarySearchTree<int> bst;
 
+	//6. binary search tree
+	bst.Add(10);
 
 	// 5. queue
+	/*
 	q.Enqueue(2);
 	q.Enqueue(3);
 	q.Enqueue(4);
@@ -26,6 +31,7 @@ int main()
 	std::cout << q.Dequeue() << std::endl;  //2
 	std::cout << q.Peek() << std::endl;  //3
 	q.Clear();
+	*/
 
 	// 4. stack
 	/*
@@ -104,6 +110,7 @@ int main()
 	return 0;
 }
 
+/*
 void Thingy()
 {
 	DoublyLinkedList<int> linkedList;
@@ -113,3 +120,4 @@ void Thingy()
 		linkedList.AddAtEnd(i);
 	}
 }
+*/

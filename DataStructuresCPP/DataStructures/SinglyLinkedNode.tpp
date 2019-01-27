@@ -4,5 +4,4 @@ SinglyLinkedNode<T>::SinglyLinkedNode(T value)
 {
 	Value = value;
 	nextNode = nullptr;
-
 }

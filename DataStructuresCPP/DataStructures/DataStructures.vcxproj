@@ -115,6 +115,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="binarySearchTree.h" />
+    <ClInclude Include="bstNode.h" />
     <ClInclude Include="CircularlyDoublyLinkedList.tpp" />
     <ClInclude Include="CircularlyDoublyLinkedNode.tpp" />
     <ClInclude Include="DoublyLinkedList.tpp" />
@@ -122,6 +124,8 @@
     <ClInclude Include="Queue.h" />
     <ClInclude Include="SinglyLinkedList.tpp" />
     <ClInclude Include="SinglyLinkedNode.tpp" />
+    <None Include="binarySearchTree.tpp" />
+    <None Include="bstNode.tpp" />
     <None Include="Queue.tpp">
       <FileType>Document</FileType>
     </None>
