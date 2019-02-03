@@ -21,6 +21,12 @@ int main()
 
 	//6. binary search tree
 	bst.Add(10);
+	bst.Add(5);
+	bst.Add(15);
+	bst.Add(13);
+	bst.Add(17);
+	bst.Add(16);
+	bst.Remove(16);
 
 	// 5. queue
 	/*
