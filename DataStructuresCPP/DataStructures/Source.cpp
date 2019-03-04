@@ -26,7 +26,7 @@ int main()
 	bst.Add(13);
 	bst.Add(17);
 	bst.Add(16);
-	bst.Remove(16);
+	bst.Remove(15);
 
 	// 5. queue
 	/*
