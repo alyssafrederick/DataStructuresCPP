@@ -32,8 +32,15 @@ int main()
 	//bst.Remove(13); //works
 	//bst.Remove(5); //works
 	//bst.Remove(17); //works
-	bst.Remove(8); //works
-	bst.Remove(15); //works
+	//bst.Remove(8); //works
+	//bst.Remove(15); //works
+	//bst.Remove(10); //works
+	bst.Search(17);
+	Stack<int>* bststk = bst.TraversePreOrder();
+	while (bststk->IsEmpty() != true)
+	{
+		std::cout << bststk->Pop() << std::endl;
+	}
 	
 	// 5. queue
 	/*

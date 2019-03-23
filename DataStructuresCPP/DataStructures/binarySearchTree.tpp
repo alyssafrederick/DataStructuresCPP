@@ -10,7 +10,7 @@ binarySearchTree<T>::binarySearchTree()
 template <typename T>
 bool binarySearchTree<T>::isEmpty()
 {
-	if(Root == nullptr)
+	if (Root == nullptr)
 	{
 		return true;
 	}
@@ -148,9 +148,9 @@ bool binarySearchTree<T>::Remove(T value)
 				temp = toRemove->leftChild.get();
 
 				//stepping right until we have found the greatest node on the left subtree
-				while (temp->rightChild != nullptr)
+				if (temp->rightChild != nullptr)
 				{
-					temp = temp->rightChild.get();
+					temp = Maximum(temp);
 					movedRight = true;
 				}
 
@@ -159,17 +159,17 @@ bool binarySearchTree<T>::Remove(T value)
 
 				//deleting temp because we just swapped it with toRemove
 					//if temp is a left child, then delete the parent's connection to it
-					if (temp->parent->leftChild.get() == temp)
-					{
-						temp->parent->leftChild = nullptr;
-					}
-					//if temp is a right child, then delete the parent's connection to it
-					else if (temp->parent->rightChild.get() == temp)
-					{
-						temp->parent->rightChild = nullptr;
-					}
+				if (temp->parent->leftChild.get() == temp)
+				{
+					temp->parent->leftChild = nullptr;
+				}
+				//if temp is a right child, then delete the parent's connection to it
+				else if (temp->parent->rightChild.get() == temp)
+				{
+					temp->parent->rightChild = nullptr;
+				}
 
-					temp->parent = nullptr;
+				temp->parent = nullptr;
 			}
 
 			Size--;
@@ -183,41 +183,104 @@ bool binarySearchTree<T>::Remove(T value)
 template <typename T>
 bstNode<T>* binarySearchTree<T>::Search(T value)
 {
+	bstNode<T>* temp = Root.get();
 
+	while (temp != nullptr)
+	{
+		if (temp->Value > value)
+		{
+			temp = temp->leftChild.get();
+		}
+		if (temp->Value < value)
+		{
+			temp = temp->rightChild.get();
+		}
+		if (temp->Value == value)
+		{
+			return temp;
+		}
+	}
 }
 
 template <typename T>
 bstNode<T>* binarySearchTree<T>::Maximum(bstNode<T>* node)
 {
-
+	bstNode<T>* temp = node;
+	while (temp->rightChild != nullptr)
+	{
+		temp = temp->rightChild.get();
+	}
+	return temp;
 }
 
 template <typename T>
 bstNode<T>* binarySearchTree<T>::Minimun(bstNode<T>* node)
 {
-
+	bstNode<T>* temp = node;
+	while (temp->leftChild != nullptr)
+	{
+		temp = temp->leftChild.get();
+	}
+	return temp;
 }
 
 template <typename T>
-void binarySearchTree<T>::TraverseInOrder()
+Stack<T>* binarySearchTree<T>::TraverseInOrder()
 {
 
 }
 
 template <typename T>
-void binarySearchTree<T>::TraversePostOrder()
+Stack<T>* binarySearchTree<T>::TraversePostOrder()
 {
+	bstNode<T>* temp = Root.get();
+	Stack<T>* order = new Stack<T>();
 
+	while (!order->IsEmpty)
+	{
+		while (temp != nullptr)
+		{
+			order->Push(temp->rightChild);
+			order->Push(temp);
+			temp = temp->leftChild.get();
+		}
+
+		temp = order->Pop();
+		if (temp->rightChild != nullptr && temp->rightChild == order->Peak())
+		{
+			order->Pop();
+			order->Push(temp);
+		}
+
+		//fix
+		//https://www.geeksforgeeks.org/iterative-postorder-traversal-using-stack/
+	}
 }
 
 template <typename T>
-void binarySearchTree<T>::TraversePreOrder()
+Stack<T>* binarySearchTree<T>::TraversePreOrder()
 {
+	bstNode<T>* temp = Root.get();
+	Stack<T>* order = new Stack<T>();
 
+	order->Push(temp->Value);
+
+	while (temp->leftChild != nullptr)
+	{
+		temp = temp->leftChild.get();
+		order->Push(temp->Value);
+	}
+	while (temp->rightChild != nullptr)
+	{
+		temp = temp->rightChild.get();
+		order->Push(temp->Value);
+	}
+
+	return order;
 }
 
 template <typename T>
-void binarySearchTree<T>::TraverseLevelOrder()
+Stack<T>* binarySearchTree<T>::TraverseLevelOrder()
 {
 
 }

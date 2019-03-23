@@ -17,10 +17,10 @@ public:
 	bstNode<T>* Search(T value);
 	bstNode<T>* Maximum(bstNode<T>* node);
 	bstNode<T>* Minimun(bstNode<T>* node);
-	void TraverseInOrder();
-	void TraversePreOrder();
-	void TraversePostOrder();
-	void TraverseLevelOrder();
+	Stack<T>* TraverseInOrder();
+	Stack<T>* TraversePreOrder();
+	Stack<T>* TraversePostOrder();
+	Stack<T>* TraverseLevelOrder();
 	binarySearchTree();
 	~binarySearchTree();
 };
