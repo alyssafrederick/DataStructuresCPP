@@ -154,22 +154,87 @@ bool binarySearchTree<T>::Remove(T value)
 					movedRight = true;
 				}
 
+				/*
+				if (movedRight == true)
+				{
+					temp->leftChild = std::move(toRemove->leftChild);
+					temp->leftChild->parent = temp;
+				}
+				*/
 
+
+				//node.Value = candidate.Value;
+				//node = candidate; // node is now pointing to candidate
+
+				// candidate is temp
+				
+
+				// toremove value should be now temp
 				toRemove->Value = std::move(temp->Value);
 
-				//deleting temp because we just swapped it with toRemove
-					//if temp is a left child, then delete the parent's connection to it
-					if (temp->parent->leftChild.get() == temp)
-					{
-						temp->parent->leftChild = nullptr;
-					}
-					//if temp is a right child, then delete the parent's connection to it
-					else if (temp->parent->rightChild.get() == temp)
-					{
-						temp->parent->rightChild = nullptr;
-					}
+				//if temp is a left child, then delete the parent's connection to it
+				if (temp->parent->leftChild.get() == temp)
+				{
+					temp->parent->leftChild = nullptr;
+				}
 
-					temp->parent = nullptr;
+				//if temp is a right child, then delete the parent's connection to it
+				else if (temp->parent->rightChild.get() == temp)
+				{
+					temp->parent->rightChild = nullptr;
+				}
+
+				temp->parent = nullptr;
+
+
+
+
+
+				//if toRemove is a left child
+			/*	if (toRemove->parent->leftChild.get() == toRemove)
+				{
+					temp->parent = std::move(toRemove->parent);
+					toRemove->parent->leftChild = std::move(temp->parent->leftChild);*/
+					/*
+					bstNode<T>* tempParent = temp->parent;
+
+					temp->parent = toRemove->parent;					
+
+					//checking if temp is a left or right child
+					if (tempParent->leftChild.get() == temp)
+					{
+						toRemove->parent->leftChild = std::move(temp->parent->leftChild);
+					}
+					else if (tempParent->rightChild.get() == temp)
+					{
+						toRemove->parent->rightChild = std::move(temp->parent->rightChild);
+					}	
+					*/
+				//}
+
+				//if toRemove is a right child
+			/*	else if (toRemove->parent->rightChild.get() == toRemove)
+				{
+					temp->parent = std::move(toRemove->parent);
+					toRemove->parent->rightChild = std::move(temp->parent->rightChild);*/
+					/*
+					bstNode<T>* tempParent = temp->parent;
+
+					//checking if temp is a left or right child
+					temp->parent = toRemove->parent;
+					if (tempParent->leftChild.get() == temp)
+					{
+						toRemove->parent->leftChild = std::move(temp->parent->leftChild);
+					}
+					else if (tempParent->rightChild.get() == temp)
+					{
+						toRemove->parent->rightChild = std::move(temp->parent->rightChild);
+					}
+					*/
+				//}
+				
+				//temp->rightChild = std::move(toRemove->rightChild);
+				//temp->rightChild->parent = std::move(temp);     
 			}
 
 			Size--;

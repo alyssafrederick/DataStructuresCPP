@@ -33,7 +33,7 @@ int main()
 	//bst.Remove(5); //works
 	//bst.Remove(17); //works
 	bst.Remove(8); //works
-	bst.Remove(15); //works
+	bst.Remove(15);
 	
 	// 5. queue
 	/*
