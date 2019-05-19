@@ -279,28 +279,30 @@ void binarySearchTree<T>::TraversePreOrder(bstNode<T>* node)
 template <typename T>
 void binarySearchTree<T>::TraverseLevelOrder()
 {
+	bstNode<T>* temp = Root.get();
+
 	if (Root == nullptr)
 	{
 		return;
 	}
 	Queue<T>* q = new Queue<T>();
 
-	Search(Root.Value);
-	q.Enqueue(Root.Value.get());
+	Search(temp->Value);
+	q->Enqueue(temp->Value);
 
-	while (q.isEmpty == false)
+	while (q->isEmpty() == false)
 	{
-		T temp = q.Dequeue();
-		order->Push(temp->value);
-		bstNode<T>* node = Search(temp);
+		T t = q->Dequeue();
+		order->Push(t);
+		bstNode<T>* node = Search(t);
 
-		if (node.leftChild != nullptr)
+		if (node->leftChild != nullptr)
 		{
-			q.Enqueue(node.leftChild.Value.get());
+			q->Enqueue(node->leftChild->Value);
 		}
-		if (node.rightChild != nullptr)
+		if (node->rightChild != nullptr)
 		{
-			q.Enqueue(node.rightChild.Value.get());
+			q->Enqueue(node->rightChild->Value);
 		}
 	}
 }

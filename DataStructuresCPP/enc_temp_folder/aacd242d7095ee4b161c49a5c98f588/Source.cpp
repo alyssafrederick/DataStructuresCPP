@@ -20,7 +20,6 @@ int main()
 	binarySearchTree<int> bst;
 
 	//6. binary search tree
-	/*
 	bst.Add(10);
 	bst.Add(5);
 	bst.Add(15);
@@ -57,8 +56,7 @@ int main()
 	{
 		std::cout << bst.order->Pop() << std::endl;
 	}
-	*/
-
+	
 	// 5. queue
 	/*
 	q.Enqueue(2);
