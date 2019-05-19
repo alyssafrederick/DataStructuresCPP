@@ -19,6 +19,9 @@ int main()
 	Queue<int> q;
 	binarySearchTree<int> bst;
 
+	//doing sorts with arrays: learn more about this!
+	std::array<int, 4>;
+
 	//6. binary search tree
 	/*
 	bst.Add(10);
@@ -124,7 +127,7 @@ int main()
 	dll.DeleteAt(1);
 	dll.GetAllForward();
 	*/
-
+	
 	//Thingy();
 
 	// 1. singly linked list
