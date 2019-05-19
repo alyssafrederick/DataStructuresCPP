@@ -36,10 +36,25 @@ int main()
 	//bst.Remove(15); //works
 	//bst.Remove(10); //works
 	bst.Search(17);
-	Stack<int>* bststk = bst.TraversePreOrder();
-	while (bststk->IsEmpty() != true)
+	bst.TraversePreOrder(bst.Root.get());
+	while (bst.order->IsEmpty() != true)
 	{
-		std::cout << bststk->Pop() << std::endl;
+		std::cout << bst.order->Pop() << std::endl;
+	}
+	bst.TraversePostOrder(bst.Root.get());
+	while (bst.order->IsEmpty() != true)
+	{
+		std::cout << bst.order->Pop() << std::endl;
+	}
+	bst.TraverseInOrder(bst.Root.get());
+	while (bst.order->IsEmpty() != true)
+	{
+		std::cout << bst.order->Pop() << std::endl;
+	}
+	bst.TraverseLevelOrder();
+	while (bst.order->IsEmpty() != true)
+	{
+		std::cout << bst.order->Pop() << std::endl;
 	}
 	
 	// 5. queue

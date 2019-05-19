@@ -2,7 +2,7 @@
 template <typename T>
 Queue<T>::Queue()
 {
-	int Size = 0;
+	Size = 0;
 }
 
 //head is at the end of the list

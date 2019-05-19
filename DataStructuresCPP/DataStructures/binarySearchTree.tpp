@@ -4,7 +4,8 @@ template <typename T>
 binarySearchTree<T>::binarySearchTree()
 {
 	Root = nullptr;
-	int Size = 0;
+	Size = 0;
+	order = new Stack<T>();
 }
 
 template <typename T>
@@ -225,64 +226,83 @@ bstNode<T>* binarySearchTree<T>::Minimun(bstNode<T>* node)
 }
 
 template <typename T>
-Stack<T>* binarySearchTree<T>::TraverseInOrder()
+void binarySearchTree<T>::TraverseInOrder(bstNode<T>* node)
 {
+	if (node->leftChild != nullptr)
+	{
+		TraversePreOrder(node->leftChild.get());
+	}
 
+	order->Push(node->Value);
+
+	if (node->rightChild != nullptr)
+	{
+		TraversePreOrder(node->rightChild.get());
+	}
 }
 
 template <typename T>
-Stack<T>* binarySearchTree<T>::TraversePostOrder()
+void binarySearchTree<T>::TraversePostOrder(bstNode<T>* node)
 {
-	bstNode<T>* temp = Root.get();
-	Stack<T>* order = new Stack<T>();
-
-	while (!order->IsEmpty)
+	if (node->leftChild != nullptr)
 	{
-		while (temp != nullptr)
+		TraversePreOrder(node->leftChild.get());
+	}
+
+	if (node->rightChild != nullptr)
+	{
+		TraversePreOrder(node->rightChild.get());
+	}
+
+	order->Push(node->Value);
+
+	//another implementation
+	//https://www.geeksforgeeks.org/iterative-postorder-traversal-using-stack/
+}
+
+template <typename T>
+void binarySearchTree<T>::TraversePreOrder(bstNode<T>* node)
+{
+	order->Push(node->Value);
+
+	if (node->leftChild != nullptr)
+	{
+		TraversePreOrder(node->leftChild.get());
+	}
+
+	if (node->rightChild != nullptr)
+	{
+		TraversePreOrder(node->rightChild.get());
+	}
+}
+
+template <typename T>
+void binarySearchTree<T>::TraverseLevelOrder()
+{
+	if (Root == nullptr)
+	{
+		return;
+	}
+	Queue<T>* q = new Queue<T>();
+
+	Search(Root.Value);
+	q.Enqueue(Root.Value.get());
+
+	while (q.isEmpty == false)
+	{
+		T temp = q.Dequeue();
+		order->Push(temp->value);
+		bstNode<T>* node = Search(temp);
+
+		if (node.leftChild != nullptr)
 		{
-			order->Push(temp->rightChild);
-			order->Push(temp);
-			temp = temp->leftChild.get();
+			q.Enqueue(node.leftChild.Value.get());
 		}
-
-		temp = order->Pop();
-		if (temp->rightChild != nullptr && temp->rightChild == order->Peak())
+		if (node.rightChild != nullptr)
 		{
-			order->Pop();
-			order->Push(temp);
+			q.Enqueue(node.rightChild.Value.get());
 		}
-
-		//fix
-		//https://www.geeksforgeeks.org/iterative-postorder-traversal-using-stack/
 	}
-}
-
-template <typename T>
-Stack<T>* binarySearchTree<T>::TraversePreOrder()
-{
-	bstNode<T>* temp = Root.get();
-	Stack<T>* order = new Stack<T>();
-
-	order->Push(temp->Value);
-
-	while (temp->leftChild != nullptr)
-	{
-		temp = temp->leftChild.get();
-		order->Push(temp->Value);
-	}
-	while (temp->rightChild != nullptr)
-	{
-		temp = temp->rightChild.get();
-		order->Push(temp->Value);
-	}
-
-	return order;
-}
-
-template <typename T>
-Stack<T>* binarySearchTree<T>::TraverseLevelOrder()
-{
-
 }
 
 template <typename T>
