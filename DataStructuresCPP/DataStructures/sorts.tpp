@@ -54,7 +54,19 @@ void Sorts<T>::SelectionSort()
 template <typename T>
 void Sorts<T>::InsertionSort()
 {
-
+	for (int i = 0; i < toSort.size(); i++)
+	{
+		for (int k = i - 1; k > -1; k--)
+		{
+			if (toSort.at(k) > toSort.at(k+1))
+			{
+				T temp = toSort.at(k+1);
+				toSort.at(k+1) = toSort.at(k);
+				toSort.at(k) = temp;
+			}
+			
+		}
+	}
 }
 
 template <typename T>
