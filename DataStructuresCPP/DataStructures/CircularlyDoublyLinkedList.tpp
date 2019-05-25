@@ -95,8 +95,12 @@ void CircularlyDoublyLinkedList<T>::AddAtTail(T value)
 template <typename T>
 void CircularlyDoublyLinkedList<T>::Clear()
 {
-	Head->lastNode->nextNode = nullptr; //cuts off circularity
-	Head = nullptr; //calls destructor on the head node which will delete the following nodes NON RECURSIVELY
+	if (Head)
+	{
+		Head->lastNode->nextNode = nullptr; //cuts off circularity
+		Head = nullptr; //calls destructor on the head node which will delete the following nodes NON RECURSIVELY
+	}
+
 	Size = 0;
 }
 

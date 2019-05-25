@@ -130,7 +130,9 @@
       <FileType>Document</FileType>
     </None>
     <ClCompile Include="Source.cpp" />
+    <ClInclude Include="sorts.h" />
     <ClInclude Include="Stack.tpp" />
+    <None Include="Sorts.tpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircularlyDoublyLinkedList.h" />

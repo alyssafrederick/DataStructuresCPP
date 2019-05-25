@@ -1,12 +1,13 @@
 #include <memory>
 #include <iostream>
-
+#include <vector>
 #include "SinglyLinkedList.h"
 #include "DoublyLinkedList.h"
 #include "CircularlyDoublyLinkedList.h"
 #include "Stack.h"
 #include "Queue.h"
 #include "binarySearchTree.h"
+#include "sorts.h"
 
 //void Thingy();
 
@@ -18,9 +19,33 @@ int main()
 	Stack<int> stk;
 	Queue<int> q;
 	binarySearchTree<int> bst;
+	Sorts<int> numbers;
 
+
+	//7. sorts
 	//doing sorts with arrays: learn more about this!
-	std::array<int, 4>;
+	//std::array<int, 4>;
+	//std::vector<int> numbers;
+
+	//5, 2, 4, 10, 15, 9, 13
+	numbers.toSort.push_back(5);
+	numbers.toSort.push_back(2);
+	numbers.toSort.push_back(4);
+	numbers.toSort.push_back(10);
+	numbers.toSort.push_back(15);
+	numbers.toSort.push_back(9);
+	numbers.toSort.push_back(13);
+
+	//numbers.BubbleSort();
+	//numbers.SelectionSort(); 
+	numbers.InsertionSort();
+	
+
+	for (int i = 0; i < numbers.toSort.size(); i++)
+	{
+		std::cout << numbers.toSort.at(i) << std::endl;
+	}
+
 
 	//6. binary search tree
 	/*

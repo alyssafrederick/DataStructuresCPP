@@ -2,18 +2,19 @@
 
 #include <memory>
 #include <iostream>
+#include <vector>
 
 template <typename T>
-class sorts
+class Sorts
 {
 public:
-	int size;
-	std::array <T, int size>;
+	std::vector<T> toSort;
 	void BubbleSort();
 	void SelectionSort();
 	void InsertionSort();
-	sorts();
-	~sorts();
+	Sorts();
+	~Sorts();
 };
 
-#include "sorts.tpp"
+#include "Sorts.tpp"
+

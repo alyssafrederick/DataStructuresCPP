@@ -71,6 +71,9 @@
     <ClInclude Include="binarySearchTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="sorts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Queue.tpp">
@@ -80,6 +83,9 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="binarySearchTree.tpp">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="Sorts.tpp">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
