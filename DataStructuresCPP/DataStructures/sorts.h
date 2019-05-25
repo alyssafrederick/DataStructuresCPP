@@ -12,6 +12,10 @@ public:
 	void BubbleSort();
 	void SelectionSort();
 	void InsertionSort();
+	void MergeSort(int start, int end);
+	void Merge(int start, int end);
+	void QuickSort();
+	int HoarePartition(int left, int right);
 	Sorts();
 	~Sorts();
 };

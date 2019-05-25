@@ -58,15 +58,75 @@ void Sorts<T>::InsertionSort()
 	{
 		for (int k = i - 1; k > -1; k--)
 		{
-			if (toSort.at(k) > toSort.at(k+1))
+			if (toSort.at(k) > toSort.at(k + 1))
 			{
-				T temp = toSort.at(k+1);
-				toSort.at(k+1) = toSort.at(k);
+				T temp = toSort.at(k + 1);
+				toSort.at(k + 1) = toSort.at(k);
 				toSort.at(k) = temp;
 			}
-			
+
 		}
 	}
+}
+
+template <typename T>
+void Sorts<T>::MergeSort(int start, int end)
+{
+	if (start < end)
+	{
+		int mid = (start + end) / 2;
+		MergeSort(start, mid);
+		MergeSort(mid + 1, end);
+		Merge(start, end);
+	}
+}
+
+template <typename T>
+void Sorts<T>::Merge(int start, int end)
+{
+	for (int i = start; i < end; i++)
+	{
+		for (int k = i; k < end - 1; k++)
+		{
+			if (toSort.at(k) > toSort.at(k + 1))
+			{
+				T temp = toSort.at(k);
+				toSort.at(k) = toSort.at(k + 1);
+				toSort.at(k + 1) = temp;
+			}
+		}
+	}
+}
+
+template <typename T>
+void Sorts<T>::QuickSort()
+{
+
+}
+
+template <typename T>
+int Sorts<T>::HoarePartition(int left, int right)
+{
+	int pivot = toSort.at(left);
+
+	while (left < right)
+	{
+		while (toSort.at(left) < pivot)
+		{
+			left++;
+		}
+		while (toSort.at(right) > pivot)
+		{
+			right--;
+		}
+
+		T temp = toSort.at(left);
+		toSort.at(left) = toSort.at(right);
+		toSort.at(right) = temp;
+	}
+	
+	
+
 }
 
 template <typename T>

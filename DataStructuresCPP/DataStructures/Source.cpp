@@ -39,6 +39,7 @@ int main()
 	//numbers.BubbleSort();
 	//numbers.SelectionSort(); 
 	//numbers.InsertionSort();
+	//numbers.MergeSort(0, numbers.toSort.size());
 	
 
 	for (int i = 0; i < numbers.toSort.size(); i++)
