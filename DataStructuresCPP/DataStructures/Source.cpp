@@ -23,6 +23,7 @@ int main()
 
 
 	//7. sorts
+	/*
 	//doing sorts with arrays: learn more about this!
 	//std::array<int, 4>;
 	//std::vector<int> numbers;
@@ -40,13 +41,13 @@ int main()
 	//numbers.SelectionSort(); 
 	//numbers.InsertionSort();
 	//numbers.MergeSort(0, numbers.toSort.size());
-	
+	//numbers.QuickSort(0, numbers.toSort.size());
 
 	for (int i = 0; i < numbers.toSort.size(); i++)
 	{
 		std::cout << numbers.toSort.at(i) << std::endl;
 	}
-
+	*/
 
 	//6. binary search tree
 	/*

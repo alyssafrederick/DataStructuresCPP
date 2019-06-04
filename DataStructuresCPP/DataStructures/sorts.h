@@ -14,7 +14,7 @@ public:
 	void InsertionSort();
 	void MergeSort(int start, int end);
 	void Merge(int start, int end);
-	void QuickSort();
+	void QuickSort(int start, int end);
 	int HoarePartition(int left, int right);
 	Sorts();
 	~Sorts();

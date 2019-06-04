@@ -99,17 +99,23 @@ void Sorts<T>::Merge(int start, int end)
 }
 
 template <typename T>
-void Sorts<T>::QuickSort()
+void Sorts<T>::QuickSort(int start, int end)
 {
+	if (start < end)
+	{
+		int partition = HoarePartition(start, end - 1); 
+		QuickSort(start, partition);
+		QuickSort(partition + 1, end);
+	}
 
 }
 
 template <typename T>
 int Sorts<T>::HoarePartition(int left, int right)
 {
-	int pivot = toSort.at(left);
+	T pivot = toSort.at(left);
 
-	while (left < right)
+	while (true)
 	{
 		while (toSort.at(left) < pivot)
 		{
@@ -120,13 +126,15 @@ int Sorts<T>::HoarePartition(int left, int right)
 			right--;
 		}
 
+		if (left >= right)
+		{
+			return right;
+		}
+
 		T temp = toSort.at(left);
 		toSort.at(left) = toSort.at(right);
 		toSort.at(right) = temp;
 	}
-	
-	
-
 }
 
 template <typename T>
