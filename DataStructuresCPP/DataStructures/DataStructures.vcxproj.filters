@@ -18,12 +18,6 @@
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AVLnode.tpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AVLtree.tpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SinglyLinkedNode.h">
