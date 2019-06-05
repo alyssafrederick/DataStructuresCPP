@@ -115,6 +115,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AVLnode.h" />
+    <ClInclude Include="AVLtree.h" />
     <ClInclude Include="binarySearchTree.h" />
     <ClInclude Include="bstNode.h" />
     <ClInclude Include="CircularlyDoublyLinkedList.tpp" />
@@ -129,6 +131,8 @@
     <None Include="Queue.tpp">
       <FileType>Document</FileType>
     </None>
+    <ClCompile Include="AVLnode.tpp" />
+    <ClCompile Include="AVLtree.tpp" />
     <ClCompile Include="Source.cpp" />
     <ClInclude Include="sorts.h" />
     <ClInclude Include="Stack.tpp" />
