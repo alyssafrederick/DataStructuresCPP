@@ -6,15 +6,16 @@ class AVLnode
 {
 public:
 	T Value;
-	AVLnode<T>* parent;
-	AVLnode<T>* leftChild;
-	AVLnode<T>* rightChild;
+	std::unique_ptr<AVLnode<T>> leftChild;
+	std::unique_ptr<AVLnode<T>> rightChild;
 
-	int heightCallCount;
 	int Height();
 	int Balance();
 
 	AVLnode(T value);
+
+private:
+	int heightCallCount;
 };
 
 

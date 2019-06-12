@@ -2,7 +2,6 @@ template <typename T>
 AVLnode<T>::AVLnode(T value)
 {
 	Value = value;
-	parent = nullptr;
 	leftChild = nullptr;
 	rightChild = nullptr;
 	heightCallCount = 0;
@@ -13,7 +12,7 @@ int AVLnode<T>::Height()
 {
 	heightCallCount++;
 
-	if (leftChild == null && rightChild == null)
+	if (leftChild == nullptr && rightChild == nullptr)
 	{
 		heightCallCount = 0;
 		return 1;
@@ -34,6 +33,9 @@ int AVLnode<T>::Height()
 template <typename T>
 int AVLnode<T>::Balance()
 {
+	int leftCount = 0;
+	int rightCount = 0;
+
 	if (leftChild == nullptr)
 	{
 		int leftCount = 0;
@@ -44,7 +46,7 @@ int AVLnode<T>::Balance()
 	}
 	if (rightChild == nullptr)
 	{
-		int rightCount == 0;
+		int rightCount = 0;
 	}
 	else
 	{

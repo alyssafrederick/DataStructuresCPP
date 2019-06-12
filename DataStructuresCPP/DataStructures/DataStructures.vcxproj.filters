@@ -94,5 +94,11 @@
     <None Include="Sorts.tpp">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="AVLtree.tpp">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="AVLnode.tpp">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

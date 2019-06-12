@@ -126,6 +126,8 @@
     <ClInclude Include="Queue.h" />
     <ClInclude Include="SinglyLinkedList.tpp" />
     <ClInclude Include="SinglyLinkedNode.tpp" />
+    <None Include="AVLnode.tpp" />
+    <None Include="AVLtree.tpp" />
     <None Include="binarySearchTree.tpp" />
     <None Include="bstNode.tpp" />
     <None Include="Queue.tpp">

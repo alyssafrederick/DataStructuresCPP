@@ -8,6 +8,7 @@
 #include "Queue.h"
 #include "binarySearchTree.h"
 #include "sorts.h"
+#include "AVLtree.h"
 
 //void Thingy();
 
@@ -20,7 +21,13 @@ int main()
 	Queue<int> q;
 	binarySearchTree<int> bst;
 	Sorts<int> numbers;
+	AVLtree<int> avltree;
 
+
+	//8. avl tree
+	avltree.Add(4);
+	avltree.Add(9);
+	avltree.Add(13);
 
 	//7. sorts
 	/*
