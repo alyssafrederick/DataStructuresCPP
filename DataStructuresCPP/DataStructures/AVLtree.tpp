@@ -17,7 +17,7 @@ bool AVLtree<T>::IsEmpty()
 }
 
 template <typename T>
-void AVLtree<T>::Add(T value)
+void AVLtree<T>::addOld(T value)
 {
 	if (Root == nullptr)
 	{
@@ -27,11 +27,11 @@ void AVLtree<T>::Add(T value)
 	else
 	{
 		AVLnode<T>* current = Root.get();
-		Stack<T>* stk = new Stack<T>();
+		//Stack<AVLnode<T>>* stk = new Stack<AVLnode<T>>();
 
 		while (current != nullptr)
 		{
-			stk->Push(current->Value);
+			//stk->Push(current);
 
 			//if new node's value should be to the left of current
 			if (current->Value > value)
@@ -55,8 +55,42 @@ void AVLtree<T>::Add(T value)
 				current = current->rightChild.get();
 			}
 		}
+
+
 	}
 }
+
+template <typename T>
+void AVLtree<T>::Add(T value)
+{
+	Root = add(value, Root);
+}
+
+template <typename T>
+AVLnode<T> AVLtree<T>::add(T value, AVLnode<T> parent)
+{
+	//placing the new node
+	if (parent == nullptr)
+	{
+		return new AVLnode<T>(value);
+	}
+
+	//if the new node is to the left of the parent
+	if (value < parent->Value)
+	{
+		parent->leftChild = add(item, parent->leftChild.get());
+	}
+	//if the new node is to the right of the parent
+	else if (parent->Value < value)
+	{
+		parent->rightChild = add(item, parent->rightChild.get());
+	}
+
+
+	//TODO:
+	//UpdateHeight(parent);
+	//return Balance(parent);
+};
 
 template <typename T>
 bool AVLtree<T>::Remove(T value)
@@ -92,9 +126,60 @@ bool AVLtree<T>::Remove(T value)
 			}
 		}
 
-		if (toRemove != null)
+		if (toRemove != nullptr)
 		{
+			//if toRemove has no children
+			if (toRemove->leftChild == nullptr && toRemove->rightChild == nullptr)
+			{
+				//if toRemove is a left child
+				
+				//if toRemove is a right child
+			}
 
+			//if toRemove only has a left child
+			else if (toRemove->rightChild == nullptr)
+			{
+
+			}
+
+			//if toRemove only has a right child
+			else if (toRemove->leftChild == nullptr)
+			{
+
+			}
+
+			//if toRemove has a left and right child
+			else
+			{
+
+			}
 		}
 	}
+}
+
+template <typename T>
+AVLnode<T> AVLtree<T>::RotateRight(AVLnode<T> node)
+{
+
+}
+
+template <typename T>
+AVLnode<T> AVLtree<T>::RotateLeft(AVLnode<T> node)
+{
+
+}
+
+template <typename T>
+AVLnode<T> AVLtree<T>::Balance(AVLnode<T> node)
+{
+	if (node.Balance < -1)
+	{
+
+	}
+	else if (node.Balance > 1)
+	{
+
+	}
+
+	return node;
 }
