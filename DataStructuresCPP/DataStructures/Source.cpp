@@ -28,6 +28,8 @@ int main()
 	avltree.Add(4);
 	avltree.Add(9);
 	avltree.Add(13);
+	avltree.Add(2);
+	avltree.Add(6);
 
 	//7. sorts
 	/*

@@ -64,33 +64,35 @@ void AVLtree<T>::addOld(T value)
 template <typename T>
 void AVLtree<T>::Add(T value)
 {
-	//USE std::move
-	Root = add(value, Root);
+	//USE std::move	
+	Root = add(value, std::move(Root));
 	Count++;
 }
 
 template <typename T>
-AVLnode<T> AVLtree<T>::add(T value, AVLnode<T> parent)
+std::unique_ptr<AVLnode<T>> AVLtree<T>::add(T value, std::unique_ptr<AVLnode<T>> current)
 {
 	//placing the new node
-	if (parent == nullptr)
+	if (current == nullptr)
 	{
-		return new AVLnode<T>(value);
+		return std::make_unique<AVLnode<T>>(value);
 	}
 
 	//if the new node is to the left of the parent
-	if (value < parent->Value)
+	if (value < current->Value)
 	{
-		parent->leftChild = add(value, parent->leftChild.get());
-	}
-	//if the new node is to the right of the parent
-	else if (parent->Value < value)
-	{
-		parent->rightChild = add(value, parent->rightChild.get());
+		current->leftChild = add(value, std::move(current->leftChild));
 	}
 
-	UpdateHeight(parent);
-	return Balance(parent);
+	//if the new node is to the right of the parent
+	else if (current->Value < value)
+	{
+		current->rightChild = add(value, std::move(current->rightChild));
+	}
+
+	/*UpdateHeight(parent);
+	return Balance(parent);*/
+	return std::move(current);
 };
 
 template <typename T>
@@ -176,7 +178,7 @@ AVLnode<T> AVLtree<T>::remove(T value, AVLnode<T> parent)
 }
 
 template <typename T>
-AVLnode<T> AVLtree<T>::RotateRight(AVLnode<T> node)
+std::unique_ptr<AVLnode<T>> AVLtree<T>::RotateRight(AVLnode<T> node)
 {
 	T pivot = node->rightChild;
 	node->leftChild = pivot->rightChild;
@@ -186,7 +188,7 @@ AVLnode<T> AVLtree<T>::RotateRight(AVLnode<T> node)
 }
 
 template <typename T>
-AVLnode<T> AVLtree<T>::RotateLeft(AVLnode<T> node)
+std::unique_ptr<AVLnode<T>> AVLtree<T>::RotateLeft(AVLnode<T> node)
 {
 	T pivot = node->rightChild;
 	node->rightChild = pivot->leftChild;
@@ -196,7 +198,7 @@ AVLnode<T> AVLtree<T>::RotateLeft(AVLnode<T> node)
 }
 
 template <typename T>
-AVLnode<T> AVLtree<T>::Balance(AVLnode<T> node)
+std::unique_ptr<AVLnode<T>> AVLtree<T>::Balance(AVLnode<T> node)
 {
 	if (node.Balance < -1)
 	{
