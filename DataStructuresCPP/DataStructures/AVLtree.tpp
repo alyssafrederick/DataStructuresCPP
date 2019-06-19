@@ -4,6 +4,7 @@ template <typename T>
 AVLtree<T>::AVLtree()
 {
 	Root = nullptr;
+	Count = 0;
 }
 
 template <typename T>
@@ -63,7 +64,9 @@ void AVLtree<T>::addOld(T value)
 template <typename T>
 void AVLtree<T>::Add(T value)
 {
+	//USE std::move
 	Root = add(value, Root);
+	Count++;
 }
 
 template <typename T>
@@ -78,22 +81,20 @@ AVLnode<T> AVLtree<T>::add(T value, AVLnode<T> parent)
 	//if the new node is to the left of the parent
 	if (value < parent->Value)
 	{
-		parent->leftChild = add(item, parent->leftChild.get());
+		parent->leftChild = add(value, parent->leftChild.get());
 	}
 	//if the new node is to the right of the parent
 	else if (parent->Value < value)
 	{
-		parent->rightChild = add(item, parent->rightChild.get());
+		parent->rightChild = add(value, parent->rightChild.get());
 	}
 
-
-	//TODO:
-	//UpdateHeight(parent);
-	//return Balance(parent);
+	UpdateHeight(parent);
+	return Balance(parent);
 };
 
 template <typename T>
-bool AVLtree<T>::Remove(T value)
+bool AVLtree<T>::Removeold(T value)
 {
 	if (Root == nullptr)
 	{
@@ -158,15 +159,40 @@ bool AVLtree<T>::Remove(T value)
 }
 
 template <typename T>
-AVLnode<T> AVLtree<T>::RotateRight(AVLnode<T> node)
+bool Remove(T value)
+{
+	return true;
+	/*
+	int oldCount = Count;
+	Root = Remove(value, Root);
+	return oldCount != Count;
+	*/
+}
+
+template <typename T>
+AVLnode<T> AVLtree<T>::remove(T value, AVLnode<T> parent)
 {
 
 }
 
 template <typename T>
+AVLnode<T> AVLtree<T>::RotateRight(AVLnode<T> node)
+{
+	T pivot = node->rightChild;
+	node->leftChild = pivot->rightChild;
+	pivot->righttChild = node;
+	UpdateHeight(node);
+	return pivot;
+}
+
+template <typename T>
 AVLnode<T> AVLtree<T>::RotateLeft(AVLnode<T> node)
 {
-
+	T pivot = node->rightChild;
+	node->rightChild = pivot->leftChild;
+	pivot->leftChild = node;
+	UpdateHeight(node);
+	return pivot;
 }
 
 template <typename T>
@@ -174,12 +200,41 @@ AVLnode<T> AVLtree<T>::Balance(AVLnode<T> node)
 {
 	if (node.Balance < -1)
 	{
-
+		if (node->leftChild.Balance() > 0)
+		{
+			node.leftChild = RotateLeft(node->leftChild);
+		}
+		node = RotateRight(node);
 	}
 	else if (node.Balance > 1)
 	{
-
+		if (node->rightChild.balace() < 0)
+		{
+			node.rightChild = RotateRight(node->rightChild);
+		}
+		node = RotateLeft(node);
 	}
 
+
 	return node;
+}
+
+template <typename T>
+void AVLtree<T>::UpdateHeight(AVLnode<T> node)
+{
+	if (node->leftChild == nullptr && node->rightChild == nullptr)
+	{
+		return 1;
+	}
+	else
+	{
+		if (node->leftChild.Height() > node->rightChild.Height())
+		{
+			return node->leftChild.Height() + 1;
+		}
+		else
+		{
+			return node->rightChild.Height() + 1;
+		}
+	}
 }
