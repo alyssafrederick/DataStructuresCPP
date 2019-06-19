@@ -90,9 +90,10 @@ std::unique_ptr<AVLnode<T>> AVLtree<T>::add(T value, std::unique_ptr<AVLnode<T>>
 		current->rightChild = add(value, std::move(current->rightChild));
 	}
 
-	/*UpdateHeight(parent);
-	return Balance(parent);*/
-	return std::move(current);
+	UpdateHeight(current); //FIX:: updateheight doesnt take in a unqiueptrs
+	return Balance(current);
+
+	//return std::move(current); ->for bst -> this will be in balance() somewhere
 };
 
 template <typename T>
@@ -178,27 +179,27 @@ AVLnode<T> AVLtree<T>::remove(T value, AVLnode<T> parent)
 }
 
 template <typename T>
-std::unique_ptr<AVLnode<T>> AVLtree<T>::RotateRight(AVLnode<T> node)
+std::unique_ptr<AVLnode<T>> AVLtree<T>::RotateRight(std::unique_ptr<AVLnode<T>> node)
 {
-	T pivot = node->rightChild;
-	node->leftChild = pivot->rightChild;
-	pivot->righttChild = node;
+	auto pivot = node->rightChild.get();
+	node->leftChild = std::move(node->rightChild);
+	pivot->righttChild = std::move(node);
 	UpdateHeight(node);
-	return pivot;
+	return pivot; //might just be a raw ptr bc the .get() in the first line
 }
 
 template <typename T>
-std::unique_ptr<AVLnode<T>> AVLtree<T>::RotateLeft(AVLnode<T> node)
+std::unique_ptr<AVLnode<T>> AVLtree<T>::RotateLeft(std::unique_ptr<AVLnode<T>> node)
 {
-	T pivot = node->rightChild;
-	node->rightChild = pivot->leftChild;
-	pivot->leftChild = node;
+	auto pivot = node->leftChild.get();
+	node->rightChild = std::move(pivot->leftChild);
+	pivot->leftChild = std::move(node);
 	UpdateHeight(node);
-	return pivot;
+	return pivot; //same issue as above?
 }
 
 template <typename T>
-std::unique_ptr<AVLnode<T>> AVLtree<T>::Balance(AVLnode<T> node)
+std::unique_ptr<AVLnode<T>> AVLtree<T>::Balance(std::unique_ptr<AVLnode<T>> node)
 {
 	if (node.Balance < -1)
 	{
@@ -217,8 +218,7 @@ std::unique_ptr<AVLnode<T>> AVLtree<T>::Balance(AVLnode<T> node)
 		node = RotateLeft(node);
 	}
 
-
-	return node;
+	return std::move(node);
 }
 
 template <typename T>
