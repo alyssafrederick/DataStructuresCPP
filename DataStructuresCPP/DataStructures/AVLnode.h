@@ -9,13 +9,16 @@ public:
 	std::unique_ptr<AVLnode<T>> leftChild;
 	std::unique_ptr<AVLnode<T>> rightChild;
 
-	int Height();
+	int GetHeight();
+	void ResetHeight();
+	void IncrementHeight();
+
 	int Balance();
 
 	AVLnode(T value);
 
-private:
-	int heightCallCount;
+//private:
+	int height;
 };
 
 

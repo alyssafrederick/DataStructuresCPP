@@ -24,7 +24,7 @@ private:
 	std::unique_ptr<AVLnode<T>> RotateRight(std::unique_ptr<AVLnode<T>> node);
 	std::unique_ptr<AVLnode<T>> RotateLeft(std::unique_ptr<AVLnode<T>> node);
 	std::unique_ptr<AVLnode<T>> Balance(std::unique_ptr<AVLnode<T>> node);
-	void UpdateHeight(AVLnode<T> node);
+	void UpdateHeight(AVLnode<T>* node);
 };
 
 

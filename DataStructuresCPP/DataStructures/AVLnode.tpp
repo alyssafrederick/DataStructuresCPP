@@ -1,33 +1,51 @@
+#include "AVLnode.h"
 template <typename T>
 AVLnode<T>::AVLnode(T value)
 {
 	Value = value;
 	leftChild = nullptr;
 	rightChild = nullptr;
-	heightCallCount = 0;
+	height = 0;
 }
 
-template <typename T>
-int AVLnode<T>::Height()
-{
-	heightCallCount++;
 
+template <typename T>
+int AVLnode<T>::GetHeight()
+{
+	return height;
+	/*
 	if (leftChild == nullptr && rightChild == nullptr)
 	{
-		heightCallCount = 0;
-		return 1;
+		ResetHeight();
+		return height;
 	}
 	else
 	{
-		if (leftChild.Height() > rightChild.Height())
+		if (leftChild->GetHeight() > rightChild->GetHeight())
 		{
-			return leftChild.Height() + 1;
+			leftChild->IncrementHeight();
+			return height;
 		}
 		else
 		{
-			return rightChild.Height() + 1;
+			rightChild->IncrementHeight();
+			return height;
 		}
 	}
+	*/
+}
+
+
+template <typename T>
+void AVLnode<T>::ResetHeight()
+{
+	height = 1;
+}
+
+template <typename T>
+void AVLnode<T>::IncrementHeight()
+{
+	height++;
 }
 
 template <typename T>
@@ -42,7 +60,7 @@ int AVLnode<T>::Balance()
 	}
 	else
 	{
-		leftCount = leftChild.Height();
+		leftCount = leftChild->GetHeight();
 	}
 	if (rightChild == nullptr)
 	{
@@ -50,7 +68,7 @@ int AVLnode<T>::Balance()
 	}
 	else
 	{
-		rightCount = rightChild.Height();
+		rightCount = rightChild->GetHeight();
 	}
 	return rightCount - leftCount;
 }
