@@ -19,6 +19,7 @@ public:
 
 //private:
 	int height;
+	int balance;
 };
 
 

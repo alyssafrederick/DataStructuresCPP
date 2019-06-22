@@ -6,6 +6,7 @@ AVLnode<T>::AVLnode(T value)
 	leftChild = nullptr;
 	rightChild = nullptr;
 	height = 0;
+	balance = 0;
 }
 
 

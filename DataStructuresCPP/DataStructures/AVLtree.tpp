@@ -82,16 +82,16 @@ std::unique_ptr<AVLnode<T>> AVLtree<T>::add(T value, std::unique_ptr<AVLnode<T>>
 	if (value < current->Value)
 	{
 		current->leftChild = add(value, std::move(current->leftChild));
+		return Balance(std::move(current));
 	}
-
 	//if the new node is to the right of the parent
 	else if (current->Value < value)
 	{
 		current->rightChild = add(value, std::move(current->rightChild));
+		return Balance(std::move(current));
 	}
 
-	UpdateHeight(current.get()); //FIX:: updateheight doesnt take in a unqiueptrs
-	return Balance(std::move(current));
+	return current;
 
 	//return std::move(current); ->for bst -> this will be in balance() somewhere
 }
@@ -184,8 +184,7 @@ std::unique_ptr<AVLnode<T>> AVLtree<T>::RotateRight(std::unique_ptr<AVLnode<T>> 
 	auto pivot = std::move(node->rightChild);
 	node->leftChild = std::move(node->rightChild);
 	pivot->rightChild = std::move(node);
-	UpdateHeight(node.get());
-	return std::move(pivot); //might just be a raw ptr bc the .get() in the first line
+	return pivot;
 }
 
 template <typename T>
@@ -194,61 +193,77 @@ std::unique_ptr<AVLnode<T>> AVLtree<T>::RotateLeft(std::unique_ptr<AVLnode<T>> n
 	auto pivot = std::move(node->leftChild);
 	node->rightChild = std::move(pivot->leftChild);
 	pivot->leftChild = std::move(node);
-	UpdateHeight(node.get());
-	return std::move(pivot); //same issue as above?
+	//UpdateHeight(std::move(node));
+	return pivot;
 }
 
 template <typename T>
 std::unique_ptr<AVLnode<T>> AVLtree<T>::Balance(std::unique_ptr<AVLnode<T>> node)
 {
+	node = UpdateHeight(std::move(node));
+
 	if (node->Balance() < -1)
 	{
 		if (node->leftChild->Balance() > 0)
 		{
 			node->leftChild = RotateLeft(std::move(node->leftChild));
+			node->leftChild->rightChild = UpdateHeight(std::move(node->leftChild->rightChild));
+			node->leftChild->leftChild = UpdateHeight(std::move(node->leftChild->leftChild));
 		}
 		node = RotateRight(std::move(node));
+		node->rightChild = UpdateHeight(std::move(node->rightChild));
 	}
 	else if (node->Balance() > 1)
 	{
 		if (node->rightChild->Balance() < 0)
 		{
 			node->rightChild = RotateRight(std::move(node->rightChild));
+			node->rightChild->rightChild = UpdateHeight(std::move(node->rightChild->rightChild));
+			node->rightChild->leftChild = UpdateHeight(std::move(node->rightChild->leftChild));
 		}
 		node = RotateLeft(std::move(node));
+		node->leftChild = UpdateHeight(std::move(node->leftChild));
 	}
 
-	return std::move(node);
+	return node;//std::move(node);
 }
 
 template <typename T>
-void AVLtree<T>::UpdateHeight(AVLnode<T>* node)
+std::unique_ptr<AVLnode<T>> AVLtree<T>::UpdateHeight(std::unique_ptr<AVLnode<T>> node)
 {
 
-	if (node->leftChild == nullptr && node->rightChild == nullptr)
-	{
-		//node->Height() = 1;
-		node->ResetHeight();
-	}
-	else if (node->leftChild == nullptr)
-	{
-		node->rightChild->IncrementHeight();
-	}
-	else if (node->rightChild == nullptr)
-	{
-		node->leftChild->IncrementHeight();
-	}
-	else
-	{
-		//height on the left is greater than height on the right
-		if (node->leftChild->GetHeight() > node->rightChild->GetHeight())
-		{
-			node->leftChild->IncrementHeight();
-		}
-		//height on the right is greater than height on the left
-		else
-		{
-			node->rightChild->IncrementHeight();
-		}
-	}
+	int rightHeight = node->rightChild == nullptr ? 0 : node->rightChild->GetHeight();
+	int leftHeight = node->leftChild == nullptr ? 0 : node->leftChild->GetHeight();
+	node->height = (leftHeight > rightHeight ? leftHeight : rightHeight) + 1;
+	//std::cout << "Height of node " << node->Value << " is now " << ptr->Height << std::endl;
+	node->balance = rightHeight - leftHeight;
+
+	//if (node->leftChild == nullptr && node->rightChild == nullptr)
+	//{
+	//	//node->Height() = 1;
+	//	node->ResetHeight();
+	//}
+	//else if (node->leftChild == nullptr)
+	//{
+	//	node->rightChild->IncrementHeight();
+	//}
+	//else if (node->rightChild == nullptr)
+	//{
+	//	node->leftChild->IncrementHeight();
+	//}
+	//else
+	//{
+	//	//height on the left is greater than height on the right
+	//	if (node->leftChild->GetHeight() > node->rightChild->GetHeight())
+	//	{
+	//		node->leftChild->IncrementHeight();
+	//	}
+	//	//height on the right is greater than height on the left
+	//	else
+	//	{
+	//		node->rightChild->IncrementHeight();
+	//	}
+	//}
+
+	return node;
 }
