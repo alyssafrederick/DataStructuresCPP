@@ -177,16 +177,55 @@ std::unique_ptr<AVLnode<T>> AVLtree<T>::remove(T value, std::unique_ptr<AVLnode<
 		return nullptr;
 	}
 
+	//if the value to remove is to the left of the current
 	if (current->Value > value)
 	{
 		current->leftChild = remove(value, std::move(current->leftChild));
 		current = Balance(std::move(current));
 	}
+	//if the value to remove is to the right of the current
 	else if (current->Value < value)
 	{
 		current->rightChild = remove(value, std::move(current->rightChild));
 		current = Balance(std::move(current));
 	}
+	else if (current->Value == value)
+	{
+		//if current doesn't have a left/right child
+		if (current->leftChild == nullptr && current->rightChild == nullptr)
+		{
+			Count--;
+			return nullptr;
+		}
+
+		//if current only has a right child
+		else if (current->leftChild == nullptr)
+		{
+			Count--;
+			return std::move(current->rightChild);
+		}
+
+		//if current only has a left child
+		else if (current->rightChild == nullptr)
+		{
+			Count--;
+			return std::move(current->leftChild);
+		}
+
+		//if current has both a left and right child
+		else
+		{
+			AVLnode<T>* temp = current->leftChild.get();
+			while (temp->rightChild != nullptr)
+			{
+				temp = temp->rightChild.get();
+			}
+			T tempVal = temp->Value;
+			current = remove(tempVal, std::move(current));
+			current->Value = tempVal;
+		}
+	}
+	return current;
 }
 
 template <typename T>

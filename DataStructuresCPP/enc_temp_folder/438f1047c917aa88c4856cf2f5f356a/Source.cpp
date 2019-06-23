@@ -39,7 +39,7 @@ int main()
 	avltree.Add(7);
 	avltree.Add(8);
 	avltree.Add(9);
-	avltree.Add(10);
+	avltree.Add(10);*/
 	avltree.Add(9);
 	avltree.Add(8);
 	avltree.Add(7);
@@ -47,7 +47,8 @@ int main()
 	avltree.Add(4);
 	avltree.Add(5);
 	//avltree.Add(3);
- 	avltree.Remove(6);*/
+ 	avltree.Remove(6);
+
 
 	//7. sorts
 	/*
