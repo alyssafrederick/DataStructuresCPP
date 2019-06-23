@@ -162,20 +162,31 @@ bool AVLtree<T>::Removeold(T value)
 }
 
 template <typename T>
-bool Remove(T value)
+bool AVLtree<T>::Remove(T value)
 {
-	return true;
-	/*
 	int oldCount = Count;
-	Root = Remove(value, Root);
+	Root = remove(value, std::move(Root));
 	return oldCount != Count;
-	*/
 }
 
 template <typename T>
-AVLnode<T> AVLtree<T>::remove(T value, AVLnode<T> parent)
+std::unique_ptr<AVLnode<T>> AVLtree<T>::remove(T value, std::unique_ptr<AVLnode<T>> current)
 {
+	if (current == nullptr)
+	{
+		return nullptr;
+	}
 
+	if (current->Value > value)
+	{
+		current->leftChild = remove(value, std::move(current->leftChild));
+		current = Balance(std::move(current));
+	}
+	else if (current->Value < value)
+	{
+		current->rightChild = remove(value, std::move(current->rightChild));
+		current = Balance(std::move(current));
+	}
 }
 
 template <typename T>
