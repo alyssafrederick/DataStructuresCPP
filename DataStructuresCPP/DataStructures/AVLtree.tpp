@@ -82,13 +82,13 @@ std::unique_ptr<AVLnode<T>> AVLtree<T>::add(T value, std::unique_ptr<AVLnode<T>>
 	if (value < current->Value)
 	{
 		current->leftChild = add(value, std::move(current->leftChild));
-		return Balance(std::move(current));
+		current = Balance(std::move(current));
 	}
 	//if the new node is to the right of the parent
 	else if (current->Value < value)
 	{
 		current->rightChild = add(value, std::move(current->rightChild));
-		return Balance(std::move(current));
+		current = Balance(std::move(current));
 	}
 
 	return current;
@@ -181,8 +181,8 @@ AVLnode<T> AVLtree<T>::remove(T value, AVLnode<T> parent)
 template <typename T>
 std::unique_ptr<AVLnode<T>> AVLtree<T>::RotateRight(std::unique_ptr<AVLnode<T>> node)
 {
-	auto pivot = std::move(node->rightChild);
-	node->leftChild = std::move(node->rightChild);
+	std::unique_ptr<AVLnode<T>> pivot = std::move(node->leftChild);
+	node->leftChild = std::move(pivot->rightChild);
 	pivot->rightChild = std::move(node);
 	return pivot;
 }
@@ -190,7 +190,7 @@ std::unique_ptr<AVLnode<T>> AVLtree<T>::RotateRight(std::unique_ptr<AVLnode<T>> 
 template <typename T>
 std::unique_ptr<AVLnode<T>> AVLtree<T>::RotateLeft(std::unique_ptr<AVLnode<T>> node)
 {
-	auto pivot = std::move(node->leftChild);
+	std::unique_ptr<AVLnode<T>> pivot = std::move(node->rightChild);
 	node->rightChild = std::move(pivot->leftChild);
 	pivot->leftChild = std::move(node);
 	//UpdateHeight(std::move(node));

@@ -29,8 +29,8 @@ int main()
 	avltree.Add(9);
 	avltree.Add(13);
 	avltree.Add(2);
-	avltree.Add(6);
-	avltree.Add(1);
+	avltree.Add(6);*/
+	/*avltree.Add(1);
 	avltree.Add(2);
 	avltree.Add(3);
 	avltree.Add(4);
@@ -39,14 +39,14 @@ int main()
 	avltree.Add(7);
 	avltree.Add(8);
 	avltree.Add(9);
-	avltree.Add(10);
+	avltree.Add(10);*/
 	avltree.Add(9);
 	avltree.Add(8);
 	avltree.Add(7);
 	avltree.Add(6);
 	avltree.Add(5);
 	avltree.Add(4);
-	avltree.Add(3);*/
+	avltree.Add(3);
 
 
 	//7. sorts
