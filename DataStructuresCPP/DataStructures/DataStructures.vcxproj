@@ -123,6 +123,7 @@
     <ClInclude Include="CircularlyDoublyLinkedNode.tpp" />
     <ClInclude Include="DoublyLinkedList.tpp" />
     <ClInclude Include="DoublyLinkedNode.tpp" />
+    <ClInclude Include="HeapTree.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="SinglyLinkedList.tpp" />
     <ClInclude Include="SinglyLinkedNode.tpp" />
@@ -133,6 +134,7 @@
     <None Include="Queue.tpp">
       <FileType>Document</FileType>
     </None>
+    <ClCompile Include="HeapTree.tpp" />
     <ClCompile Include="Source.cpp" />
     <ClInclude Include="sorts.h" />
     <ClInclude Include="Stack.tpp" />
