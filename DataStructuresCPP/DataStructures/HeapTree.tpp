@@ -29,6 +29,7 @@ template <typename T>
 void HeapTree<T>::Add(T value)
 {
 	Size++;
+
 	//add value to next available slot
 	Root.push_back(value);
 
@@ -59,10 +60,13 @@ void HeapTree<T>::Pop()
 {
 	if (Size >= 1)
 	{
-		int index = 0;
-		HeapifyDown(index);
+		T temp = Root.front();
+		Root[0] = Root.back();
+		Root[Size - 1] = temp;
 		Root.pop_back();
 		Size--;
+		int index = 0;
+		HeapifyDown(index);
 	}
 
 }
@@ -110,10 +114,12 @@ void HeapTree<T>::HeapifyDown(int index)
 		HeapifyDown(index);
 	}
 	//wants to swap with LChild but if it does, there will just be a RChild
+	//RChild's value is greater than LChild = swap with LChild
 	else if (LChild(index) < RChild(index))
 	{
+		T temp = Root[index];
 		Root[index] = *LChild(index);
-		Root[(index * 2) + 1] = Root[(index * 2) + 2];
+		Root[(index * 2) + 1] = temp;
 		index = (index * 2) + 1;
 		HeapifyDown(index);
 	}
