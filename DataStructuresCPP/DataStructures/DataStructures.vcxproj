@@ -134,7 +134,9 @@
     <None Include="Queue.tpp">
       <FileType>Document</FileType>
     </None>
-    <ClCompile Include="HeapTree.tpp" />
+    <ClInclude Include="HeapTree.tpp">
+      <FileType>Document</FileType>
+    </ClInclude>
     <ClCompile Include="Source.cpp" />
     <ClInclude Include="sorts.h" />
     <ClInclude Include="Stack.tpp" />

@@ -4,6 +4,7 @@ template <typename T>
 HeapTree<T>::HeapTree()
 {
 	//Root = std::make_unique<T[]>(3);
+	
 	Size = 0;
 }
 

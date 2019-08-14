@@ -9,6 +9,7 @@
 #include "binarySearchTree.h"
 #include "sorts.h"
 #include "AVLtree.h"
+#include "HeapTree.h"
 
 //void Thingy();
 
@@ -22,6 +23,12 @@ int main()
 	binarySearchTree<int> bst;
 	Sorts<int> numbers;
 	AVLtree<int> avltree;
+	HeapTree<int> heap;
+
+	//9. heap tree
+	heap.Add(3);
+	heap.Add(5);
+	heap.Add(4);
 
 
 	//8. avl tree
@@ -199,6 +206,7 @@ int main()
 	linkedList.GetAll();
 	*/
 
+	std::cout << "End" << std::endl;
 	system("pause");
 	
 	return 0;
