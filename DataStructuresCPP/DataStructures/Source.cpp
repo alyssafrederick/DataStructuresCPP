@@ -25,15 +25,18 @@ int main()
 	AVLtree<int> avltree;
 	HeapTree<int> heap;
 
+	//10. graphs
+
+
 	//9. heap tree
-	heap.Add(3);
+	/*heap.Add(3);
 	heap.Add(10);
 	heap.Add(5);
 	heap.Add(6);
 	heap.Add(4);
 	heap.Pop();
 	heap.Pop();
-	heap.Pop();
+	heap.Pop();*/
 
 	//8. avl tree
 	/*avltree.Add(4);

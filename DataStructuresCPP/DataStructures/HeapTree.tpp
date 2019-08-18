@@ -3,7 +3,6 @@
 template <typename T>
 HeapTree<T>::HeapTree()
 {
-	//Root = std::make_unique<T[]>(3);
 	Size = 0;
 }
 
@@ -134,18 +133,4 @@ void HeapTree<T>::HeapifyDown(int index)
 		index = (index * 2) + 1;
 		HeapifyDown(index);
 	}
-}
-
-template <typename T>
-void HeapTree<T>::Resize(int size)
-{
-	auto temp = std::make_unique<T[]>(size);
-	if (size > 1)
-	{
-		for (int i = 0; i < size; i++)
-		{
-			temp[i] = Root[i];
-		}
-	}
-	//Root = temp;
 }
