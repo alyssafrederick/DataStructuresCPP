@@ -123,10 +123,12 @@
     <ClInclude Include="CircularlyDoublyLinkedNode.tpp" />
     <ClInclude Include="DoublyLinkedList.tpp" />
     <ClInclude Include="DoublyLinkedNode.tpp" />
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="HeapTree.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="SinglyLinkedList.tpp" />
     <ClInclude Include="SinglyLinkedNode.tpp" />
+    <ClInclude Include="Vertex.h" />
     <None Include="AVLnode.tpp" />
     <None Include="AVLtree.tpp" />
     <None Include="binarySearchTree.tpp" />
