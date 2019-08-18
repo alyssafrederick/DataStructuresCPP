@@ -92,31 +92,42 @@ template <typename T>
 void HeapTree<T>::HeapifyDown(int index)
 {
 	//if there are no children = it is at the bottom of the heap
-	if (((index * 2) + 1) > Size && ((index * 2) + 1) > Size)
+	if (((index * 2) + 1) >= Size && ((index * 2) + 1) >= Size)
 	{
 		return;
 	}
-	//there is no RChild so do not swap with it = swap with LChild
+	//there is no RChild so do not swap with it = swap with LChild if its less than itself
 	else if (((index * 2) + 2) >= Size)
 	{
+		if (*LChild(index) > Root[index])
+		{
+			return;
+		}
 		T temp = Root[index];
 		Root.at(index) = *LChild(index);
 		Root[(index * 2) + 1] = temp;
 		return;
 	}
 	//LChild's value is greater than RChild = swap with RChild
-	else if (LChild(index) > RChild(index))
+	else if (*LChild(index) > *RChild(index))
 	{
+		if (*RChild(index) > Root[index])
+		{
+			return;
+		}
 		T temp = Root[index];
 		Root[index] = *RChild(index);
 		Root[(index * 2) + 2] = temp;
 		index = (index * 2) + 2;
 		HeapifyDown(index);
 	}
-	//wants to swap with LChild but if it does, there will just be a RChild
 	//RChild's value is greater than LChild = swap with LChild
-	else if (LChild(index) < RChild(index))
+	else if (*LChild(index) < *RChild(index))
 	{
+		if (*LChild(index) > Root[index])
+		{
+			return;
+		}
 		T temp = Root[index];
 		Root[index] = *LChild(index);
 		Root[(index * 2) + 1] = temp;

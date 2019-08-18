@@ -32,9 +32,8 @@ int main()
 	heap.Add(6);
 	heap.Add(4);
 	heap.Pop();
-	heap.Pop(); //THIS MESSES UP BC IT ENDS UP BEING A JUST LEFT LEANING BRANCH OF 5
-																			 //	10
-																		 //	  6
+	heap.Pop();
+	heap.Pop();
 
 	//8. avl tree
 	/*avltree.Add(4);
