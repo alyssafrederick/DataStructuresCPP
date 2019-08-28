@@ -4,12 +4,14 @@
 #include <iostream>
 #include <vector>
 
+#include "Edge.h"
+
 template <typename T>
 class Vertex
 {
 public:
 	T value;
-	std::vector<Vertex<T>> neighbors;
+	std::vector<std::shared_ptr<Edge<T>>> neighbors;
 	int count;
 	Vertex(T value);
 };

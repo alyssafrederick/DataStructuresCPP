@@ -123,6 +123,7 @@
     <ClInclude Include="CircularlyDoublyLinkedNode.tpp" />
     <ClInclude Include="DoublyLinkedList.tpp" />
     <ClInclude Include="DoublyLinkedNode.tpp" />
+    <ClInclude Include="Edge.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="HeapTree.h" />
     <ClInclude Include="Queue.h" />

@@ -28,8 +28,7 @@ int main()
 	Graph<int> grf;
 
 	//10. graphs
-	grf.AddVertex(2);
-	grf.IndexOf(2);       ////////////////////////////fix 
+	grf.AddEdge(grf.AddVertex(2), grf.AddVertex(9), 3);
 
 	//9. heap tree
 	/*heap.Add(3);
