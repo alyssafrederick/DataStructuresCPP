@@ -10,6 +10,7 @@
 #include "sorts.h"
 #include "AVLtree.h"
 #include "HeapTree.h"
+#include "Graph.h"
 
 //void Thingy();
 
@@ -24,9 +25,11 @@ int main()
 	Sorts<int> numbers;
 	AVLtree<int> avltree;
 	HeapTree<int> heap;
+	Graph<int> grf;
 
 	//10. graphs
-
+	grf.AddVertex(2);
+	grf.IndexOf(2);       ////////////////////////////fix 
 
 	//9. heap tree
 	/*heap.Add(3);
@@ -213,7 +216,7 @@ int main()
 	linkedList.GetAll();
 	*/
 
-	std::cout << "End" << std::endl;
+	//std::cout << "End" << std::endl;
 	system("pause");
 	
 	return 0;

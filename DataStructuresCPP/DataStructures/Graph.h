@@ -4,20 +4,22 @@
 #include <iostream>
 #include <vector>
 
+#include "Vertex.h"
+
 template <typename T>
 class Graph
 {
 public:
-	vector<Vertex<T>> verticies;
+	std::vector<Vertex<T>> verticies;
 	int count;
 	Graph();
 
 	void AddVertex(Vertex<T> vertex);
-	bool RemoveVertex(Vertex<T> vertex);
-	//bool AddEdge(Vertex<T> a, Vertex<T> b);
-	bool RemoveEdge(Vertex<T> a, Vertex<T> b);
-	//Vertex<T> Search(T value);
-	//int IndexOf(Vertex<T> vertex);
+	bool RemoveVertex(Vertex<T>* vertex);
+	//bool AddEdge(Vertex<T>* a, Vertex<T>* b);
+	bool RemoveEdge(Vertex<T>* a, Vertex<T>* b);
+	//Vertex<T>* Search(T value);
+	int IndexOf(T vertex);
 };
 
 
@@ -29,9 +31,23 @@ Graph<T>::Graph()
 }
 
 template <typename T>
-void AddVertex(Vertex<T> vertex)
+int Graph<T>::IndexOf(T vertex)
 {
-	if (vertex != nullptr && vertex.count == 0)
+	int index = -1;
+	for (int i = 0; i < count; i++)
+	{
+		if (verticies[i].value = vertex)
+		{
+			index = i;
+		}
+	}
+	return index;
+}
+
+template <typename T>
+void Graph<T>::AddVertex(Vertex<T> vertex)
+{
+	if (vertex.count == 0)
 	{
 		for (int i = 0; i < count; i++)
 		{
@@ -48,7 +64,7 @@ void AddVertex(Vertex<T> vertex)
 }
 
 template <typename T>
-bool RemoveVertex(Vertex<T> vertex)
+bool Graph<T>::RemoveVertex(Vertex<T>* vertex)
 {
 	for (int i = 0; i < count; i++)
 	{
@@ -65,10 +81,28 @@ bool RemoveVertex(Vertex<T> vertex)
 }
 
 template <typename T>
-bool RemoveEdge(Vertex<T> start, Vertex<T> end)
+bool Graph<T>::RemoveEdge(Vertex<T>* start, Vertex<T>* end)
 {
-	//check if they contain edges to each other
-
-	start.neighbors.erase(end);
-	end.neighbors.erase(start);
+	int starti = 0;
+	int endi = 0;
+	//check if they are not null and contain edges to each other
+	if (start != nullptr && end != nullptr)
+	{
+		for (int i = 0; i < start.neighbors.size(); i++)
+		{
+			if (start.neighbprs[i] == end)
+			{
+				starti = i;
+			}
+		}
+		for (int i = 0; i < end.neighbors.size(); i++)
+		{
+			if (end.neighbprs[i] == start)
+			{
+				endi = i;
+			}
+		}
+		start.neighbors.erase(endi);
+		end.neighbors.erase(starti);
+	}
 }

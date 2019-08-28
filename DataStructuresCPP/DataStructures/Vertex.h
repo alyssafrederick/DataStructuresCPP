@@ -9,7 +9,7 @@ class Vertex
 {
 public:
 	T value;
-	vector<Vertex<T>> neighbors;
+	std::vector<Vertex<T>> neighbors;
 	int count;
 	Vertex(T value);
 };
