@@ -28,8 +28,16 @@ int main()
 	Graph<int> grf;
 
 	//10. graphs
-	grf.AddEdge(grf.AddVertex(2), grf.AddVertex(9), 3);
-	grf.AddEdge(grf.AddVertex(3), grf.AddVertex(10), 5);
+	bool line1 = grf.AddEdge(grf.AddVertex(2), grf.AddVertex(9), 3);
+	std::cout << line1 << std::endl;
+	bool line2 = grf.AddEdge(grf.AddVertex(3), grf.AddVertex(10), 5);
+	std::cout << line2 << std::endl;
+
+	auto values = grf.Search(2);
+	auto item = values.at(0);
+
+	bool result = grf.RemoveVertex(item);
+	;
 
 
 	//9. heap tree

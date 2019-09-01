@@ -16,12 +16,13 @@ template <typename T>
 class Graph
 {
 private:
-	std::unordered_set<std::shared_ptr<Vertex<T>>> verticies;
+	//std::unordered_set<std::shared_ptr<Vertex<T>>> verticies;
 	std::unordered_set<std::shared_ptr<Edge<T>>> edges;
 
 public:
 	Graph();
 
+	std::unordered_set<std::shared_ptr<Vertex<T>>> verticies;
 	std::shared_ptr<Vertex<T>> AddVertex(T value);
 	bool AddEdge(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end, float weight);
 	bool RemoveVertex(std::shared_ptr<Vertex<T>> vertex);
@@ -53,6 +54,28 @@ bool Graph<T>::AddEdge(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<
 	//add each other to the other's neighbors vector
 	start->neighbors.push_back(end);
 	end->neighbors.push_back(start);
+	
+	if (start->neighbors[start->neighbors.size() - 1] == end && end->neighbors[end->neighbors.size() - 1] == start)
+	{
+		return true;
+	}
+	return false;
+}
+
+template <typename T>
+bool Graph<T>::RemoveVertex(std::shared_ptr<Vertex<T>> vertexToFind)
+{
+	verticies.erase(verticies.find(vertexToFind));
+	/*for (auto& vertex : this->verticies)
+	{
+		if (vertex == vertexToFind)
+		{
+			this->verticies.erase(vertex);
+		}
+	}*/
+
+
+	//Search(vertex)
 	return true;
 }
 
@@ -71,25 +94,7 @@ std::vector<std::shared_ptr<Vertex<T>>> Graph<T>::Search(T value)
 	return matches;
 }
 
-//template <typename T>
-//void Graph<T>::AddVertex(Vertex<T> vertex)
-//{
-//	if (vertex.count == 0)
-//	{
-//		for (int i = 0; i < count; i++)
-//		{
-//			if (verticies[i].value == vertex.value)
-//			{
-//				return;
-//			}
-//		}
-//		
-//		verticies.push_back(vertex);
-//	}
-//	
-//	return;
-//}
-//
+
 //template <typename T>
 //bool Graph<T>::RemoveVertex(Vertex<T>* vertex)
 //{
