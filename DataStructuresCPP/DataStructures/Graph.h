@@ -50,7 +50,9 @@ bool Graph<T>::AddEdge(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<
 {
 	std::shared_ptr<Edge<T>> temp = std::make_shared<Edge<T>>(start, end, weight);
 	edges.emplace(temp);
-	//add each other to the neighbors list
+	//add each other to the other's neighbors vector
+	start->neighbors.push_back(end);
+	end->neighbors.push_back(start);
 	return true;
 }
 

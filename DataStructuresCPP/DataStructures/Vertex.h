@@ -11,7 +11,7 @@ class Vertex
 {
 public:
 	T value;
-	std::vector<std::shared_ptr<Edge<T>>> neighbors;
+	std::vector<std::shared_ptr<Vertex<T>>> neighbors;
 	int count;
 	Vertex(T value);
 };
