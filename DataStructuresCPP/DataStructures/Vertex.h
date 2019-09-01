@@ -21,6 +21,7 @@ public:
 template <typename T>
 Vertex<T>::Vertex(T Value)
 {
-	Value = value;
+	//Value = value;
+	value = Value;
 	count = neighbors.size();
 }

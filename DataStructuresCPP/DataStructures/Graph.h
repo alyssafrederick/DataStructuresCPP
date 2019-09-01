@@ -40,26 +40,29 @@ Graph<T>::Graph()
 template <typename T>
 std::shared_ptr<Vertex<T>> Graph<T>::AddVertex(T value)
 {
-	verticies.emplace(value);
+	std::shared_ptr<Vertex<T>> temp = std::make_shared<Vertex<T>>(value);
+	verticies.emplace(temp);
 	return Search(value).front();
 }
 
 template <typename T>
 bool Graph<T>::AddEdge(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end, float weight)
 {
-	edges.emplace(start, end, weight);
-
+	std::shared_ptr<Edge<T>> temp = std::make_shared<Edge<T>>(start, end, weight);
+	edges.emplace(temp);
+	//add each other to the neighbors list
+	return true;
 }
 
 template <typename T>
 std::vector<std::shared_ptr<Vertex<T>>> Graph<T>::Search(T value)
 {
 	std::vector<std::shared_ptr<Vertex<T>>> matches;
-	for (auto& vertex : verticies)
+	for (std::shared_ptr<Vertex<T>> vertex : verticies)
 	{
 		if (vertex->value == value)
 		{
-			matches.emplace(vertex);
+			matches.push_back(vertex);
 		}
 	}
 
