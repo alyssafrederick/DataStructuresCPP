@@ -53,7 +53,7 @@ bool Graph<T>::AddEdge(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<
 	edges.emplace(temp);
 	//add each other to the other's neighbors vector
 	start->neighbors.push_back(end);
-	end->neighbors.push_back(start);
+	//end->neighbors.push_back(start);
 	
 	if (start->neighbors[start->neighbors.size() - 1] == end && end->neighbors[end->neighbors.size() - 1] == start)
 	{
@@ -66,17 +66,36 @@ template <typename T>
 bool Graph<T>::RemoveVertex(std::shared_ptr<Vertex<T>> vertexToFind)
 {
 	verticies.erase(verticies.find(vertexToFind));
-	/*for (auto& vertex : this->verticies)
-	{
-		if (vertex == vertexToFind)
-		{
-			this->verticies.erase(vertex);
-		}
-	}*/
 
+	//delete edges connected to vertextofind
 
-	//Search(vertex)
 	return true;
+}
+
+template <typename T>
+bool Graph<T>::RemoveEdge(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end)
+{
+	for (auto itr = edges.begin(); itr != edges.end(); itr++)
+	{
+		auto edge = *itr;		
+		if ((*edge).Start == start && (*edge).End == end)
+		{
+			edges.erase(itr);
+			
+			for (auto i = (*start).neighbors.begin(); i != (*start).neighbors.end(); i++)
+			{
+				if ((*i) == end)
+				{
+					(*start).neighbors.erase(i);
+					break;
+				}				
+			}
+
+			return true;
+		}
+	}
+
+	return false;
 }
 
 template <typename T>

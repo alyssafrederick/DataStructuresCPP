@@ -32,13 +32,13 @@ int main()
 	std::cout << line1 << std::endl;
 	bool line2 = grf.AddEdge(grf.AddVertex(3), grf.AddVertex(10), 5);
 	std::cout << line2 << std::endl;
+	bool line3= grf.AddEdge(grf.AddVertex(5), grf.Search(2).at(0), 4);
+	std::cout << line3 << std::endl;
 
 	auto values = grf.Search(2);
 	auto item = values.at(0);
-
-	bool result = grf.RemoveVertex(item);
-	;
-
+	//bool result = grf.RemoveVertex(item);
+	grf.RemoveEdge(grf.Search(2).at(0), grf.Search(9).at(0));
 
 	//9. heap tree
 	/*heap.Add(3);
