@@ -35,10 +35,9 @@ int main()
 	bool line3= grf.AddEdge(grf.AddVertex(5), grf.Search(2).at(0), 4);
 	std::cout << line3 << std::endl;
 
-	auto values = grf.Search(2);
-	auto item = values.at(0);
-	//bool result = grf.RemoveVertex(item);
-	grf.RemoveEdge(grf.Search(2).at(0), grf.Search(9).at(0));
+	//works alone// bool result = grf.RemoveVertex(item);
+	//works alone// grf.RemoveEdge(grf.Search(2).at(0), grf.Search(9).at(0));
+	grf.RemoveVertex(grf.Search(2).at(0));
 
 	//9. heap tree
 	/*heap.Add(3);
