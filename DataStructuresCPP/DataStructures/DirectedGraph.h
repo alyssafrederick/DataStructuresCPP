@@ -61,7 +61,7 @@ bool DirectedGraph<T>::RemoveVertex(std::shared_ptr<Vertex<T>> vertexToFind)
 {
 	int count = 0;
 
-	//delete edges connected to vertextofind.. those that their end point it vertextofind
+	//delete edges connected to vertexToFind.. those that their end point it vertexToFind
 	for (auto itr = edges.begin(); itr != edges.end(); itr++)
 	{
 		auto edge = *itr;
@@ -86,7 +86,7 @@ bool DirectedGraph<T>::RemoveVertex(std::shared_ptr<Vertex<T>> vertexToFind)
 		i++;
 	}
 
-	//delete the actual vertex
+	//delete the actual vertex (vertexToFind)
 	verticies.erase(verticies.find(vertexToFind));
 
 	return true;

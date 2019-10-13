@@ -5,6 +5,8 @@
 #include <vector>
 #include <unordered_set>
 
+#include "Stack.h"
+#include "Queue.h"
 #include "Vertex.h"
 #include "UnweightedEdge.h"
 
@@ -15,6 +17,8 @@ class UndirectedGraph
 private:
 	std::unordered_set<std::shared_ptr<Vertex<T>>> verticies;
 	std::unordered_set<std::shared_ptr<UnweightedEdge<T>>> edges;
+	void DepthFirstTraversalRecursive(std::shared_ptr<Vertex<T>>, Stack<Vertex<T>> stack);
+	void BreadthFirstTraversalRecursive(std::shared_ptr<Vertex<T>>, Queue<Vertex<T>> q);
 
 public:
 	UndirectedGraph();
@@ -24,6 +28,8 @@ public:
 	bool RemoveEdge(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
 	std::vector<std::shared_ptr<Vertex<T>>> Search(T value);
 	std::shared_ptr<UnweightedEdge<T>> GetEdge(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
+	void DepthFirstTraversal(std::shared_ptr<Vertex<T>> start);
+	void BreadthFirstTraversal(std::shared_ptr<Vertex<T>> start);
 };
 
 
@@ -44,10 +50,12 @@ std::shared_ptr<Vertex<T>> UndirectedGraph<T>::AddVertex(T value)
 template <typename T>
 bool UndirectedGraph<T>::AddEdge(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end)
 {
-	std::shared_ptr<UnweightedEdge<T>> temp = std::make_shared<WeightedEdge<T>>(start, end);
+	std::shared_ptr<UnweightedEdge<T>> temp = std::make_shared<UnweightedEdge<T>>(start, end);
 	edges.emplace(temp);
-	//add the end to the start's neighbors vector
+
+	//add the each to the other's neighbors vector
 	start->neighbors.push_back(end);
+	end->neighbors.push_back(start);
 
 	if (start->neighbors[start->neighbors.size() - 1] == end)
 	{
@@ -61,11 +69,11 @@ bool UndirectedGraph<T>::RemoveVertex(std::shared_ptr<Vertex<T>> vertexToFind)
 {
 	int count = 0;
 
-	//delete edges connected to vertextofind.. those that their end point it vertextofind
+	//delete edges connected to vertexToFind.. both if vertexToFind is start or end 
 	for (auto itr = edges.begin(); itr != edges.end(); itr++)
 	{
 		auto edge = *itr;
-		if ((*edge).End == vertexToFind)
+		if ((*edge).End == vertexToFind || (*edge).Start == vertexToFind)
 		{
 			count++;
 		}
@@ -82,11 +90,16 @@ bool UndirectedGraph<T>::RemoveVertex(std::shared_ptr<Vertex<T>> vertexToFind)
 				RemoveEdge((*edge).Start, vertexToFind);
 				break;
 			}
+			if ((*edge).Start == vertexToFind)
+			{
+				RemoveEdge(vertexToFind, (*edge).End);
+				break;
+			}
 		}
 		i++;
 	}
 
-	//delete the actual vertex
+	//delete the actual vertex (vertexToFind)
 	verticies.erase(verticies.find(vertexToFind));
 
 	return true;
@@ -146,4 +159,38 @@ std::shared_ptr<UnweightedEdge<T>> UndirectedGraph<T>::GetEdge(std::shared_ptr<V
 	}
 
 	return nullptr;
+}
+
+template <typename T>
+void UndirectedGraph<T>::DepthFirstTraversal(std::shared_ptr<Vertex<T>>)
+{
+	for each (vert var in verticies)
+	{
+		vert.visited = false;
+	}
+
+	DepthFirstTraversalRecursive(start, new Stack<Vertex<T>>());
+}
+
+template <typename T>
+void UndirectedGraph<T>::DepthFirstTraversalRecursive(std::shared_ptr<Vertex<T>>, Stack<Vertex<T>> stack)
+{
+
+}
+
+template <typename T>
+void UndirectedGraph<T>::BreadthFirstTraversal(std::shared_ptr<Vertex<T>> start)
+{
+	for each (vert auto in verticies)
+	{
+		vert.visited = false;
+	}
+
+	BreadthFirstTraversalRecursive(start, new Queue<Vertex<T>>());
+}
+
+template <typename T>
+void UndirectedGraph<T>::BreadthFirstTraversalRecursive(std::shared_ptr<Vertex<T>>, Queue<Vertex<T>> q)
+{
+
 }

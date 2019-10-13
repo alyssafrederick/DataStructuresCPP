@@ -11,6 +11,7 @@
 #include "AVLtree.h"
 #include "HeapTree.h"
 #include "DirectedGraph.h"
+#include "UndirectedGraph.h"
 
 int main()
 {
@@ -24,8 +25,9 @@ int main()
 	AVLtree<int> avltree;
 	HeapTree<int> heap;
 	DirectedGraph<int> grf;
+	UndirectedGraph<int> ugrf;
 
-	//10. wegithed, directed graphs
+	//11. wegithed, directed graphs
 	/*
 	bool line1 = grf.AddEdge(grf.AddVertex(2), grf.AddVertex(9), 3);		//2 -> 9
 	bool line2 = grf.AddEdge(grf.AddVertex(3), grf.AddVertex(10), 5);		//3 -> 10
@@ -37,6 +39,16 @@ int main()
 	grf.RemoveVertex(grf.Search(2).at(0));
 	grf.GetEdge(grf.Search(3).at(0), grf.Search(10).at(0));
 	*/
+
+
+	//10. unweighted, undirected graphs
+	bool line5 = ugrf.AddEdge(ugrf.AddVertex(2), ugrf.AddVertex(9));		//2 -> 9
+	bool line6 = ugrf.AddEdge(ugrf.AddVertex(3), ugrf.AddVertex(10));		//3 -> 10
+	bool line7 = ugrf.AddEdge(ugrf.AddVertex(5), ugrf.Search(2).at(0));		//5 -> 2
+	bool line8 = ugrf.AddEdge(ugrf.AddVertex(4), ugrf.Search(2).at(0));		//4 -> 2
+	ugrf.RemoveVertex(ugrf.Search(2).at(0));  //utilizes RemoveEdge so I know that works too!
+	ugrf.GetEdge(ugrf.Search(3).at(0), ugrf.Search(10).at(0));
+	
 
 	//9. heap tree
 	/*heap.Add(3);
@@ -205,8 +217,6 @@ int main()
 	dll.DeleteAt(1);
 	dll.GetAllForward();
 	*/
-	
-	//Thingy();
 
 	// 1. singly linked list
 	/*

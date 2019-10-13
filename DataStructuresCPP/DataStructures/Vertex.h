@@ -13,6 +13,7 @@ public:
 	T value;
 	std::vector<std::shared_ptr<Vertex<T>>> neighbors;
 	Vertex(T value);
+	bool visited;
 };
 
 
@@ -21,4 +22,5 @@ template <typename T>
 Vertex<T>::Vertex(T Value)
 {
 	value = Value;
+	visited = false;
 }
