@@ -17,7 +17,7 @@ public:
 
 	AVLnode(T value);
 
-//private:
+//private: 
 	int height;
 	int balance;
 };

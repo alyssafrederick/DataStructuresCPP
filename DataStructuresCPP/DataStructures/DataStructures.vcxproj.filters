@@ -47,9 +47,6 @@
     <ClInclude Include="SinglyLinkedNode.tpp">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Stack.tpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="SinglyLinkedList.tpp">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -89,10 +86,16 @@
     <ClInclude Include="Vertex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graph.h">
+    <ClInclude Include="DirectedGraph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Edge.h">
+    <ClInclude Include="WeightedEdge.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UnweightedEdge.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UndirectedGraph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

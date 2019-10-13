@@ -10,7 +10,7 @@
 #include "sorts.h"
 #include "AVLtree.h"
 #include "HeapTree.h"
-#include "Graph.h"
+#include "DirectedGraph.h"
 
 int main()
 {
@@ -23,9 +23,10 @@ int main()
 	Sorts<int> numbers;
 	AVLtree<int> avltree;
 	HeapTree<int> heap;
-	Graph<int> grf;
+	DirectedGraph<int> grf;
 
-	//10. graphs
+	//10. wegithed, directed graphs
+	/*
 	bool line1 = grf.AddEdge(grf.AddVertex(2), grf.AddVertex(9), 3);		//2 -> 9
 	bool line2 = grf.AddEdge(grf.AddVertex(3), grf.AddVertex(10), 5);		//3 -> 10
 	bool line3 = grf.AddEdge(grf.AddVertex(5), grf.Search(2).at(0), 4);		//5 -> 2
@@ -35,6 +36,7 @@ int main()
 	//works alone// grf.RemoveEdge(grf.Search(2).at(0), grf.Search(9).at(0));
 	grf.RemoveVertex(grf.Search(2).at(0));
 	grf.GetEdge(grf.Search(3).at(0), grf.Search(10).at(0));
+	*/
 
 	//9. heap tree
 	/*heap.Add(3);
@@ -221,7 +223,7 @@ int main()
 	linkedList.GetAll();
 	*/
 
-	//std::cout << "End" << std::endl;
+	std::cout << "end!" << std::endl;
 	system("pause");
 	
 	return 0;

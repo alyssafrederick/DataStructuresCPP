@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-#include "Edge.h"
+#include "WeightedEdge.h"
 
 template <typename T>
 class Vertex
