@@ -6,7 +6,6 @@
 #include <unordered_set>
 
 #include "Vertex.h"
-
 #include "Edge.h"
 
 
@@ -24,6 +23,7 @@ public:
 	bool RemoveVertex(std::shared_ptr<Vertex<T>> vertex);
 	bool RemoveEdge(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
 	std::vector<std::shared_ptr<Vertex<T>>> Search(T value);
+	std::shared_ptr<Edge<T>> GetEdge(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
 };
 
 
@@ -131,4 +131,19 @@ std::vector<std::shared_ptr<Vertex<T>>> Graph<T>::Search(T value)
 	}
 
 	return matches;
+}
+
+template <typename T>
+std::shared_ptr<Edge<T>> Graph<T>::GetEdge(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end)
+{
+	for (auto itr = edges.begin(); itr != edges.end(); itr++)
+	{
+		auto edge = *itr;
+		if ((*edge).Start == start && (*edge).End == end)
+		{
+			return edge;
+		}
+	}
+
+	return nullptr;
 }

@@ -35,6 +35,7 @@ int main()
 	//works alone// grf.RemoveEdge(grf.Search(2).at(0), grf.Search(9).at(0));
 	grf.RemoveVertex(grf.Search(2).at(0));
 	grf.GetEdge(grf.Search(3).at(0), grf.Search(10).at(0));
+	//std::cout << grf.GetEdge(grf.Search(3).at(0), grf.Search(10).at(0)) << std::endl;
 
 	//9. heap tree
 	/*heap.Add(3);
