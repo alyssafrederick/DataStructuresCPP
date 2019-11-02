@@ -17,8 +17,8 @@ class UndirectedGraph
 private:
 	std::unordered_set<std::shared_ptr<Vertex<T>>> verticies;
 	std::unordered_set<std::shared_ptr<UnweightedEdge<T>>> edges;
-	void DepthFirstTraversalRecursive(std::shared_ptr<Vertex<T>>, Stack<Vertex<T>> stack);
-	void BreadthFirstTraversalRecursive(std::shared_ptr<Vertex<T>>, Queue<Vertex<T>> q);
+	void DepthFirstTraversalRecursive(std::shared_ptr<Vertex<T>>, Stack<std::shared_ptr<Vertex<T>>>* stack);
+	void BreadthFirstTraversalRecursive(std::shared_ptr<Vertex<T>>, Queue<std::shared_ptr<Vertex<T>>>* q);
 
 public:
 	UndirectedGraph();
@@ -162,35 +162,62 @@ std::shared_ptr<UnweightedEdge<T>> UndirectedGraph<T>::GetEdge(std::shared_ptr<V
 }
 
 template <typename T>
-void UndirectedGraph<T>::DepthFirstTraversal(std::shared_ptr<Vertex<T>>)
+void UndirectedGraph<T>::DepthFirstTraversal(std::shared_ptr<Vertex<T>> start)
 {
-	for each (vert var in verticies)
+	for (auto vert : verticies)
 	{
-		vert.visited = false;
+		vert->visited = false;
 	}
 
 	DepthFirstTraversalRecursive(start, new Stack<Vertex<T>>());
 }
 
 template <typename T>
-void UndirectedGraph<T>::DepthFirstTraversalRecursive(std::shared_ptr<Vertex<T>>, Stack<Vertex<T>> stack)
+void UndirectedGraph<T>::DepthFirstTraversalRecursive(std::shared_ptr<Vertex<T>> start, Stack<std::shared_ptr<Vertex<T>>>* stack)
 {
+	start->visited = true;
 
+	std::cout << start->value << std::endl;
+
+	for (auto n : start->neighbors)
+	{
+		if (!n->visited)
+		{
+			stack->Push(n);
+			DepthFirstTraversalRecursive(n, stack);
+		}
+	}
 }
 
 template <typename T>
 void UndirectedGraph<T>::BreadthFirstTraversal(std::shared_ptr<Vertex<T>> start)
 {
-	for each (vert auto in verticies)
+	for (auto vert : verticies)
 	{
-		vert.visited = false;
+
+		vert->visited = false;
 	}
 
-	BreadthFirstTraversalRecursive(start, new Queue<Vertex<T>>());
+	BreadthFirstTraversalRecursive(start, new Queue<std::shared_ptr<Vertex<T>>>());
 }
 
 template <typename T>
-void UndirectedGraph<T>::BreadthFirstTraversalRecursive(std::shared_ptr<Vertex<T>>, Queue<Vertex<T>> q)
+void UndirectedGraph<T>::BreadthFirstTraversalRecursive(std::shared_ptr<Vertex<T>> start, Queue<std::shared_ptr<Vertex<T>>>* q)
 {
+	start->visited = true;
+	std::cout << start->value << std::endl;
 
+	for (auto neighbor : start->neighbors)
+	{
+		if (!neighbor->visited)
+		{
+			neighbor->visited = true;
+			q->Enqueue(neighbor);
+		}
+	}
+
+	for (int i = 0; i < q->Size; i++)
+	{
+		BreadthFirstTraversalRecursive(q->Dequeue(), q);
+	}
 }

@@ -46,9 +46,9 @@ int main()
 	bool line6 = ugrf.AddEdge(ugrf.AddVertex(3), ugrf.AddVertex(10));		//3 -> 10
 	bool line7 = ugrf.AddEdge(ugrf.AddVertex(5), ugrf.Search(2).at(0));		//5 -> 2
 	bool line8 = ugrf.AddEdge(ugrf.AddVertex(4), ugrf.Search(2).at(0));		//4 -> 2
-	ugrf.RemoveVertex(ugrf.Search(2).at(0));  //utilizes RemoveEdge so I know that works too!
-	ugrf.GetEdge(ugrf.Search(3).at(0), ugrf.Search(10).at(0));
-	
+	//ugrf.RemoveVertex(ugrf.Search(2).at(0));  //utilizes RemoveEdge so I know that works too!
+	ugrf.BreadthFirstTraversal(ugrf.Search(4).at(0));
+	ugrf.DepthFirstTraversal(ugrf.Search(4).at(0));
 
 	//9. heap tree
 	/*heap.Add(3);
