@@ -169,7 +169,7 @@ void UndirectedGraph<T>::DepthFirstTraversal(std::shared_ptr<Vertex<T>> start)
 		vert->visited = false;
 	}
 
-	DepthFirstTraversalRecursive(start, new Stack<Vertex<T>>());
+	DepthFirstTraversalRecursive(start, new Stack<std::shared_ptr<Vertex<T>>>());
 }
 
 template <typename T>

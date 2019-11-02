@@ -26,8 +26,9 @@ int main()
 	HeapTree<int> heap;
 	DirectedGraph<int> grf;
 	UndirectedGraph<int> ugrf;
+	UndirectedGraph<int> ugrf2;
 
-	//11. wegithed, directed graphs
+	//11. weighted, directed graphs
 	/*
 	bool line1 = grf.AddEdge(grf.AddVertex(2), grf.AddVertex(9), 3);		//2 -> 9
 	bool line2 = grf.AddEdge(grf.AddVertex(3), grf.AddVertex(10), 5);		//3 -> 10
@@ -40,15 +41,25 @@ int main()
 	grf.GetEdge(grf.Search(3).at(0), grf.Search(10).at(0));
 	*/
 
-
 	//10. unweighted, undirected graphs
-	bool line5 = ugrf.AddEdge(ugrf.AddVertex(2), ugrf.AddVertex(9));		//2 -> 9
-	bool line6 = ugrf.AddEdge(ugrf.AddVertex(3), ugrf.AddVertex(10));		//3 -> 10
-	bool line7 = ugrf.AddEdge(ugrf.AddVertex(5), ugrf.Search(2).at(0));		//5 -> 2
-	bool line8 = ugrf.AddEdge(ugrf.AddVertex(4), ugrf.Search(2).at(0));		//4 -> 2
+	/*
+	bool line5 = ugrf.AddEdge(ugrf.AddVertex(2), ugrf.AddVertex(9));		//2 <-> 9
+	bool line6 = ugrf.AddEdge(ugrf.AddVertex(3), ugrf.AddVertex(10));		//3 <-> 10
+	bool line7 = ugrf.AddEdge(ugrf.AddVertex(5), ugrf.Search(2).at(0));		//5 <-> 2
+	bool line8 = ugrf.AddEdge(ugrf.AddVertex(4), ugrf.Search(2).at(0));		//4 <-> 2
 	//ugrf.RemoveVertex(ugrf.Search(2).at(0));  //utilizes RemoveEdge so I know that works too!
 	ugrf.BreadthFirstTraversal(ugrf.Search(4).at(0));
 	ugrf.DepthFirstTraversal(ugrf.Search(4).at(0));
+	
+	bool line9 = ugrf2.AddEdge(ugrf2.AddVertex(9), ugrf2.AddVertex(5));
+	bool line10 = ugrf2.AddEdge(ugrf2.Search(9).at(0), ugrf2.AddVertex(12));
+	bool line11 = ugrf2.AddEdge(ugrf2.Search(5).at(0), ugrf2.AddVertex(3));
+	bool line12 = ugrf2.AddEdge(ugrf2.Search(5).at(0), ugrf2.AddVertex(7));
+	bool line13 = ugrf2.AddEdge(ugrf2.Search(12).at(0), ugrf2.AddVertex(11));
+	bool line14 = ugrf2.AddEdge(ugrf2.Search(12).at(0), ugrf2.AddVertex(14));
+	ugrf2.BreadthFirstTraversal(ugrf2.Search(9).at(0));
+	ugrf2.DepthFirstTraversal(ugrf2.Search(9).at(0));
+	*/
 
 	//9. heap tree
 	/*heap.Add(3);
