@@ -12,6 +12,7 @@
 #include "HeapTree.h"
 #include "DirectedGraph.h"
 #include "UndirectedGraph.h"
+#include "HashMap.h"
 
 int main()
 {
@@ -27,6 +28,10 @@ int main()
 	DirectedGraph<int> grf;
 	UndirectedGraph<int> ugrf;
 	UndirectedGraph<int> ugrf2;
+	HashMap<int> hm;
+
+	//12. hash map
+
 
 	//11. weighted, directed graphs
 	/*
