@@ -29,10 +29,15 @@ int main()
 	DirectedGraph<int> grf;
 	UndirectedGraph<int> ugrf;
 	UndirectedGraph<int> ugrf2;
-	HashMap<std::string> hm;
+	HashMap hm;
 
 	//12. hash map
-	hm.HashFunction("hi");
+	hm.Add("hi", 1);
+	hm.Add("yo", 2);
+	hm.Add("hello", 3);
+	hm.Add("what's up", 4);
+	hm.Add("morning", 5);
+	hm.Add("howdy", 6);
 
 	//11. weighted, directed graphs
 	/*

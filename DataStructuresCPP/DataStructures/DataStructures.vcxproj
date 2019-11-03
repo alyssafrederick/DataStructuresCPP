@@ -131,7 +131,6 @@
     <ClInclude Include="HeapTree.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="SinglyLinkedList.tpp" />
-    <ClInclude Include="SinglyLinkedNode.tpp" />
     <ClInclude Include="UnweightedEdge.h" />
     <ClInclude Include="Vertex.h" />
     <None Include="AVLnode.tpp" />

@@ -44,9 +44,6 @@
     <ClInclude Include="Queue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SinglyLinkedNode.tpp">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="SinglyLinkedList.tpp">
       <Filter>Source Files</Filter>
     </ClInclude>

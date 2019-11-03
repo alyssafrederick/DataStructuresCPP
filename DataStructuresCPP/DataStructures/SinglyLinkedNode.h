@@ -7,8 +7,8 @@ class SinglyLinkedNode
 public:
 	T Value;
 	std::unique_ptr<SinglyLinkedNode> nextNode;
-	SinglyLinkedNode(T value);
+	SinglyLinkedNode(T value) : Value(value), nextNode( nullptr ) {}
+	SinglyLinkedNode() {}
 };
 
-#include "SinglyLinkedNode.tpp"
 

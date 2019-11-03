@@ -8,54 +8,76 @@
 #include "SinglyLinkedList.h"
 #include "KeyValuePair.h"
 
-template <typename T>
+//template <typename T>
 class HashMap
 {
 private:
 
+
 public:
 	HashMap();
-	SinglyLinkedList < KeyValuePair < T >> buckets[5] = {};
+	int size;
+	SinglyLinkedList<KeyValuePair> buckets[5];
 	int HashFunction(std::string Tkey);
-	void Add(std::string Tkey, T Tvalue);
+	void Add(std::string Tkey, int Tvalue);
 	void ReHash();
-	void Remove();
+	void Remove(std::string Tkey, int Tvalue);
 };
 
-template <typename T>
-HashMap<T>::HashMap()
+//template <typename T>
+HashMap::HashMap()
 {
-
+	size = 5;
 }
 
-template <typename T>
-int HashMap<T>::HashFunction(std::string Tkey)
+//template <typename T>
+int HashMap::HashFunction(std::string Tkey)
 {
 	int hash = 0;
 
-	for (size_t i = 0; i < Tkey.size(); i++)
+	for (int i = 0; i < Tkey.size(); i++)
 	{
-		hash += i + 97 + (int)Tkey.at(i);
+		hash += 17 + (int)Tkey.at(i);
 	}
 
 	std::cout << hash << std::endl;
-	return hash%buckets->Size;   //fix
+	hash = hash % size;
+	return hash;
 }
 
-template <typename T>
-void HashMap<T>::Add(std::string Tkey, T Tvalue)
+//template <typename T>
+void HashMap::Add(std::string Tkey, int Tvalue)
+{
+	int hash = HashFunction(Tkey);
+	std::cout << hash << std::endl;
+	KeyValuePair temp(Tkey, Tvalue);
+	buckets[hash].Add(temp);
+}
+
+//template <typename T>
+void HashMap::ReHash()
 {
 
 }
 
-template <typename T>
-void HashMap<T>::ReHash()
+//template <typename T>
+void HashMap::Remove(std::string Tkey, int Tvalue)
 {
+	int hash = HashFunction(Tkey);
 
-}
+	auto temp = buckets[hash].First.get();
 
-template <typename T>
-void HashMap<T>::Remove()
-{
+	while (temp->nextNode != nullptr)
+	{
 
+		if (temp->Value.TValue == Tvalue)
+		{
+			buckets[hash].Delete(temp->Value);
+		}
+
+		temp = temp->nextNode.get();
+	}
+
+	//singlyLinkedList has the errors so look at that -> its probably because it is trying to delete a KeyValuePair and there are == in my singlyLinkedList
+	//aka my singlyLinkedList really isnt generic...
 }

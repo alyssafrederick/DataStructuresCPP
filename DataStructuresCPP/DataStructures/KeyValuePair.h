@@ -4,19 +4,19 @@
 #include <iostream>
 #include <string>
 
-template <typename T>
+//template <typename T>
 class KeyValuePair
 {
 private:
 
 public:
-	KeyValuePair(std::string TKey, T TValue);
+	KeyValuePair(std::string Tkey, int Tvalue);
 	std::string TKey;
-	T TValue;
+	int TValue;
 };
 
-template <typename T>
-KeyValuePair<T>::KeyValuePair(std::string Tkey, T Tvalue)
+//template <typename T>
+KeyValuePair::KeyValuePair(std::string Tkey, int Tvalue)
 {
 	TKey = Tkey;
 	TValue = Tvalue;
