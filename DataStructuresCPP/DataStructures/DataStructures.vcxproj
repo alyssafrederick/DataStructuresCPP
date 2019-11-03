@@ -123,6 +123,8 @@
     <ClInclude Include="CircularlyDoublyLinkedNode.tpp" />
     <ClInclude Include="DoublyLinkedList.tpp" />
     <ClInclude Include="DoublyLinkedNode.tpp" />
+    <ClInclude Include="HashMap.h" />
+    <ClInclude Include="KeyValuePair.h" />
     <ClInclude Include="UndirectedGraph.h" />
     <ClInclude Include="WeightedEdge.h" />
     <ClInclude Include="DirectedGraph.h" />

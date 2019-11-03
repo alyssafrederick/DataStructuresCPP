@@ -98,6 +98,12 @@
     <ClInclude Include="UndirectedGraph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HashMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyValuePair.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Queue.tpp">

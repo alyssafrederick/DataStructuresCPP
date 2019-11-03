@@ -39,7 +39,7 @@ int HashMap<T>::HashFunction(std::string Tkey)
 	}
 
 	std::cout << hash << std::endl;
-	return hash%buckets->Size;   //fix
+	return hash%buckets->Size;
 }
 
 template <typename T>

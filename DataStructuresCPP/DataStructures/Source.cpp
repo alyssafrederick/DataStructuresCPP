@@ -1,6 +1,7 @@
 #include <memory>
 #include <iostream>
 #include <vector>
+#include <string>
 #include "SinglyLinkedList.h"
 #include "DoublyLinkedList.h"
 #include "CircularlyDoublyLinkedList.h"
@@ -28,10 +29,10 @@ int main()
 	DirectedGraph<int> grf;
 	UndirectedGraph<int> ugrf;
 	UndirectedGraph<int> ugrf2;
-	HashMap<int> hm;
+	HashMap<std::string> hm;
 
 	//12. hash map
-
+	hm.HashFunction("hi");
 
 	//11. weighted, directed graphs
 	/*
