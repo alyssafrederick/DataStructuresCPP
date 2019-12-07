@@ -41,9 +41,11 @@ int main()
 	hm.Add("what's up", 4);
 	hm.Add("morning", 5);
 	hm.Add("howdy", 6);
-	hm.Remove("morning", 5);
-	hm.Remove("yo", 2);
-
+	//hm.Remove("morning", 5);
+	//hm.Remove("yo", 2);
+	hm.Display();
+	hm.ReHash();
+	hm.Display(); ///NOT WORKING ???
 
 	//11. weighted, directed graphs
 	/*
