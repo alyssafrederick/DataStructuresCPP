@@ -64,18 +64,16 @@ void HashMap::ReHash()
 void HashMap::Remove(std::string Tkey, int Tvalue)
 {
 	int hash = HashFunction(Tkey);
-
 	auto temp = buckets[hash].First.get();
 
-	while (temp->nextNode != nullptr)
+	while (temp != nullptr)
 	{
 		if (temp->Value.TValue == Tvalue)
 		{
 			buckets[hash].Delete(temp->Value);
+			return;
 		}
 
 		temp = temp->nextNode.get();
 	}
-
-	//fix while 
 }
