@@ -32,12 +32,17 @@ int main()
 	HashMap hm;
 
 	//12. hash map
+	/*hm.HashFunction("hi");
+	hm.HashFunction("ih");
+	hm.HashFunction("what's up");*/
 	hm.Add("hi", 1);
 	hm.Add("yo", 2);
 	hm.Add("hello", 3);
 	hm.Add("what's up", 4);
 	hm.Add("morning", 5);
 	hm.Add("howdy", 6);
+	hm.Remove("morning", 5);
+
 
 	//11. weighted, directed graphs
 	/*

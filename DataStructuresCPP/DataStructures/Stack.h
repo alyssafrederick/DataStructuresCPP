@@ -25,7 +25,7 @@ public:
 template <typename T>
 Stack<T>::Stack()
 {
-	int Size = 0;
+	Size = 0;
 }
 
 //the head/start is at the top of the stack

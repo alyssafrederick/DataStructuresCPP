@@ -17,7 +17,7 @@ private:
 public:
 	HashMap();
 	int size;
-	SinglyLinkedList<KeyValuePair> buckets[5];
+	SinglyLinkedList<KeyValuePair> buckets[17];
 	int HashFunction(std::string Tkey);
 	void Add(std::string Tkey, int Tvalue);
 	void ReHash();
@@ -27,21 +27,21 @@ public:
 //template <typename T>
 HashMap::HashMap()
 {
-	size = 5;
+	size = 17;
 }
 
 //template <typename T>
 int HashMap::HashFunction(std::string Tkey)
 {
-	int hash = 0;
+	//Horner's formulation: apply mod at each step in calculation to avoid overflow
+	int hash = 1;
 
 	for (int i = 0; i < Tkey.size(); i++)
 	{
-		hash += 17 + (int)Tkey.at(i);
+		hash = (hash * 3 + (int)Tkey.at(i))%size;
 	}
 
 	std::cout << hash << std::endl;
-	hash = hash % size;
 	return hash;
 }
 
@@ -69,7 +69,6 @@ void HashMap::Remove(std::string Tkey, int Tvalue)
 
 	while (temp->nextNode != nullptr)
 	{
-
 		if (temp->Value.TValue == Tvalue)
 		{
 			buckets[hash].Delete(temp->Value);
@@ -78,6 +77,5 @@ void HashMap::Remove(std::string Tkey, int Tvalue)
 		temp = temp->nextNode.get();
 	}
 
-	//singlyLinkedList has the errors so look at that -> its probably because it is trying to delete a KeyValuePair and there are == in my singlyLinkedList
-	//aka my singlyLinkedList really isnt generic...
+	//fix while 
 }

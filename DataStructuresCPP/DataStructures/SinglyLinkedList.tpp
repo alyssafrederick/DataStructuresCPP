@@ -93,6 +93,8 @@ bool SinglyLinkedList<T>::Found(T value)
 		std::cout << "false" << std::endl;
 		return false;
 	}
+
+	return false;
 }
 
 template <typename T>
