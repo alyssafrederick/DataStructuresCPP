@@ -34,7 +34,7 @@ int main()
 	//12. hash map
 	/*hm.HashFunction("hi");
 	hm.HashFunction("ih");
-	hm.HashFunction("what's up");*/
+	hm.HashFunction("what's up");
 	hm.Add("hi", 1);
 	hm.Add("yo", 2);
 	hm.Add("hello", 3);
@@ -46,7 +46,7 @@ int main()
 	hm.Display();
 	hm.Add("okay", 7);
 	hm.Add("its fine", 8);
-	hm.Display();
+	hm.Display();*/
 
 	//11. weighted, directed graphs
 	/*

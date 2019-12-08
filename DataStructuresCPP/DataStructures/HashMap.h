@@ -8,7 +8,6 @@
 #include "SinglyLinkedList.h"
 #include "KeyValuePair.h"
 
-//template <typename T>
 class HashMap
 {
 private:
@@ -26,7 +25,6 @@ public:
 	void Display();
 };
 
-//template <typename T>
 HashMap::HashMap()
 {
 	size = 7;
@@ -34,7 +32,6 @@ HashMap::HashMap()
 	buckets = std::make_unique<SinglyLinkedList<KeyValuePair>[]>(size);
 }
 
-//template <typename T>
 int HashMap::HashFunction(std::string Tkey)
 {
 	//Horner's formulation: apply mod at each step in calculation to avoid overflow
@@ -49,7 +46,6 @@ int HashMap::HashFunction(std::string Tkey)
 	return hash;
 }
 
-//template <typename T>
 void HashMap::Add(std::string Tkey, int Tvalue)
 {
 	int hash = HashFunction(Tkey);
@@ -65,7 +61,6 @@ void HashMap::Add(std::string Tkey, int Tvalue)
 	}
 }
 
-//template <typename T>
 void HashMap::ReHash()
 {
 	int oldSize = size;
@@ -93,7 +88,6 @@ void HashMap::ReHash()
 	buckets = std::move(newbuckets);
 }
 
-//template <typename T>
 void HashMap::Remove(std::string Tkey, int Tvalue)
 {
 	int hash = HashFunction(Tkey);
