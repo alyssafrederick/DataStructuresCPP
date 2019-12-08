@@ -126,6 +126,7 @@
     <ClInclude Include="HashMap.h" />
     <ClInclude Include="KeyValuePair.h" />
     <ClInclude Include="UndirectedGraph.h" />
+    <ClInclude Include="UnionFind.h" />
     <ClInclude Include="WeightedEdge.h" />
     <ClInclude Include="DirectedGraph.h" />
     <ClInclude Include="HeapTree.h" />

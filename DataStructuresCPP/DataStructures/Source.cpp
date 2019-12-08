@@ -14,6 +14,7 @@
 #include "DirectedGraph.h"
 #include "UndirectedGraph.h"
 #include "HashMap.h"
+#include "UnionFind.h"
 
 int main()
 {
@@ -30,6 +31,31 @@ int main()
 	UndirectedGraph<int> ugrf;
 	UndirectedGraph<int> ugrf2;
 	HashMap hm;
+	UnionFind uf(12);
+	UnionFind uf2(10);
+
+
+	//13. union find - quick-find
+	std::cout << uf.Find(3) << std::endl;		   //3
+	uf.Union(1, 5);
+	uf.Union(5, 6);
+	std::cout << uf.Find(6) << std::endl;		   //1
+	std::cout << uf.Connected(6, 5) << std::endl;  //1
+	std::cout << uf.Connected(5, 6) << std::endl;  //1
+	std::cout << uf.Connected(6, 3) << std::endl;  //0
+
+	uf2.Union(4, 3);
+	uf2.Union(3, 8);
+	uf2.Union(6, 5);
+	uf2.Union(9, 4);
+	uf2.Union(2, 1);
+	uf2.Union(8, 9);
+	uf2.Union(5, 0);
+	uf2.Union(7, 2);
+	uf2.Union(6, 1);
+	uf2.Union(1, 0);
+	uf2.Union(6, 7); //YAY
+
 
 	//12. hash map
 	/*hm.HashFunction("hi");

@@ -101,6 +101,9 @@
     <ClInclude Include="KeyValuePair.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="UnionFind.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Queue.tpp">
