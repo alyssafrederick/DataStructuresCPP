@@ -16,7 +16,8 @@ private:
 
 public:
 	HashMap();
-	int size;
+	int size;  //size of buckets
+	int count; //how many keyValue pairs there are 
 	std::unique_ptr<SinglyLinkedList<KeyValuePair>[]> buckets;
 	int HashFunction(std::string Tkey);
 	void Add(std::string Tkey, int Tvalue);
@@ -28,8 +29,8 @@ public:
 //template <typename T>
 HashMap::HashMap()
 {
-	size = 17;
-
+	size = 7;
+	count = 0;
 	buckets = std::make_unique<SinglyLinkedList<KeyValuePair>[]>(size);
 }
 
@@ -44,7 +45,7 @@ int HashMap::HashFunction(std::string Tkey)
 		hash = (hash * 3 + (int)Tkey.at(i)) % size;
 	}
 
-	//std::cout << hash << std::endl;
+	std::cout << "hash of " << Tkey << " = " << hash << std::endl;
 	return hash;
 }
 
@@ -52,9 +53,16 @@ int HashMap::HashFunction(std::string Tkey)
 void HashMap::Add(std::string Tkey, int Tvalue)
 {
 	int hash = HashFunction(Tkey);
-	std::cout << hash << std::endl;
+	//std::cout << hash << std::endl;
 	KeyValuePair temp(Tkey, Tvalue);
 	buckets[hash].Add(temp);
+
+	count++;
+
+	if (count >= size * 0.5)
+	{
+		ReHash();
+	}
 }
 
 //template <typename T>
@@ -80,7 +88,6 @@ void HashMap::ReHash()
 				temp = temp->nextNode.get();
 			}
 		}
-		return;
 	}
 
 	buckets = std::move(newbuckets);
@@ -102,11 +109,18 @@ void HashMap::Remove(std::string Tkey, int Tvalue)
 
 		temp = temp->nextNode.get();
 	}
+
+	count--;
 }
 
 void HashMap::Display()
 {
-	//figure out a way to display tkey and bucket to see if rehash worked
+	//a way to display tkey and bucket to see if rehash worked
+	//since it is hard to see into buckets bc it is now a unique pointer, display will output the tKey and bucket number so we can see it
+
+	std::cout << "" << std::endl;
+	std::cout << "buckets for size " << size << std::endl;
+
 	int i = 0;
 	for (i = 0; i < size; i++)
 	{
@@ -115,7 +129,7 @@ void HashMap::Display()
 		{
 			while (temp != nullptr)
 			{
-				std::cout << i << " ," << temp->Value.TKey << ", " << temp->Value.TValue << std::endl;
+				std::cout << i << ", " << temp->Value.TKey << ", " << temp->Value.TValue << std::endl;
 				temp = temp->nextNode.get();
 			}
 		}
@@ -124,4 +138,6 @@ void HashMap::Display()
 			std::cout << i << ", nothing" << std::endl;
 		}
 	}
+
+	std::cout << "" << std::endl;
 }

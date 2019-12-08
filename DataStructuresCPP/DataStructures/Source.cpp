@@ -44,8 +44,9 @@ int main()
 	//hm.Remove("morning", 5);
 	//hm.Remove("yo", 2);
 	hm.Display();
-	hm.ReHash();
-	hm.Display(); ///NOT WORKING ???
+	hm.Add("okay", 7);
+	hm.Add("its fine", 8);
+	hm.Display();
 
 	//11. weighted, directed graphs
 	/*
