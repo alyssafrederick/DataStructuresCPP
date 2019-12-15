@@ -32,12 +32,14 @@ int main()
 	UndirectedGraph<int> ugrf2;
 	HashMap hm;
 	UnionFind uf(12);
-	UnionFind uf2(10);
-	UnionFind uf3(10);
-	UnionFind uf4(10);
-	UnionFind uf5(10);
 
-	//13. union find
+
+
+	//14. path finding
+
+
+	//13. union find: quick find, union find, weighted union find, weighted union find w path compression
+	/*
 	std::cout << uf.QuickFind(3) << std::endl;		   //3
 	uf.Union(1, 5);
 	uf.Union(5, 6);
@@ -47,6 +49,7 @@ int main()
 	std::cout << uf.Connected(6, 3) << std::endl;  //0
 
 	//quick find
+	UnionFind uf2(10);
 	uf2.Union(4, 3);
 	uf2.Union(3, 8);
 	uf2.Union(6, 5);
@@ -60,6 +63,7 @@ int main()
 	uf2.Union(6, 7);
 
 	//quick union
+	UnionFind uf3(10);
 	uf3.QuickUnion(4, 3);
 	uf3.QuickUnion(3, 8);
 	uf3.QuickUnion(6, 5);
@@ -73,6 +77,7 @@ int main()
 	uf3.QuickUnion(6, 7);
 
 	//weighted quick union
+	UnionFind uf4(10);
 	uf4.WeightedQuickUnion(3, 4);
 	uf4.WeightedQuickUnion(4, 9);
 	uf4.WeightedQuickUnion(8, 0);
@@ -84,6 +89,7 @@ int main()
 	uf4.WeightedQuickUnion(6, 1);
 
 	//weighted quick union w path compression
+	UnionFind uf5(10);
 	uf5.WQuickUnionWPC(3, 4);
 	uf5.WQuickUnionWPC(4, 9);
 	uf5.WQuickUnionWPC(8, 0);
@@ -93,7 +99,7 @@ int main()
 	uf5.WQuickUnionWPC(7, 3);
 	uf5.WQuickUnionWPC(4, 8);
 	uf5.WQuickUnionWPC(6, 1);
-
+	*/
 
 	//12. hash map
 	/*hm.HashFunction("hi");
@@ -180,7 +186,7 @@ int main()
 	//avltree.Add(3);
  	avltree.Remove(6);*/
 
-	//7. sorts
+	//7. sorts: bubble, selection, insertion, merge, and quick
 	/*
 	//doing sorts with arrays: learn more about this!
 	//std::array<int, 4>;
