@@ -4,9 +4,11 @@
 #include <iostream>
 #include <vector>
 #include <unordered_set>
+#include <limits>
 
 #include "Vertex.h"
 #include "WeightedEdge.h"
+#include "HeapTree.h"
 
 
 template <typename T>
@@ -24,6 +26,8 @@ public:
 	bool RemoveEdge(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
 	std::vector<std::shared_ptr<Vertex<T>>> Search(T value);
 	std::shared_ptr<WeightedEdge<T>> GetEdge(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
+
+	std::vector<std::shared_ptr<Vertex<T>>> Dijkstras(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
 };
 
 
@@ -146,4 +150,21 @@ std::shared_ptr<WeightedEdge<T>> DirectedGraph<T>::GetEdge(std::shared_ptr<Verte
 	}
 
 	return nullptr;
+}
+
+template <typename T>
+std::vector<std::shared_ptr<Vertex<T>>> DirectedGraph<T>::Dijkstras(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end)
+{
+	for each (vertex var in verticies)
+	{
+		vertex.visited = false;
+		vertex.knownDistance = std::numeric_limits<int>::max(); //infinity
+		vertex.founder = nullptr;
+	}
+
+	//using heap as a priority queue
+	Heap<Vertex<T>> priorityQ = new Heap<Vertex<T>>();
+
+	start.knownDistance = 0;
+	priorityQ.Add(start);
 }
