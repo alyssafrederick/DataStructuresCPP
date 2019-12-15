@@ -33,17 +33,20 @@ int main()
 	HashMap hm;
 	UnionFind uf(12);
 	UnionFind uf2(10);
+	UnionFind uf3(10);
+	UnionFind uf4(10);
+	UnionFind uf5(10);
 
-
-	//13. union find - quick-find
-	std::cout << uf.Find(3) << std::endl;		   //3
+	//13. union find
+	std::cout << uf.QuickFind(3) << std::endl;		   //3
 	uf.Union(1, 5);
 	uf.Union(5, 6);
-	std::cout << uf.Find(6) << std::endl;		   //1
+	std::cout << uf.QuickFind(6) << std::endl;		   //1
 	std::cout << uf.Connected(6, 5) << std::endl;  //1
 	std::cout << uf.Connected(5, 6) << std::endl;  //1
 	std::cout << uf.Connected(6, 3) << std::endl;  //0
 
+	//quick find
 	uf2.Union(4, 3);
 	uf2.Union(3, 8);
 	uf2.Union(6, 5);
@@ -54,7 +57,34 @@ int main()
 	uf2.Union(7, 2);
 	uf2.Union(6, 1);
 	uf2.Union(1, 0);
-	uf2.Union(6, 7); //YAY
+	uf2.Union(6, 7);
+
+	//quick union
+	uf3.QuickUnion(4, 3);
+	uf3.QuickUnion(3, 8);
+	uf3.QuickUnion(6, 5);
+	uf3.QuickUnion(9, 4);
+	uf3.QuickUnion(2, 1);
+	uf3.QuickUnion(8, 9);
+	uf3.QuickUnion(5, 0);
+	uf3.QuickUnion(7, 2);
+	uf3.QuickUnion(6, 1);
+	uf3.QuickUnion(1, 0);
+	uf3.QuickUnion(6, 7);
+
+	//weighted quick union
+	uf4.WeightedQuickUnion(3, 4);
+	uf4.WeightedQuickUnion(4, 9);
+	uf4.WeightedQuickUnion(8, 0);
+	uf4.WeightedQuickUnion(2, 3);
+	uf4.WeightedQuickUnion(5, 6);
+	uf4.WeightedQuickUnion(5, 9);
+	uf4.WeightedQuickUnion(7, 3);
+	uf4.WeightedQuickUnion(4, 8);
+	uf4.WeightedQuickUnion(6, 1);
+
+	//weighted quick union w path compression
+	uf5.WQuickUnionWPC(3, 4);
 
 
 	//12. hash map
