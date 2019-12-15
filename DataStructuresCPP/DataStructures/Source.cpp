@@ -85,6 +85,14 @@ int main()
 
 	//weighted quick union w path compression
 	uf5.WQuickUnionWPC(3, 4);
+	uf5.WQuickUnionWPC(4, 9);
+	uf5.WQuickUnionWPC(8, 0);
+	uf5.WQuickUnionWPC(2, 3);
+	uf5.WQuickUnionWPC(5, 6);
+	uf5.WQuickUnionWPC(5, 9);
+	uf5.WQuickUnionWPC(7, 3);
+	uf5.WQuickUnionWPC(4, 8);
+	uf5.WQuickUnionWPC(6, 1);
 
 
 	//12. hash map

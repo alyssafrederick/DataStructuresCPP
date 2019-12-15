@@ -120,7 +120,6 @@ int UnionFind::FindWPC(int p)
 	{
 		root = data[root];
 	}
-	//set the id of each examined node to the root
 	while (p != root)
 	{
 		int newp = data[p];
