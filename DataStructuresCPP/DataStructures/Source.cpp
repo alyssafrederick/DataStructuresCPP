@@ -32,11 +32,18 @@ int main()
 	UndirectedGraph<int> ugrf2;
 	HashMap hm;
 	UnionFind uf(12);
-
+	DirectedGraph<int> grf2;
 
 
 	//14. path finding
 	//using weighted, directed graphs
+	bool line1 = grf2.AddEdge(grf2.AddVertex(2), grf2.AddVertex(9), 3);				//2 -> 9
+	bool line2 = grf2.AddEdge(grf2.AddVertex(3), grf2.AddVertex(10), 5);			//3 -> 10
+	bool line3 = grf2.AddEdge(grf2.AddVertex(5), grf2.Search(2).at(0), 4);			//5 -> 2
+	bool line4 = grf2.AddEdge(grf2.AddVertex(4), grf2.Search(2).at(0), 10);			//4 -> 2
+	bool line5 = grf2.AddEdge(grf2.Search(10).at(0), grf2.Search(5).at(0), 7);		//10 -> 5s
+	bool line6 = grf2.AddEdge(grf2.Search(10).at(0), grf2.Search(4).at(0), 2);		//10 -> 4
+	grf2.Dijkstras(grf2.Search(3).at(0), grf2.Search(9).at(0));  //displays order backwards but yea
 
 
 	//13. union find: quick find, union find, weighted union find, weighted union find w path compression

@@ -1,4 +1,4 @@
-//min heap
+//min heap = smallest at the top/root
 
 template <typename T>
 HeapTree<T>::HeapTree()
@@ -68,6 +68,22 @@ void HeapTree<T>::Pop()
 		HeapifyDown(index);
 	}
 
+}
+
+template <typename T>
+T HeapTree<T>::PopT()
+{
+	if (Size >= 1)
+	{
+		T temp = Root.front();
+		Root[0] = Root.back();
+		Root[Size - 1] = temp;
+		Root.pop_back();
+		Size--;
+		int index = 0;
+		HeapifyDown(index);
+		return temp;
+	}
 }
 
 template <typename T>

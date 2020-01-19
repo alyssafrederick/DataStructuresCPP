@@ -12,7 +12,7 @@ public:
 	DoublyLinkedList<T> LList;
 	void Push(T);
 	T Pop();
-	T Peak();
+	T Peek();
 	void Clear();
 	bool IsEmpty();
 	Stack();
@@ -48,7 +48,7 @@ T Stack<T>::Pop()
 }
 
 template <typename T>
-T Stack<T>::Peak()
+T Stack<T>::Peek()
 {
 	return LList.First.get()->Value;
 }

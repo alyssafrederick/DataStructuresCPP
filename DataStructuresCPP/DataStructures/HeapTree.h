@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-//min heap
+//min heap = smallest at the top/root
 template <typename T>
 class HeapTree
 {
@@ -16,6 +16,7 @@ public:
 	T* RChild(int index);
 	void Add(T value);
 	void Pop();
+	T PopT();
 	void HeapifyUp(T value);
 	void HeapifyDown(int index);
 	HeapTree();
