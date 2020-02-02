@@ -34,6 +34,8 @@ public:
 	void AStar(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
 	int ManhattanHeuristic(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
 	int EuclideanHeuristic(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
+
+	bool BellmanFord();
 };
 
 
@@ -322,4 +324,62 @@ int DirectedGraph<T>::EuclideanHeuristic(std::shared_ptr<Vertex<T>> start, std::
 	int dy = std::abs(start->y - end->y);
 
 	return D * std::sqrt(dx * dx + dy * dy);
+}
+
+template <typename T>
+bool DirectedGraph<T>::BellmanFord()
+{
+	//using heap as a priority queue
+	Queue<std::shared_ptr<Vertex<T>>> q;
+
+	for (auto i = verticies.begin(); i != verticies.end(); i++)
+	{
+		q.Enqueue(vert);
+	}
+
+	auto start = q.Dequeue();
+
+	for (auto i = verticies.begin(); i != verticies.end(); i++)
+	{
+		auto& vert = *i;
+
+		vert->knownDistance = std::numeric_limits<int>::max(); //infinity
+		vert->founder = nullptr;
+	}
+
+	start->knownDistance = 0;
+
+	while (q.Size != 0)
+	{
+		auto current = q.Dequeue();
+
+		for (auto& neighbor : start->neighbors)
+		{
+			//going through the graph
+
+			float edgeWeight = FindEdgeWeight(current, neighbor);
+			int tentativeDist = current->knownDistance + edgeWeight;
+
+			if (tentativeDist < neighbor->knownDistance)
+			{
+				neighbor->knownDistance = tentativeDist;
+				neighbor->founder = current;
+			}
+		}
+
+		for (auto& neighbor : start->neighbors)
+		{
+			//check for negative cycle (step 6)
+
+			float edgeWeight = FindEdgeWeight(current, neighbor);
+			int tentativeDist = current->knownDistance + edgeWeight;
+
+			if (tentativeDist < neighbor->knownDistance)
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
 }
