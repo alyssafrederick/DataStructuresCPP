@@ -10,8 +10,6 @@
 #include "WeightedEdge.h"
 #include "HeapTree.h"
 
-#include <stdlib.h>     /* abs */
-
 
 template <typename T>
 class DirectedGraph
@@ -35,6 +33,7 @@ public:
 	void Dijkstras(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
 	void AStar(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
 	int ManhattanHeuristic(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
+	int EuclideanHeuristic(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
 };
 
 
@@ -266,11 +265,7 @@ void DirectedGraph<T>::AStar(std::shared_ptr<Vertex<T>> start, std::shared_ptr<V
 		auto current = priorityQ.PopT();
 		current->visited = true;
 
-		//if (current == end)
-
-
 		for (auto& neighbor : current->neighbors)
-			//for (auto neighbor = current.get()->neighbors.begin(); neighbor != current.get()->neighbors.end(); neighbor++)
 		{
 			float edgeWeight = FindEdgeWeight(current, neighbor);
 			int tentativeDist = current->knownDistance + edgeWeight;
@@ -287,7 +282,7 @@ void DirectedGraph<T>::AStar(std::shared_ptr<Vertex<T>> start, std::shared_ptr<V
 				neighbor->visited = true;
 			}
 
-			if (neighbor->visited == false /* && neighbor is not in priorityQ already */)
+			if (neighbor->visited == false)
 			{
 				priorityQ.Add(neighbor);
 			}
@@ -308,9 +303,23 @@ void DirectedGraph<T>::AStar(std::shared_ptr<Vertex<T>> start, std::shared_ptr<V
 template <typename T>
 int DirectedGraph<T>::ManhattanHeuristic(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end)
 {
+	//four directions of movement
+
 	int D = 1;
-	int dx = abs(start->x - end->x);
-	int dy = abs(start->y - end->y);
+	int dx = std::abs(start->x - end->x);
+	int dy = std::abs(start->y - end->y);
 
 	return D * (dx + dy);
+}
+
+template <typename T>
+int DirectedGraph<T>::EuclideanHeuristic(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end)
+{
+	//any direction of movement
+
+	int D = 1;
+	int dx = std::abs(start->x - end->x);
+	int dy = std::abs(start->y - end->y);
+
+	return D * std::sqrt(dx * dx + dy * dy);
 }
