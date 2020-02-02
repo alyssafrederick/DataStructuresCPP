@@ -41,10 +41,17 @@ int main()
 	bool line2 = grf2.AddEdge(grf2.AddVertex(3), grf2.AddVertex(10), 5);			//3 -> 10
 	bool line3 = grf2.AddEdge(grf2.AddVertex(5), grf2.Search(2).at(0), 4);			//5 -> 2
 	bool line4 = grf2.AddEdge(grf2.AddVertex(4), grf2.Search(2).at(0), 10);			//4 -> 2
-	bool line5 = grf2.AddEdge(grf2.Search(10).at(0), grf2.Search(5).at(0), 7);		//10 -> 5s
+	bool line5 = grf2.AddEdge(grf2.Search(10).at(0), grf2.Search(5).at(0), 7);		//10 -> 5
 	bool line6 = grf2.AddEdge(grf2.Search(10).at(0), grf2.Search(4).at(0), 2);		//10 -> 4
+	bool line7 = grf2.AddEdge(grf2.Search(3).at(0), grf2.Search(4).at(0), 3);		//3 -> 4
+	bool line8 = grf2.AddEdge(grf2.Search(4).at(0), grf2.Search(5).at(0), 1);		//4 -> 5
 	grf2.Dijkstras(grf2.Search(3).at(0), grf2.Search(9).at(0));  //displays order backwards but yea
 
+	bool line10 = grf2.AddEdge(grf2.AddVertexPosit(3, 4, 4), grf2.AddVertexPosit(10, 8, 6), 5);			//3 -> 10
+	//bool line11 = grf2.AddEdge(grf2.AddVertex(5), grf2.Search(2).at(0), 4);			//5 -> 2
+	//bool line12 = grf2.AddEdge(grf2.AddVertex(4), grf2.Search(2).at(0), 10);			//4 -> 2
+	//bool line13 = grf2.AddEdge(grf2.Search(10).at(0), grf2.Search(5).at(0), 7);		//10 -> 5
+	//bool line14 = grf2.AddEdge(grf2.Search(10).at(0), grf2.Search(4).at(0), 2);		//10 -> 4
 
 	//13. union find: quick find, union find, weighted union find, weighted union find w path compression
 	/*

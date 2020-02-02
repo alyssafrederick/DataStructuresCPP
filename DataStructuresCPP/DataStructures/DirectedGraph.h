@@ -10,6 +10,8 @@
 #include "WeightedEdge.h"
 #include "HeapTree.h"
 
+#include <stdlib.h>     /* abs */
+
 
 template <typename T>
 class DirectedGraph
@@ -28,7 +30,11 @@ public:
 	std::vector<std::shared_ptr<Vertex<T>>> Search(T value);
 	std::shared_ptr<WeightedEdge<T>> GetEdge(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
 
+	std::shared_ptr<Vertex<T>> AddVertexPosit(T value, int x, int y);
+
 	void Dijkstras(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
+	void AStar(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
+	int ManhattanHeuristic(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end);
 };
 
 
@@ -42,6 +48,14 @@ template <typename T>
 std::shared_ptr<Vertex<T>> DirectedGraph<T>::AddVertex(T value)
 {
 	std::shared_ptr<Vertex<T>> temp = std::make_shared<Vertex<T>>(value);
+	verticies.emplace(temp);
+	return Search(value).front();
+}
+
+template <typename T>
+std::shared_ptr<Vertex<T>> DirectedGraph<T>::AddVertexPosit(T value, int x, int y)
+{
+	std::shared_ptr<Vertex<T>> temp = std::make_shared<Vertex<T>>(value, x, y);
 	verticies.emplace(temp);
 	return Search(value).front();
 }
@@ -225,4 +239,78 @@ void DirectedGraph<T>::Dijkstras(std::shared_ptr<Vertex<T>> start, std::shared_p
 		stack.Push(stack.Peek()->founder);
 		std::cout << stack.Peek().get()->value << std::endl; //displays order backwards but yea
 	}
+}
+
+template <typename T>
+void DirectedGraph<T>::AStar(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end)
+{
+	for (auto i = verticies.begin(); i != verticies.end(); i++)
+	{
+		auto& vert = *i;
+
+		vert->visited = false;
+		vert->knownDistance = std::numeric_limits<int>::max(); //infinity
+		vert->finalDistance = std::numeric_limits<int>::max(); //infinity
+		vert->founder = nullptr;
+	}
+
+	//using heap as a priority queue
+	HeapTree<std::shared_ptr<Vertex<T>>> priorityQ;
+
+	start->knownDistance = 0;
+	start->finalDistance = ManhattanHeuristic(start, end);
+	priorityQ.Add(start);
+
+	while (priorityQ.Size != 0)
+	{
+		auto current = priorityQ.PopT();
+		current->visited = true;
+
+		//if (current == end)
+
+
+		for (auto& neighbor : current->neighbors)
+			//for (auto neighbor = current.get()->neighbors.begin(); neighbor != current.get()->neighbors.end(); neighbor++)
+		{
+			float edgeWeight = FindEdgeWeight(current, neighbor);
+			int tentativeDist = current->knownDistance + edgeWeight;
+
+			if (tentativeDist < neighbor->knownDistance)
+			{
+				neighbor->knownDistance = tentativeDist;
+				neighbor->founder = current;
+				neighbor->visited = false;
+				neighbor->finalDistance = neighbor->knownDistance + ManhattanHeuristic(neighbor, end);
+			}
+			else
+			{
+				neighbor->visited = true;
+			}
+
+			if (neighbor->visited == false /* && neighbor is not in priorityQ already */)
+			{
+				priorityQ.Add(neighbor);
+			}
+		}
+	}
+
+	//start at the end and work back
+	Stack<std::shared_ptr<Vertex<T>>> stack;
+	stack.Push(end);
+	std::cout << end->value << std::endl;
+	while (stack.Peek() != start)
+	{
+		stack.Push(stack.Peek()->founder);
+		std::cout << stack.Peek().get()->value << std::endl; //displays order backwards but yea
+	}
+}
+
+template <typename T>
+int DirectedGraph<T>::ManhattanHeuristic(std::shared_ptr<Vertex<T>> start, std::shared_ptr<Vertex<T>> end)
+{
+	int D = 1;
+	int dx = abs(start->x - end->x);
+	int dy = abs(start->y - end->y);
+
+	return D * (dx + dy);
 }
