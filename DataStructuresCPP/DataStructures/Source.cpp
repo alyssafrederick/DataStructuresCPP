@@ -39,6 +39,7 @@ int main()
 
 	//14. path finding
 	//using weighted, directed graphs
+	/*
 	bool line1 = grf2.AddEdge(grf2.AddVertex(2), grf2.AddVertex(9), 3);				//2 -> 9
 	bool line2 = grf2.AddEdge(grf2.AddVertex(3), grf2.AddVertex(10), 5);			//3 -> 10
 	bool line3 = grf2.AddEdge(grf2.AddVertex(5), grf2.Search(2).at(0), 4);			//5 -> 2
@@ -71,6 +72,7 @@ int main()
 	bool line33 = grf5.AddEdge(grf5.Search(6).at(0), grf5.Search(2).at(0), -3);			//6 -> 2
 	bool line34 = grf5.AddEdge(grf5.Search(6).at(0), grf5.AddVertex(7), 4);				//6 -> 7
 	std::cout << grf5.BellmanFord() << std::endl;
+	*/
 
 	//13. union find: quick find, union find, weighted union find, weighted union find w path compression
 	/*
