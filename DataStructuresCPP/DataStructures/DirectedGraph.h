@@ -337,52 +337,94 @@ bool DirectedGraph<T>::BellmanFord()
 		vert->founder = nullptr;
 	}
 
-	//using heap as a priority queue
-	HeapTree<std::shared_ptr<Vertex<T>>> q;
+	auto current = verticies.begin();
+	auto& vert = *current;
+	vert->knownDistance = 0;
 
+	//going through the graph
 	for (auto i = verticies.begin(); i != verticies.end(); i++)
 	{
 		auto& vert = *i;
-		q.Add(vert);
-	}
 
-	auto start = q.PopT();
-
-	start->knownDistance = 0;
-	q.Add(start);
-
-	while (q.Size != 0)
-	{
-		auto current = q.PopT();
-
-		for (auto& neighbor : current->neighbors)
+		for (auto& neighbor : vert->neighbors)
 		{
-			//going through the graph
-
-			float edgeWeight = FindEdgeWeight(current, neighbor);
-			int tentativeDist = current->knownDistance + edgeWeight;
+			float edgeWeight = FindEdgeWeight(vert, neighbor);
+			int tentativeDist = vert->knownDistance + edgeWeight;
 
 			if (tentativeDist < neighbor->knownDistance)
 			{
 				neighbor->knownDistance = tentativeDist;
-				neighbor->founder = current;
+				neighbor->founder = vert;
 			}
 		}
-	
+	}
 
-	for (auto& neighbor : current->neighbors)
+	//check for negative cycles
+	for (auto i = verticies.begin(); i != verticies.end(); i++)
 	{
-		//check for negative cycles
+		auto& vert = *i;
 
-		float edgeWeight = FindEdgeWeight(current, neighbor);
-		int tentativeDist = current->knownDistance + edgeWeight;
-
-		if (tentativeDist < neighbor->knownDistance)
+		for (auto& neighbor : vert->neighbors)
 		{
-			return true;
+			float edgeWeight = FindEdgeWeight(vert, neighbor);
+			int tentativeDist = vert->knownDistance + edgeWeight;
+
+			if (tentativeDist < neighbor->knownDistance)
+			{
+				return true;
+			}
 		}
 	}
-	}
+
+
+	////using heap as a priority queue
+	//HeapTree<std::shared_ptr<Vertex<T>>> q;
+
+	//for (auto i = verticies.begin(); i != verticies.end(); i++)
+	//{
+	//	auto& vert = *i;
+	//	q.Add(vert);
+	//}
+
+	//auto start = q.PopT();
+
+	//start->knownDistance = 0;
+	//q.Add(start);
+
+
+
+	//while (q.Size != 0)
+	//{
+	//	auto current = q.PopT();
+
+	//	for (auto& neighbor : current->neighbors)
+	//	{
+	//		//going through the graph
+
+	//		float edgeWeight = FindEdgeWeight(current, neighbor);
+	//		int tentativeDist = current->knownDistance + edgeWeight;
+
+	//		if (tentativeDist < neighbor->knownDistance)
+	//		{
+	//			neighbor->knownDistance = tentativeDist;
+	//			neighbor->founder = current;
+	//		}
+	//	}
+
+
+		//for (auto& neighbor : current->neighbors)
+		//{
+		//	//check for negative cycles
+
+		//	float edgeWeight = FindEdgeWeight(current, neighbor);
+		//	int tentativeDist = current->knownDistance + edgeWeight;
+
+		//	if (tentativeDist < neighbor->knownDistance)
+		//	{
+		//		return true;
+		//	}
+		//}
+		//}
 
 	return false;
 }
