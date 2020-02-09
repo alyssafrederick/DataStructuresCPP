@@ -68,7 +68,7 @@ bool DirectedGraph<T>::AddEdge(std::shared_ptr<Vertex<T>> start, std::shared_ptr
 	edges.emplace(temp);
 	//add the end to the start's neighbors vector
 	start->neighbors.push_back(end);
-	
+
 	if (start->neighbors[start->neighbors.size() - 1] == end)
 	{
 		return true;
@@ -117,18 +117,18 @@ bool DirectedGraph<T>::RemoveEdge(std::shared_ptr<Vertex<T>> start, std::shared_
 {
 	for (auto itr = edges.begin(); itr != edges.end(); itr++)
 	{
-		auto edge = *itr;		
+		auto edge = *itr;
 		if ((*edge).Start == start && (*edge).End == end)
 		{
 			edges.erase(itr);
-			
+
 			for (auto i = (*start).neighbors.begin(); i != (*start).neighbors.end(); i++)
 			{
 				if ((*i) == end)
 				{
 					(*start).neighbors.erase(i);
 					break;
-				}				
+				}
 			}
 
 			return true;
@@ -192,7 +192,7 @@ void DirectedGraph<T>::Dijkstras(std::shared_ptr<Vertex<T>> start, std::shared_p
 		vert->knownDistance = std::numeric_limits<int>::max(); //infinity
 		vert->founder = nullptr;
 	}
-	
+
 	//using heap as a priority queue
 	HeapTree<std::shared_ptr<Vertex<T>>> priorityQ;
 
@@ -206,13 +206,13 @@ void DirectedGraph<T>::Dijkstras(std::shared_ptr<Vertex<T>> start, std::shared_p
 
 		//if (current == end)
 
-		
-		for(auto& neighbor : current->neighbors)
-		//for (auto neighbor = current.get()->neighbors.begin(); neighbor != current.get()->neighbors.end(); neighbor++)
+
+		for (auto& neighbor : current->neighbors)
+			//for (auto neighbor = current.get()->neighbors.begin(); neighbor != current.get()->neighbors.end(); neighbor++)
 		{
 			float edgeWeight = FindEdgeWeight(current, neighbor);
 			int tentativeDist = current->knownDistance + edgeWeight;
-			
+
 			if (tentativeDist < neighbor->knownDistance)
 			{
 				neighbor->knownDistance = tentativeDist;
@@ -223,7 +223,7 @@ void DirectedGraph<T>::Dijkstras(std::shared_ptr<Vertex<T>> start, std::shared_p
 			{
 				neighbor->visited = true;
 			}
-			
+
 			if (neighbor->visited == false /* && neighbor is not in priorityQ already */)
 			{
 				priorityQ.Add(neighbor);
@@ -329,16 +329,6 @@ int DirectedGraph<T>::EuclideanHeuristic(std::shared_ptr<Vertex<T>> start, std::
 template <typename T>
 bool DirectedGraph<T>::BellmanFord()
 {
-	//using heap as a priority queue
-	Queue<std::shared_ptr<Vertex<T>>> q;
-
-	for (auto i = verticies.begin(); i != verticies.end(); i++)
-	{
-		q.Enqueue(vert);
-	}
-
-	auto start = q.Dequeue();
-
 	for (auto i = verticies.begin(); i != verticies.end(); i++)
 	{
 		auto& vert = *i;
@@ -347,13 +337,25 @@ bool DirectedGraph<T>::BellmanFord()
 		vert->founder = nullptr;
 	}
 
+	//using heap as a priority queue
+	HeapTree<std::shared_ptr<Vertex<T>>> q;
+
+	for (auto i = verticies.begin(); i != verticies.end(); i++)
+	{
+		auto& vert = *i;
+		q.Add(vert);
+	}
+
+	auto start = q.PopT();
+
 	start->knownDistance = 0;
+	q.Add(start);
 
 	while (q.Size != 0)
 	{
-		auto current = q.Dequeue();
+		auto current = q.PopT();
 
-		for (auto& neighbor : start->neighbors)
+		for (auto& neighbor : current->neighbors)
 		{
 			//going through the graph
 
@@ -366,19 +368,20 @@ bool DirectedGraph<T>::BellmanFord()
 				neighbor->founder = current;
 			}
 		}
+	
 
-		for (auto& neighbor : start->neighbors)
+	for (auto& neighbor : current->neighbors)
+	{
+		//check for negative cycles
+
+		float edgeWeight = FindEdgeWeight(current, neighbor);
+		int tentativeDist = current->knownDistance + edgeWeight;
+
+		if (tentativeDist < neighbor->knownDistance)
 		{
-			//check for negative cycle (step 6)
-
-			float edgeWeight = FindEdgeWeight(current, neighbor);
-			int tentativeDist = current->knownDistance + edgeWeight;
-
-			if (tentativeDist < neighbor->knownDistance)
-			{
-				return true;
-			}
+			return true;
 		}
+	}
 	}
 
 	return false;

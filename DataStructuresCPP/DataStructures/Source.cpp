@@ -34,7 +34,7 @@ int main()
 	UnionFind uf(12);
 	DirectedGraph<int> grf2;
 	DirectedGraph<int> grf3;
-
+	DirectedGraph<int> grf4;
 
 	//14. path finding
 	//using weighted, directed graphs
@@ -54,9 +54,15 @@ int main()
 	bool line13 = grf3.AddEdge(grf3.Search(2).at(0), grf3.Search(10).at(0), 7);							//2 -> 10
 	bool line14 = grf3.AddEdge(grf3.Search(5).at(0), grf3.Search(3).at(0), 2);							//5 -> 3
 	bool line15 = grf3.AddEdge(grf3.Search(4).at(0), grf3.Search(5).at(0), 3);							//2 -> 10
-	//bool line13 = grf3.AddEdge(grf3.Search(2).at(0), grf3.Search(10).at(0), 7);							//2 -> 10
+	//bool line13 = grf3.AddEdge(grf3.Search(2).at(0), grf3.Search(10).at(0), 7);						//2 -> 10
 	grf3.AStar(grf3.Search(4).at(0), grf3.Search(10).at(0));
 	grf3.Dijkstras(grf3.Search(4).at(0), grf3.Search(10).at(0));
+	//std::cout << grf3.BellmanFord() << std::endl;														//false
+
+	bool line20 = grf4.AddEdge(grf4.AddVertex(2), grf4.AddVertex(9), -1);			//2 -> 9
+	bool line21 = grf4.AddEdge(grf4.Search(9).at(0), grf4.AddVertex(6), -2);		//9 -> 6
+	bool line22 = grf4.AddEdge(grf4.Search(6).at(0), grf4.Search(2).at(0), -3);		//6 -> 2
+	std::cout << grf4.BellmanFord() << std::endl;
 
 	//13. union find: quick find, union find, weighted union find, weighted union find w path compression
 	/*
