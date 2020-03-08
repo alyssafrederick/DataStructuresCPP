@@ -14,12 +14,12 @@ public:
 	void Clear();
 	void Insert(std::string word);
 	bool Contains(std::string word);
-	std::unordered_set<std::string> GetAllMatchingPrefix(std::string prefix);
+	//std::unordered_set<std::string> GetAllMatchingPrefix(std::string prefix);
 	bool Remove(std::string prefix);
 
 private:
 	TrieNode SearchNode(std::string word);
-	TrieNode root;
+	std::unique_ptr<TrieNode> root;
 };
 
 
@@ -34,9 +34,11 @@ void Trie::Clear()
 	root = TrieNode('$');
 }
 
+
+
 void Trie::Insert(std::string word)
 {
-	auto children = root.children;
+	auto kids = root.children;
 
 	for (auto i = 0; i < word.length(); i++)
 	{
@@ -44,38 +46,44 @@ void Trie::Insert(std::string word)
 		TrieNode tempTrieNode;
 
 		//if letter is in the children
-		if (children.find(letter) != children.end())
+		if (kids.find(letter) != kids.end())
 		{
-			tempTrieNode = children[letter];
+			tempTrieNode = kids[letter];
 		}
+
 		else
 		{
 			tempTrieNode = TrieNode(letter);
-			children.insert(std::pair<char, TrieNode> (letter, tempTrieNode));
+			kids.insert(std::pair<char, TrieNode> (letter, tempTrieNode));
 		}
 
-		children = tempTrieNode.children;
+		if (i == word.length() - 1)
+		{
+			tempTrieNode.isWord = true;
+		}
 
-
+		kids = tempTrieNode.children;
 	}
 }
 
 bool Trie::Contains(std::string word)
 {
 
+	return false;
 }
 
-std::unordered_set<std::string> Trie::GetAllMatchingPrefix(std::string prefix)
-{
-
-}
+//std::unordered_set<std::string> Trie::GetAllMatchingPrefix(std::string prefix)
+//{
+//	return std::unordered_set<"hi">;
+//}
 
 bool Trie::Remove(std::string prefix)
 {
 
+	return false;
 }
 
 TrieNode Trie::SearchNode(std::string word)
 {
-
+	return TrieNode();
 }

@@ -125,6 +125,8 @@
     <ClInclude Include="DoublyLinkedNode.tpp" />
     <ClInclude Include="HashMap.h" />
     <ClInclude Include="KeyValuePair.h" />
+    <ClInclude Include="Trie.h" />
+    <ClInclude Include="TrieNode.h" />
     <ClInclude Include="UndirectedGraph.h" />
     <ClInclude Include="UnionFind.h" />
     <ClInclude Include="WeightedEdge.h" />

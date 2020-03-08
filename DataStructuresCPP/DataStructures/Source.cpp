@@ -15,6 +15,7 @@
 #include "UndirectedGraph.h"
 #include "HashMap.h"
 #include "UnionFind.h"
+#include "Trie.h"
 
 int main()
 {
@@ -36,6 +37,11 @@ int main()
 	DirectedGraph<int> grf3;
 	DirectedGraph<int> grf4;
 	DirectedGraph<int> grf5;
+	Trie trie;
+
+	//15. tries
+	trie.Insert("hello");
+	trie.Insert("hey");
 
 	//14. path finding
 	//using weighted, directed graphs

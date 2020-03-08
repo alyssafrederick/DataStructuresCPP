@@ -104,6 +104,12 @@
     <ClInclude Include="UnionFind.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Trie.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TrieNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Queue.tpp">
