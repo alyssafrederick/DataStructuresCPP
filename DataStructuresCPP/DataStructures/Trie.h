@@ -26,49 +26,49 @@ private:
 
 Trie::Trie()
 {
-	root = TrieNode('$');
+	root = std::make_unique<TrieNode>('$');
 }
 
 void Trie::Clear()
 {
-	root = TrieNode('$');
+	root = std::make_unique<TrieNode>('$');
 }
 
 
 
 void Trie::Insert(std::string word)
 {
-	auto kids = root.children;
+	auto kids = root->children;
 
 	for (auto i = 0; i < word.length(); i++)
 	{
 		auto letter = word[i];
-		TrieNode tempTrieNode;
+		std::unique_ptr<TrieNode> tempTrieNode = std::make_unique<TrieNode>();
 
 		//if letter is in the children
 		if (kids.find(letter) != kids.end())
 		{
-			tempTrieNode = kids[letter];
+			tempTrieNode = std::make_unique<TrieNode>(kids[letter]);
 		}
 
 		else
 		{
-			tempTrieNode = TrieNode(letter);
-			kids.insert(std::pair<char, TrieNode> (letter, tempTrieNode));
+			tempTrieNode = std::make_unique<TrieNode>(letter);
+			kids[i] = tempTrieNode;
 		}
 
 		if (i == word.length() - 1)
 		{
-			tempTrieNode.isWord = true;
+			tempTrieNode->isWord = true;
 		}
 
-		kids = tempTrieNode.children;
+		kids = tempTrieNode->children;
 	}
 }
 
 bool Trie::Contains(std::string word)
 {
-
+	
 	return false;
 }
 
@@ -85,5 +85,16 @@ bool Trie::Remove(std::string prefix)
 
 TrieNode Trie::SearchNode(std::string word)
 {
+	auto tempKids = root->children;
+	std::unique_ptr<TrieNode> tempTrieNode = std::make_unique<TrieNode>();
+
+	for (auto current : word)
+	{
+		if (tempKids.find(current) != tempKids.end)
+		{
+
+		}
+	}
+
 	return TrieNode();
 }

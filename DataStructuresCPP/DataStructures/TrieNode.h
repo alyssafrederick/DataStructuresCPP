@@ -11,7 +11,7 @@ class TrieNode
 public:
 	TrieNode(char c);
 	TrieNode();
-	std::map<char, TrieNode> children;
+	std::map<char, std::unique_ptr<TrieNode>> children;
 	char Letter;
 	bool isWord;
 };
@@ -25,7 +25,7 @@ TrieNode::TrieNode()
 
 TrieNode::TrieNode(char c)
 {
-	children = std::map<char, TrieNode>();
+	children = std::map<char, std::unique_ptr<TrieNode>>();
 	Letter = c;
 	isWord = false;
 }
