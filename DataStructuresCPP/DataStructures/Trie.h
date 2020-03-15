@@ -10,15 +10,16 @@ class Trie
 {
 public:
 	Trie();
+	~Trie();
 
 	void Clear();
 	void Insert(std::string word);
 	bool Contains(std::string word);
 	//std::unordered_set<std::string> GetAllMatchingPrefix(std::string prefix);
-	bool Remove(std::string prefix);
+	bool Remove(std::string word);
+	TrieNode* SearchNode(std::string word);
 
 private:
-	TrieNode SearchNode(std::string word);
 	std::unique_ptr<TrieNode> root;
 };
 
@@ -26,7 +27,12 @@ private:
 
 Trie::Trie()
 {
-	root = std::make_unique<TrieNode>('$');
+	Clear();
+}
+
+Trie::~Trie()
+{
+	Clear();
 }
 
 void Trie::Clear()
@@ -38,23 +44,26 @@ void Trie::Clear()
 
 void Trie::Insert(std::string word)
 {
-	auto kids = root->children;
+	auto kids = root->children.get();
 
 	for (auto i = 0; i < word.length(); i++)
 	{
 		auto letter = word[i];
-		std::unique_ptr<TrieNode> tempTrieNode = std::make_unique<TrieNode>();
+		auto itr = kids->find(letter);
 
-		//if letter is in the children
-		if (kids.find(letter) != kids.end())
+		TrieNode* tempTrieNode = nullptr;
+
+		//if letter is in the children already, 
+		if (itr != kids->end())
 		{
-			tempTrieNode = std::make_unique<TrieNode>(kids[letter]);
+			tempTrieNode = itr->second.get();
 		}
 
+		//if letter is not already there, add it to the root's children
 		else
 		{
-			tempTrieNode = std::make_unique<TrieNode>(letter);
-			kids[i] = tempTrieNode;
+			kids->insert({ letter, std::make_unique<TrieNode>(letter) });
+			tempTrieNode = kids->find(letter)->second.get();
 		}
 
 		if (i == word.length() - 1)
@@ -62,7 +71,7 @@ void Trie::Insert(std::string word)
 			tempTrieNode->isWord = true;
 		}
 
-		kids = tempTrieNode->children;
+		kids = kids->find(letter)->second->children.get();
 	}
 }
 
@@ -74,27 +83,47 @@ bool Trie::Contains(std::string word)
 
 //std::unordered_set<std::string> Trie::GetAllMatchingPrefix(std::string prefix)
 //{
-//	return std::unordered_set<"hi">;
+//	return std::unordegit red_set<"hi">;
 //}
 
-bool Trie::Remove(std::string prefix)
+bool Trie::Remove(std::string word)
 {
+	if (SearchNode(word) != nullptr)
+	{
+		return false;
+	}
+	else
+	{
 
-	return false;
+	}
 }
 
-TrieNode Trie::SearchNode(std::string word)
+TrieNode* Trie::SearchNode(std::string word)
 {
-	auto tempKids = root->children;
-	std::unique_ptr<TrieNode> tempTrieNode = std::make_unique<TrieNode>();
+	auto tempKids = root->children.get();
+	TrieNode* tempTrieNode = nullptr;
+	int letterCount = 0;
 
 	for (auto current : word)
 	{
-		if (tempKids.find(current) != tempKids.end)
+		//if the letter is in the trie
+		if (tempKids->find(current) != tempKids->end())
 		{
-
+			if (letterCount == word.length() - 1)
+			{
+				tempTrieNode = tempKids->find(current)->second.get();
+			}
 		}
-	}
 
-	return TrieNode();
+		else
+		{
+			return tempTrieNode;
+		}
+
+		tempKids = tempKids->find(current)->second->children.get();
+
+		letterCount++;
+	}
+	
+	return tempTrieNode;
 }

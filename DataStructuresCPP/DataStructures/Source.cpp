@@ -42,6 +42,9 @@ int main()
 	//15. tries
 	trie.Insert("hello");
 	trie.Insert("hey");
+	std::cout << trie.SearchNode("hey")->Letter << std::endl;		//y
+	std::cout << trie.SearchNode("hello")->Letter << std::endl;		//o
+
 
 	//14. path finding
 	//using weighted, directed graphs
