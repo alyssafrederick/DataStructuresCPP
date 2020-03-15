@@ -40,7 +40,6 @@ int main()
 	Trie trie;
 
 	//15. tries
-	/*
 	trie.Insert("hello");
 	trie.Insert("hey");
 	std::cout << trie.SearchNode("hey")->Letter << std::endl;		//y
@@ -53,9 +52,9 @@ int main()
 	trie.Insert("hi");
 	trie.Insert("howdy");
 	auto matches2 = trie.GetAllMatchingPrefix("h");
-	*/
 
-	//14. path finding using weighted, directed graphs
+	//14. path finding
+	//using weighted, directed graphs
 	/*
 	bool line1 = grf2.AddEdge(grf2.AddVertex(2), grf2.AddVertex(9), 3);				//2 -> 9
 	bool line2 = grf2.AddEdge(grf2.AddVertex(3), grf2.AddVertex(10), 5);			//3 -> 10

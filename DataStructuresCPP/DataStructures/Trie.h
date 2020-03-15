@@ -3,6 +3,7 @@
 #include <memory>
 #include <iostream>
 #include <string>
+#include <vector>
 
 #include "TrieNode.h"
 
@@ -15,12 +16,13 @@ public:
 	void Clear();
 	void Insert(std::string word);
 	bool Contains(std::string word);
-	//std::unordered_set<std::string> GetAllMatchingPrefix(std::string prefix);
+	std::vector<std::string> GetAllMatchingPrefix(std::string prefix);
 	bool Remove(std::string word);
 	TrieNode* SearchNode(std::string word);
 
 private:
 	std::unique_ptr<TrieNode> root;
+	void GetAllWords(TrieNode* node, std::vector<std::string>& allWords, std::string prefix);
 };
 
 
@@ -39,8 +41,6 @@ void Trie::Clear()
 {
 	root = std::make_unique<TrieNode>('$');
 }
-
-
 
 void Trie::Insert(std::string word)
 {
@@ -77,24 +77,56 @@ void Trie::Insert(std::string word)
 
 bool Trie::Contains(std::string word)
 {
-	
-	return false;
-}
-
-//std::unordered_set<std::string> Trie::GetAllMatchingPrefix(std::string prefix)
-//{
-//	return std::unordegit red_set<"hi">;
-//}
-
-bool Trie::Remove(std::string word)
-{
-	if (SearchNode(word) != nullptr)
+	if (SearchNode(word) == nullptr)
 	{
 		return false;
 	}
 	else
 	{
+		return true;
+	}
+}
 
+void Trie::GetAllWords(TrieNode* node, std::vector<std::string>& allWords, std::string prefix)
+{
+	if (node->children == nullptr)
+	{
+		return;
+	}
+
+	for (auto itr = node->children->begin(); itr != node->children->end(); itr++)
+	{
+		std::string newprefix = prefix + itr->first;
+		GetAllWords(itr->second.get(), allWords, newprefix);
+	}
+
+	if (node->isWord)
+	{
+		allWords.push_back(prefix);
+	}
+}
+
+std::vector<std::string> Trie::GetAllMatchingPrefix(std::string prefix)
+{
+	std::vector<std::string> allWords = {};
+
+	auto node = SearchNode(prefix);
+
+	GetAllWords(node, allWords, prefix);
+
+	return allWords;
+}
+
+bool Trie::Remove(std::string word)
+{
+	if (Contains(word) == false)
+	{
+		return false;
+	}
+	else
+	{
+		SearchNode(word)->isWord = false;
+		return true;
 	}
 }
 
@@ -124,6 +156,6 @@ TrieNode* Trie::SearchNode(std::string word)
 
 		letterCount++;
 	}
-	
+
 	return tempTrieNode;
 }
